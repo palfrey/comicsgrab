@@ -89,4 +89,4 @@ Todo
 .. _`format of strip files`: strips.php
 .. _`current readlist`: readlist.php
 .. _here: comicsgrab-2.2.tar.gz
-.. _urlgrab: http://tevp.net/projects/darcs/darcs.php/urlgrab
+.. _urlgrab: http://github.com/palfrey/urlgrab/
