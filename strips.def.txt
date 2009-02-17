@@ -1,0 +1,168 @@
+Readme for the strips.def
+-------------------------
+The original version of this is copyright 2001-2003 Andrew Medico 
+<amedico@amedico.dhs.org>, and available at 
+http://dailystrips.sourceforge.net/1.0.27/readme.defs.html
+  
+This file describes in further detail how the strips.def file is constructed. 
+Strips can be defined in one of two ways. Either standalone, or strips
+can be provided the image URL by generating it (as from the current date) or by 
+searching a web page for a URL. Let's look at an example of generating first::
+
+	strip badtech
+		name Badtech
+		homepage http://www.badtech.com/
+		type generate
+		imageurl http://www.badtech.com/a/%-y/%-m/%-d.jpg
+	end
+	 
+Note that all of the indenting here is strictly optional, but does make it 
+easier for people to read. In the "strip" line, we specify the short name of the 
+strip that will be used to refer to it on the command line. This must be 
+unique. 
+
+* "name" specifies the name of the strip to display in the HTML output. 
+* "homepage" is the address of the strip's homepage, use for the link in the output.
+* "type" can be either "generate" or "search". Here we are using "generate" 
+  to generate a URL.
+* "imageurl" is the address of the image. You are allowed to use a number of 
+  special variables. Single letters preceeded by the "%" symbol, such as 
+  "%Y", "%d", "%m", etc. are interpreted as date variables and passed to the 
+  strftime function for conversion. "date --help" provides a reference that 
+  is compatible. You can also use a "$" followed by any of the above 
+  variables, such as "$homepage". For the example, this will simply 
+  subsititute "http://www.badtech.com" in place of "$homepage".
+
+The other type of URL generation, searching, is as follows::
+
+	strip joyoftech
+		name The Joy of Tech
+		homepage http://www.joyoftech.com/joyoftech/
+		type search
+		searchpattern <IMG.+?src="(joyimages/\d+\.gif)\"
+		baseurl http://www.joyoftech.com/joyoftech/
+	end
+ 
+"strip", "name", and "homepage" all function as above. The difference is the 
+"type search" line and the lines that follow. 
+
+* "searchpattern" is a Python regular expression that must be written to match the strip's URL. 
+  Not shown is "searchpage". This is a URL to a web page and is only needed if the URL to the strip image is not found on the 
+  homepage. The same special variables listed above for "imageurl" may also be 
+  used here. 
+* "baseurl" only needs to be specified if the "searchpattern" regular 
+  expression does not match a full URL (that is, it does not start with http:// 
+  and contain the host). If specified, it is prepended to whatever "searchpattern" 
+  matched.
+
+The other method of specifying strips is to use classes. This method is used 
+when there are several strips provided by the same webserver that all have an 
+identical definition, except for some strip-specific elements. Classes work as 
+follows:
+
+First, the class is declared::
+
+ class ucomics-srch
+ 	homepage http://www.ucomics.com/%strip/view%1.htm
+ 	type search
+ 	searchpattern (/%1/(\d+)/%1(\d+)\.(gif|jpg))
+ 	baseurl http://images.ucomics.com/comics
+ end
+ 
+
+This is just like a strip definition, except "class" is the first line. The 
+value for "class" must be unique among other classes but will not conflict with 
+the names of strips. Strip-specific elements are specified using special 
+variables "$x", where "x" is a number from 0 to 9. When the definition file is 
+parsed, these variables are retrieved from the strip definition, shown below::
+
+ strip calvinandhobbes
+ 	name Calvin and Hobbes
+ 	useclass ucomics-srch
+ 	$1 ch
+ end
+ 
+This definition is like a normal definition except the second line is "useclass" 
+followed by the name of the class to use. Below that, the strip-specific "$x" 
+variables must be specified. Values already declared in the class can be 
+overridden (if necessary) by simply specifying them in the strip definition.
+
+"days" is another useful variable. This is a list of days on which you expect 
+the comic to update. This is a series of day names, either separated by spaces 
+for individual days, or by dashes for a sequence of days. The names can be 
+shortened to 2 letters if you wish (e.g. Mo, Tu, etc), and the script will 
+recognise any short form of a day name varying between 2 letters long and the 
+full length. If we already have what should be the most recent version of a 
+strip, we don't need to check the page again. If on the other hand, a strip has 
+not been updated when it should have been, all subsequent days are automatically 
+checked until the strip is updated. Default setting for days is "Mo-Sun" i.e. 
+every day.
+
+e.g. days Mo-Fri
+     # Monday to Friday, not Saturday or Sunday.
+
+Additional sections that can be added are "subbeg/subend" blocks. These define a 
+subsection of a definition that allow for strips that have varying definitions 
+e.g. keenspace. A good example of this is the Keenspace class::
+
+	class keenspace
+		type search
+		subbeg
+			baseurl $homepage
+			searchpattern document.write\('<(?:IMG|img)[^S]*SRC="(/comics/$1[^\"]*)"
+		subend
+		subbeg
+			searchpattern <(?:IMG|img)[^S]*SRC="($homepage/comics/$1[^\"]*)"
+		subend
+		subbeg
+			baseurl $homepage
+			searchpattern <(?:IMG|img)[^S]*SRC="(/comics/$1[^\"]*)"
+		subend
+	end
+
+All of the subsections are of type search, but as you can see they have 
+different searchpatterns, and the middle one doesn't have a baseurl. You can 
+place any of the other variables inside a sub-block (nested sub-blocks are 
+currently not supported). A sub-block will have all of the variables defined 
+outside of it's block (e.g "type search" in this example) plus the variables 
+defined inside its block. So effectively this one class defines 3 different 
+variants of the class, to allow to check for all 3.
+
+You can now put little snippets of Perl code right into the definition. For 
+example, the definition for The Norm uses this to generate the day number for 14 
+days ago. The Norm website uses Javascript to generate the image URL, so it 
+couldn't be searched for and previously there was no way to work with dates 
+other than the current date. Here's how it works: just insert <code:Perl code>. 
+No need to quote the code, just put it where "Perl code" is. Just don't forget 
+to escape any > that may happen to be in your code. Note that this is then 
+interpreted by a Python module (incomplete, YMMV with it) - Python doesn't have 
+a default method for putting code in regexps - the exact behaviour of this may 
+alter in future versions.
+
+For your convenience, "groups" of strips may also be defined. These allow you to 
+use a single keyword on the command line to refer to a whole set of strips. The 
+construct is as follows::
+
+ group favorites
+ 	desc My Favorite Comics
+ 	include peanuts
+ 	include foxtrot userfriendly
+ end
+ 
+The group name must be unique among all groups, but will not conflict with 
+strips or classes. Everything after an "include" is added to the list of strips. 
+You may specify one or more strips per "include" line, whatever you prefer.
+
+Notes:
+
+* For classes, variables declared in the strip definition take precedence 
+  over those specified in the class, if there is any conflict. Any variables 
+  that you might use in a "strip" section can also be used in a "class" 
+  section.
+* If no "searchpage" is specified for definitions of type "search", the 
+  value of "homepage" is used.
+* The default referer for HTTP is the value of "searchpage". If this has not 
+  been set (in the case of definitions that generate the URL or search 
+  definitions that use the homepage as the searchpage), the value of 
+  "homepage" is used.
+* Group, strip, and class names can contain pretty much any character.
