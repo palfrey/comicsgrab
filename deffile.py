@@ -13,7 +13,7 @@ import urlcache
 import urlparse
 
 class ComicsDef:
-	def __init__(self,deffile,cachedir,debug=0,proxy=""):
+	def __init__(self,deffile,cachedir,debug=0,proxy=None):
 		pickle = deffile+".pickle"		
 		
 		self.debug = debug

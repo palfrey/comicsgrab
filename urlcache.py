@@ -9,7 +9,8 @@
 
 import os,md5
 from cPickle import dump,load
-import URLTimeout,urllib2
+from urlgrab import URLTimeout
+import urllib2
 from os.path import exists
 
 debug = True
@@ -23,7 +24,7 @@ class URLCache:
 	STAT_UNCHANGED = 3
 	STAT_FAILED = 4
 
-	def __init__(self,cache_dir,proxy=""):
+	def __init__(self,cache_dir,proxy=None):
 		self.store = {}
 		self.cache = cache_dir
 		self.proxy = proxy
@@ -85,7 +86,7 @@ class URLCache:
 				#	r = urllib2.Request(url)
 				#	r.add_header("Referer",ref)
 				#	data = urllib2.urlopen(r)
-				data = URLTimeout.URLTimeout().get_url(url,ref,proxy=self.proxy)
+				data = URLTimeout.URLTimeout().get_url(url,ref=ref,proxy=self.proxy)
 
 			except urllib2.HTTPError,err:
 				if err.code==404:

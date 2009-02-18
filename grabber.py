@@ -29,7 +29,7 @@ cache = "./cache"
 groups = []
 comics = []
 debug = 2
-proxy = ""
+proxy = None
 
 try:
 	opts, args = getopt.getopt(sys.argv[1:], "d:f:c:g:hs:p:")
