@@ -1,0 +1,5 @@
+*.pyc
+urlgrab
+*.pickle
+cache
+.*.swp
