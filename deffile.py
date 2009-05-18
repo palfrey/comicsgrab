@@ -230,7 +230,7 @@ class ComicsDef:
 						(pattern,baseurl,searchpage) = data
 						print "Getting (searchpage)",searchpage
 						page = self.get_url(g.entries["strip"],searchpage,ref=searchpage)
-						if page!=None and page.status != urlcache.URLCache.STAT_UNCHANGED:
+						if page!=None:# and page.status != urlcache.URLCache.STAT_UNCHANGED:
 							print "Searching for",pattern
 							retr = re.findall("(?i)"+pattern,page.content)
 							if self.debug>=4:
@@ -243,7 +243,7 @@ class ComicsDef:
 									get.append(self.get_url(g.entries["strip"],urlparse.urljoin(baseurl,r),ref=searchpage))
 							tried += 1
 						else:
-							print "Got old page/no page at all!"
+							print "Got no page at all!"
 
 					get = filter(lambda x:x!=None,get)
 					if get!=[]:
