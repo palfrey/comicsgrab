@@ -1389,7 +1389,8 @@ strip somethingpositive
 	homepage http://www.somethingpositive.net/
 	type search
 	baseurl $homepage
-	searchpattern <img.+?src="/?(arch/[^\"]*)"
+	#searchpattern <img.+?src="/?(arch/[^\"]*)"
+	searchpattern (sp\d+20\d+.gif)
 end
 
 # only updated M-F, but no better way to handle it
