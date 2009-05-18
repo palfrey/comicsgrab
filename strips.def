@@ -250,7 +250,7 @@ class btphp
 	type search
 	baseurl $homepage
 	subbeg
-		searchpattern <img src="(comic.php\?id=\d+)&amp;save-as=\d+.(?:jpg|png|gif)
+		searchpattern (comic.php\?id=\d+)&amp;save-as=\d+.(?:jpg|png|gif)
 	subend
 	subbeg
 		searchpattern <img src="(comic.php\?id=.*?\.(?:jpg|png|gif))
