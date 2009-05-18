@@ -3,3 +3,4 @@ urlgrab
 *.pickle
 cache
 .*.swp
+output
