@@ -148,8 +148,8 @@ class PerlREEval:
 
 		# Ye gods the below is kludgy... but I can't be arsed doing this better!
 
-		if exp[0]=='(' and exp[-1]==')':
-			exp = exp[1:-1]
+		#if exp[0]=='(' and exp[-1]==')':
+		#	exp = exp[1:-1]
 		equ = re.search("([^ =]*?) *== *(.*)",exp)
 		if equ!=None: # we have an equality operation...
 			exp = str(self.exp_perl(equ.group(1),local_vars,funcs) == self.exp_perl(equ.group(2),local_vars,funcs))
