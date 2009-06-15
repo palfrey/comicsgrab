@@ -312,7 +312,7 @@ class ComicsDef:
 			if len(found)>0:
 				print "We found",found
 				if not oldstuff:
-					htmlout.write("<a href=\""+g.entries["homepage"]+"\"><h3>"+g.entries["name"]+"</h3></a>\n")
+					htmlout.write("<h3><a href=\""+g.entries["homepage"]+"\">"+g.entries["name"]+"</a></h3>\n")
 					for f in found:
 						htmlout.write("<img src=\""+f.replace(os.sep,"/")+"\" /><br />\n")
 					htmlout.write("<br />\n")
