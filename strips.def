@@ -14,7 +14,7 @@ end
 group palfrey
 	desc Tom's favourite strips
 
-	include dilbert dominicdeegan qc schlockmercenary somethingpositive userfriendly
+	include dilbert dominicdeegan qc schlockmercenary skinhorse somethingpositive userfriendly
 
 # Yes, I probably need medical help for having this many listed...
 # You don't have to have things in alphabetical order, but I kinda like it this way
@@ -260,6 +260,13 @@ class btphp
 end
 
 # Strips
+
+strip skinhorse
+	name Skin Horse
+	homepage http://www.webcomicsnation.com/shaenongarrity/skinhorse/series.php
+	type search
+	searchpattern (http://www.webcomicsnation.com/memberimages/sh\d+.*?.jpg)
+end
 
 strip buckgodot
 	name Buck Godot
