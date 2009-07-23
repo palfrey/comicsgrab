@@ -334,12 +334,7 @@ strip dresdencodak
 	homepage http://dresdencodak.com/
 	type search
 	baseurl $homepage
-	subbeg
-		searchpattern (cartoons/a_[^\"]+\.jpg)
-	subend
-	subbeg
-		searchpattern (images/stall[^\"]+\.jpg)
-	subend	
+	searchpattern <div class=\"comicdate\">.*?</div><h2>.*?(http://dresdencodak.com/[^\"]+)
 end	
 
 strip extralife
