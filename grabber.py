@@ -4,68 +4,33 @@
 #
 # Released under the GPL Version 2 (http://www.gnu.org/copyleft/gpl.html)
 
-def usage():
-	print "Usage: "+sys.argv[0]+" [-d <debug level>] [-f <strips define file> ] [-c <cache dir>] [-p <proxy url>] [-g <group to get>]* [-s <strip to get>]* (-h/<output dir>/listme)"
-	print "Default values are:"
-	print "\tstrips define: ./strips.def"
-	print "\tcache dir:     ./cache"
-	print "\tdebug level:	2 (prints messages at this level and above)\n"
-	print "\t\t\t1 is random warnings (mostly old comic messages)"
-	print "\t\t\t2 is for when a comic page was retrieved, but the"
-	print "\t\t\t regexp couldn't be found"
-	print "\t\t\t3 is HTTP errors"
-	print "\t\t\t4 is *everything*"
-	print "-h prints this help message"
-	print "'listme' prints out an HTML formatted list of the comics specified"
-	print ""
-	print "Example: python "+sys.argv[0]+" -g palfrey d:\www\comics"
  
 from deffile import ComicsDef
 from date_manip import DateManip
-import getopt,sys
+from optparse import OptionParser
 
-strips = "strips.def"
-cache = "./cache"
-groups = []
-comics = []
-debug = 2
 proxy = None
 
-try:
-	opts, args = getopt.getopt(sys.argv[1:], "d:f:c:g:hs:p:")
-except getopt.GetoptError:
-	# print help information and exit:
-	usage()
-	sys.exit(2)
+parser = OptionParser(usage="%prog [options] (listme/<output directory>)\n'listme' prints out an HTML formatted list of the comics specified")
+parser.add_option("-d","--debug",help="Debug level (default is 2).\n1 is random warnings (mostly old comic messages)\n2 is for when a comic page was retrieved, but the regexp couldn't be found\n3 is HTTP errors\n4 is *everything*", dest="debug", default=2, type="int")
+parser.add_option("-f", dest="strips", default="strips.def", help="Strips definition file (default is strips.def)")
+parser.add_option("-c","--cache",default="./cache", dest="cache",help="Cache directory (default is './cache')")
+parser.add_option("-s","--comic",default =[],dest="comics", action="append", help="Add a strip to get")
+parser.add_option("-g","--group",default =[],dest="groups", action="append", help="Add a group to get")
+parser.add_option("-p","--proxy",default=None, dest="proxy", help="Set proxy URL")
 
-for o, a in opts:
-	if o in ("-h",):
-		usage()
-		sys.exit()
-	if o in ("-f",):
-		strips = a
-	if o in ("-c",):
-		cache = a
-	if o in ("-g",):
-		groups.append(a)
-	if o in ("-s",):
-		comics.append(a)
-	if o in ("-d",):
-		debug = int(a)
-	if o in ("-p",):
-		proxy = a
+(opts, args) = parser.parse_args()
 
 if len(args)!=1:
-	usage()
-	sys.exit(2)
+	parser.error("Need *one* arg")
 
 now = DateManip()
 #now.mod_days(-1)
-df = ComicsDef(strips,cache,debug=debug,proxy=proxy)
+df = ComicsDef(opts.strips,opts.cache,debug=opts.debug,proxy=opts.proxy)
 if args[0] == "listme":
 	print "<ul>"
-	for x in df.get_strips(comics,groups,now=now):
+	for x in df.get_strips(opts.comics,opts.groups,now=now):
 		print "<li><a href=\""+x.entries["homepage"]+"\">"+x.entries["name"]+"</a></li>"
 	print "</ul>"
 else:
-	df.update(args[0],group=groups,strips=comics,now=now)
+	df.update(args[0],group=opts.groups,strips=opts.comics,now=now)
