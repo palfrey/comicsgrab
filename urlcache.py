@@ -9,7 +9,12 @@
 
 import os,md5
 from cPickle import dump,load
-from urlgrab import URLTimeout
+try:
+	from urlgrab import URLTimeout
+except ImportError:
+	from sys import exit
+	print "Get urlgrab with 'git clone git://github.com/palfrey/urlgrab.git'"
+	exit(1)
 import urllib2
 from os.path import exists
 
