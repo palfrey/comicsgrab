@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# Author: Tom Parker <palfrey@bits.bris.ac.uk>
+# Author: Tom Parker <palfrey@tevp.net>
 # Description: List rebuild script
 
 import os

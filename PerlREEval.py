@@ -1,6 +1,6 @@
 #!/usr/bin/python
-# Comics Grabber by Tom Parker <palfrey@bits.bris.ac.uk>
-# http://www.bits.bris.ac.uk/palfrey/
+# Comics Grabber by Tom Parker <palfrey@tevp.net>
+# http://tevp.net
 #
 # Perl RE evaluator for Python
 # Handles <code: sections, but not very well

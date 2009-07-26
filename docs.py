@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Author: Tom Parker <palfrey@bits.bris.ac.uk>
+# Author: Tom Parker <palfrey@tevp.net>
 # Description: Docs rebuild script
 # Requires: Docutils (http://docutils.sourceforge.net/)
 # Hacked together from rst2html.py by David Goodger <goodger@users.sourceforge.net>

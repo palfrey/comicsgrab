@@ -1,6 +1,6 @@
 #!/usr/bin/python
-# Comics Grabber by Tom Parker <palfrey@bits.bris.ac.uk>
-# http://www.bits.bris.ac.uk/palfrey/
+# Comics Grabber by Tom Parker <palfrey@tevp.net>
+# http://tevp.net
 #
 # Released under the GPL Version 2 (http://www.gnu.org/copyleft/gpl.html)
 
