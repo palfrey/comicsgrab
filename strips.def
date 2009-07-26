@@ -272,7 +272,7 @@ strip skinhorse
 	name Skin Horse
 	homepage http://www.webcomicsnation.com/shaenongarrity/skinhorse/series.php
 	type search
-	searchpattern (http://www.webcomicsnation.com/memberimages/sh\d+.*?.jpg)
+	searchpattern (http://www.webcomicsnation.com/memberimages/.*?.jpg)" border="0" alt=""
 end
 
 strip buckgodot
