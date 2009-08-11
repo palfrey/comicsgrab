@@ -265,7 +265,7 @@ strip uh2
 	name Umlaut House 2
 	homepage http://maskedretriever.com/uh2/
 	type search
-	searchpattern (http://maskedretriever.com/uh2/comics/\d+.png)
+	searchpattern (http://maskedretriever.com/uh2/comics/\d+.(?:png|jpg))
 end
 
 strip skinhorse
