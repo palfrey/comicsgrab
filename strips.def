@@ -132,7 +132,7 @@ class unitedmedia-srch-comics
 end
 
 class unitedmedia-srch-comics-lag
-	homepage http://www.unitedmedia.com/comics/$strip/index.html
+	homepage http://comics.com/$strip/
 	type search
 	searchpattern <img.+?src="(/comics/$strip/archive/images/$strip.+?)"
 	baseurl http://www.unitedmedia.com
