@@ -14,34 +14,37 @@ end
 group palfrey
 	desc Tom's favourite strips
 
-	include dilbert dominicdeegan qc schlockmercenary skinhorse somethingpositive uh2 userfriendly
+	include dilbert dominicdeegan foxtrot qc schlockmercenary skinhorse somethingpositive uh2 userfriendly
 
 # Yes, I probably need medical help for having this many listed...
 # You don't have to have things in alphabetical order, but I kinda like it this way
 	
-	#include techfox ableandbaker alp antihero applegeeks btb
-	#include betterdays buckgodot bugbash butternutsquash captainexcelsior
-	#include countyoursheep crapidrew ctrlaltdel courtingdisaster dandy devilspanties
-	#include dmfa dorktower dresdencodak eightbyeleven evilinc exterminatusnow extralife
-	#include ffn flem foxtrot fragilegravity freefall fwf garfield geebasonparade gg101 ghastly
-	#include goats goobs gpf gws hatesong hellbound helpdesk  hots joyoftech kevinandkell 
-	#include krakow leasticoulddo lfg
-	#include lifesuchasitis luann
-	#include megatokyo midlands namirdeiter nemi nn2s nodwick nonsequitur nevernever nukees octopuspie
-	#include okcancel orderofthestick ozyandmillie
-	#include pennyarcade phd pvp qc reallife roomies schlockmercenary
-	#include sinfest soar somethingpositive somethinghappens
-	#include spareparts ssdd starslipcrisis treadingground turnsignals twolumps umlaut underpower
-	#include unshelved userfriendly vgcats whiteboard wotch wulff xkcd yht zebragirl
 
 # On hiatus
-#	altermeta angst hackles asylum commanderkitty shawisland madu heysuburbia alice 13seconds 
+#	altermeta angst hackles asylum commanderkitty shawisland madu heysuburbia alice 13seconds lifesuchasitis bugbash nevernever 
 # Not working
 #   w00tcomic reslife 8oclock jennyjetpack labgoats
 # Done
 #	faans makeshift bohemials animetion paste bdk asif niego hlcomic mos avalonhigh machall
-# 	caseyandandy
+# 	caseyandandy umlaut ozyandmillie roomies hots
 
+end
+
+group extras
+	include techfox ableandbaker alp applegeeks
+	include betterdays buckgodot butternutsquash captainexcelsior
+	include countyoursheep crapidrew ctrlaltdel courtingdisaster dandy devilspanties
+	include dmfa dorktower dresdencodak evilinc exterminatusnow extralife
+	include ffn flem fragilegravity freefall fwf garfield geebasonparade gg101 ghastly
+	include goats goobs gpf gws hatesong hellbound helpdesk kevinandkell 
+	include krakow leasticoulddo lfg
+	include luann
+	include megatokyo midlands namirdeiter nemi nn2s nodwick nonsequitur nukees octopuspie
+	include okcancel orderofthestick
+	include pennyarcade pvp reallife
+	include sinfest soar somethinghappens
+	include spareparts ssdd starslipcrisis treadingground turnsignals twolumps underpower
+	include unshelved vgcats whiteboard wotch wulff xkcd yht zebragirl
 end
 
 # Strip Groups
