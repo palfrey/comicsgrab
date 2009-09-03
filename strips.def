@@ -280,7 +280,7 @@ end
 
 strip buckgodot
 	name Buck Godot
-	homepage http://www.studiofoglio.com/cgi/buck.cgi
+	homepage http://www.airshipentertainment.com/buckcomic.php
 	type search
 	searchpattern (http://www.studiofoglio.com/buck/buckcomic/strips/buck\d+.jpg)
 end
