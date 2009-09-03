@@ -1401,7 +1401,7 @@ strip somethingpositive
 	type search
 	baseurl $homepage
 	#searchpattern <img.+?src="/?(arch/[^\"]*)"
-	searchpattern (sp\d+20\d+.gif)
+	searchpattern (sp\d+20\d+[a-z]*.gif)
 end
 
 # only updated M-F, but no better way to handle it
