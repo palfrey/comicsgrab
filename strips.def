@@ -14,7 +14,7 @@ end
 group palfrey
 	desc Tom's favourite strips
 
-	include dilbert dominicdeegan foxtrot precocious qc schlockmercenary skinhorse somethingpositive uh2 userfriendly
+	include dilbert dominicdeegan foxtrot nemi precocious qc schlockmercenary skinhorse somethingpositive uh2 userfriendly
 
 # Yes, I probably need medical help for having this many listed...
 # You don't have to have things in alphabetical order, but I kinda like it this way
@@ -23,7 +23,7 @@ group palfrey
 # On hiatus
 #	altermeta angst hackles asylum commanderkitty shawisland madu heysuburbia alice 13seconds lifesuchasitis bugbash nevernever 
 # Not working
-#   w00tcomic reslife 8oclock jennyjetpack labgoats
+#   w00tcomic reslife 8oclock jennyjetpack labgoats hellbound
 # Done
 #	faans makeshift bohemials animetion paste bdk asif niego hlcomic mos avalonhigh machall
 # 	caseyandandy umlaut ozyandmillie roomies hots
@@ -36,10 +36,10 @@ group extras
 	include countyoursheep crapidrew ctrlaltdel courtingdisaster dandy devilspanties
 	include dmfa dorktower dresdencodak evilinc exterminatusnow extralife
 	include ffn flem fragilegravity freefall fwf garfield geebasonparade gg101 ghastly
-	include goats goobs gpf gws hatesong hellbound helpdesk kevinandkell 
+	include goats goobs gpf gws hatesong helpdesk kevinandkell 
 	include krakow leasticoulddo lfg
 	include luann
-	include megatokyo midlands namirdeiter nemi nn2s nodwick nonsequitur nukees octopuspie
+	include megatokyo midlands namirdeiter nn2s nodwick nonsequitur nukees octopuspie
 	include okcancel orderofthestick
 	include pennyarcade pvp reallife
 	include sinfest soar somethinghappens
@@ -393,13 +393,14 @@ strip eightbyeleven
 	baseurl $homepage
 end
 
-strip hellbound
-	name Hellbound
-	homepage http://www.hellboundcomic.com/
-	type search
-	searchpage http://www.hellboundcomic.com/Comic/Hellcomic.php
-	searchpattern (http://www.hellboundcomic.com/Comic/Hellstrips/\d+-\d+-\d+.jpg)
-end	
+# DEAD by 2009-09-11
+#strip hellbound
+#	name Hellbound
+#	homepage http://www.hellboundcomic.com/
+#	type search
+#	searchpage http://www.hellboundcomic.com/Comic/Hellcomic.php
+#	searchpattern (http://www.hellboundcomic.com/Comic/Hellstrips/\d+-\d+-\d+.jpg)
+#end	
 
 strip nevernever
 	name Never Never
