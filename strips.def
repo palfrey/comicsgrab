@@ -14,7 +14,7 @@ end
 group palfrey
 	desc Tom's favourite strips
 
-	include dilbert dominicdeegan foxtrot nemi precocious qc schlockmercenary skinhorse somethingpositive uh2 userfriendly
+	include ctrlaltdel dilbert dominicdeegan foxtrot nemi precocious qc schlockmercenary skinhorse somethingpositive uh2 userfriendly
 
 # Yes, I probably need medical help for having this many listed...
 # You don't have to have things in alphabetical order, but I kinda like it this way
@@ -33,7 +33,7 @@ end
 group extras
 	include techfox ableandbaker alp applegeeks
 	include betterdays buckgodot butternutsquash captainexcelsior
-	include countyoursheep crapidrew ctrlaltdel courtingdisaster dandy devilspanties
+	include countyoursheep crapidrew courtingdisaster dandy devilspanties
 	include dmfa dorktower dresdencodak evilinc exterminatusnow extralife
 	include ffn flem fragilegravity freefall fwf garfield geebasonparade gg101 ghastly
 	include goats goobs gpf gws hatesong helpdesk kevinandkell 
