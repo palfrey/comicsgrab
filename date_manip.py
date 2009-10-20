@@ -11,12 +11,12 @@ import time,calendar,re
 
 class DateManip:
 	hour_mod = ( (time.altzone/60) + (time.daylight*60) ) / -60 # allow for gmt offsets and daylight
+
 	def __init__(self,init_date=time.time()):
 		tup = time.localtime(init_date)
 		self.year = tup[0]
 		self.month = tup[1]
 		self.day = tup[2]
-
 	
 	def mod_days(self,num):
 		self.day += num
@@ -38,7 +38,7 @@ class DateManip:
 			self.month += 12
 		while self.month>12:
 			self.year += 1
-			self.month -= 12		
+			self.month -= 12
 
 	def compare(self,other):
 		s1 = self.secs()
@@ -64,19 +64,14 @@ class DateManip:
 
 	def copy(self):
 		return DateManip(self.secs())
-		
 
 class CalcWeek:
 	dow = ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
 	def __init__(self,curr = DateManip()):
 		curr_day = curr.copy()
-
-		days = []
-
-		for x in range(0,7):
-			days[x:x] = [0]
+		days = [0 for x in range(7)]
 		
-		while 1:
+		while True:
 			if days[curr_day.dow()]!=0:
 				break
 			days[curr_day.dow()] = curr_day.secs()
@@ -121,4 +116,3 @@ class CalcWeek:
 		if seq != 0:
 			raise Exception, "No end of sequence!!"
 		return ret
-	

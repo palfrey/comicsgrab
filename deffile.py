@@ -46,7 +46,7 @@ class ComicsDef:
 			line = line.strip()
 			if line == "":
 				line = input.readline()
-				lineno+=1
+				lineno += 1
 				continue
 
 			try:
@@ -129,11 +129,11 @@ class ComicsDef:
 			os.makedirs(directory)
 		htmlout = file(os.path.join(directory,"index.html"),'w')
 		newindex = self.now.strftime("%Y-%m-%d.html")
-		list = os.listdir(directory)
-		list.sort()
-		list.reverse()
+		files = os.listdir(directory)
+		files.sort()
+		files.reverse()
 		prev=""
-		for l in list:
+		for l in files:
 			if l=="index.html" or l==newindex:
 				continue
 		
@@ -249,17 +249,17 @@ class ComicsDef:
 					if get!=[]:
 						break
 				
-				if get!=[]:					
+				if get!=[]:
 					old = []
-					list = os.listdir(directory)
-					list.sort()
-					list.reverse()
+					files = os.listdir(directory)
+					files.sort()
+					files.reverse()
 					nowfolder = self.now.strftime("%Y-%m-%d")
-					for l in list:
+					for l in files:
 						if l==nowfolder:
 							continue
 						folder = os.path.join(directory,l)
-						if os.path.isdir(folder):	
+						if os.path.isdir(folder):
 							files = os.listdir(folder)
 							print "Looking for old in",folder
 							for f in files:
@@ -337,5 +337,3 @@ class ComicsDef:
 		dated.close()
 		htmlout.close()
 		self.cache.cleanup()
-
-					
