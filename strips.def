@@ -106,14 +106,8 @@ end
 class ucomics-srch
 	homepage http://www.gocomics.com/$strip/
 	type search
-	#searchpattern <img.+?src=".+?/($1/(?:\d+)/$1(?:\d+).+?)"
-	#baseurl http://images.ucomics.com/comics/
-
-	# Magic sequence is from http://poncho.ucomics.com/xml/xmldrm/
-	infopage http://poncho.ucomics.com/xml/xmldrm/
-	infoval <key>([\d+a-z]*)</key>
-	searchpattern http://images.gocomics.com/images/drm/comicViewerUc\?w=\d+&h=\d+&k=([\da-f]+)
-	baseurl http://poncho.ucomics.com/view/$infoval/
+  searchpage http://www.gocomics.com/$strip/%Y/%m/%d/
+	searchpattern <img.+?src="(http://imgsrv.gocomics.com/dim/\?fh=[^\"]*)"
 	index 1
 end
 
@@ -124,17 +118,17 @@ class ucomics-gen
 end
 
 class unitedmedia-srch-comics
-	homepage http://www.unitedmedia.com/comics/$strip/index.html
+	homepage http://comics.com/$strip
 	type search
-	searchpage http://www.unitedmedia.com/comics/$strip/archive/$strip-%Y%m%d.html	
-	searchpattern <img.+?src="(/comics/$strip/archive/images/$strip.+?)"
-	baseurl http://www.unitedmedia.com
+	searchpage http://comics.com/$strip/%Y-%m-%d/
+	searchpattern <img.+?src="(http://assets.comics.com/dyn/str_strip/.*\.full\.gif)"
+	baseurl http://comics.com
 end
 
 class unitedmedia-srch-comics-lag
 	homepage http://comics.com/$strip/
 	type search
-	searchpattern <img.+?src="(/comics/$strip/archive/images/$strip.+?)"
+	searchpattern <img.+?src="(http://assets.comics.com/dyn/str_strip/.*\.full\.gif)"
 	baseurl http://www.unitedmedia.com
 
 end
@@ -2834,7 +2828,7 @@ end
 
 strip pickles
 	name Pickles
-	useclass unitedmedia-srch-wash
+	useclass unitedmedia-srch-comics
 end
 
 strip potluck
