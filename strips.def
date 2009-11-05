@@ -2340,6 +2340,11 @@ strip thebigpicture
 	$1 bi
 end
 
+strip bloomcounty
+	name Bloom County
+	useclass ucomics-srch
+end
+
 strip boondocks
 	name The Boondocks
 	useclass ucomics-gen
@@ -3645,7 +3650,7 @@ end
 
 strip bc
 	name BC
-	useclass washpost-creators
+	useclass ucomics-srch
 	$1 bc
 end
 
