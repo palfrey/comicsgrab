@@ -72,7 +72,7 @@ end
 
 group bgsunday
 	desc Boston Globe Sunday Comics
-	include dilbert doonesbury garfield getfuzzy adamathome grimmy forbetter
+	include dilbert doonesbury garfield get_fuzzy adamathome grimmy forbetter
 	include foxtrot jumpstart zits zippythecolorpinhead curtis
 	include rhymeswithorange boondocks nonsequitur stonesoup roseisrose monty
 	include arlonjanis askshagg
@@ -2659,7 +2659,7 @@ strip geech
 	useclass unitedmedia-srch-comics
 end
 
-strip getfuzzy
+strip get_fuzzy
 	name Get Fuzzy
 	useclass unitedmedia-srch-comics
 end
@@ -2838,6 +2838,11 @@ end
 
 strip potluck
 	name Potluck Parish
+	useclass unitedmedia-srch-comics
+end
+
+strip prickly_city
+	name Prickly City
 	useclass unitedmedia-srch-comics
 end
 
