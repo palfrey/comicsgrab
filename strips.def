@@ -2919,7 +2919,7 @@ end
 
 strip speedbump
 	name Speed Bump
-	useclass unitedmedia-srch-creators
+	useclass ucomics-srch
 end
 
 # only once-weekly
