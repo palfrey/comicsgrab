@@ -3295,9 +3295,9 @@ end
 
 strip grimmy
 	name Mother Goose and Grimm
-	useclass comicspage-strips-gen
-	$1 grimmy
-	$2 mgg
+	homepage http://www.grimmy.com/comics.php
+	type generate
+  imageurl http://www.grimmy.com/images/MGG_Archive/MGG_%Y/MGG%m%d.gif
 end
 
 strip helen
