@@ -235,6 +235,16 @@ class ComicsDef:
 							retr = re.findall("(?i)"+pattern,page.content)
 							if self.debug>=4:
 								print page.content
+
+              # remove duplicate images/paths
+							dups = set([])
+							keep = []
+							for item in retr:
+								if item not in dups:
+										dups.add(item)
+										keep.append(item)
+							retr = keep
+
 							for x in range(len(retr)):
 								if not s.look.has_key("index") or int(s.look["index"]) == x+1:
 									r = retr[x]
