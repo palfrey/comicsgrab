@@ -294,6 +294,14 @@ strip captainexcelsior
 	baseurl $homepage
 end
 
+strip dinosaurcomics
+  name Dinosaur Comics
+	homepage http://www.qwantz.com/
+	type search
+  searchpage http://www.qwantz.com/index.php
+  searchpattern <img.+?src="(http://www.qwantz.com/comics/comic2-\d+\.png)"
+end
+
 strip hots
 	name Home on the Strange
 	homepage http://www.homeonthestrange.com/
