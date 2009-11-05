@@ -3576,6 +3576,13 @@ strip wright
 	$2 wrt
 end
 
+strip yehudamoon
+	name Yehuda Moon
+	homepage http://www.yehudamoon.com/
+	type generate
+  imageurl http://www.yehudamoon.com/images/strips/%Y-%m-%d.gif
+end
+
 strip captainribman
 	name Captain RibMan
 	homepage http://www.comicspage.com/ribman/index.html
