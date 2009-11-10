@@ -121,7 +121,7 @@ class unitedmedia-srch-comics
 	homepage http://comics.com/$strip
 	type search
 	searchpage http://comics.com/$strip/%Y-%m-%d/
-	searchpattern <img.+?src="(http://assets.comics.com/dyn/str_strip/.*\.full\.gif)"
+	searchpattern <img.+?src="(http://[^/]*/dyn/str_strip/.*\.full\.gif)"
 	baseurl http://comics.com
 end
 
