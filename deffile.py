@@ -296,16 +296,18 @@ class ComicsDef:
 						if g.entries.has_key("ext"):
 							ext = g.entries["ext"]
 						else:
-							if u.mime[0]!="image":
+							if u.mime[0]!="image" and u.mime[0] !="application":
 								self.store_err(g.entries["strip"],2,"Getting for <a href=\""+g.entries["homepage"]+"\">"+g.entries["homepage"]+"</a> found us a %s/%s (non-image) while retrieving %s"%(u.mime[0],u.mime[1],u.url))
 								continue
-								raise Exception, str(u.mime) + " isn't an image"
 							if u.mime[1]=='jpeg':
 								ext = 'jpg'
 							elif u.mime[1]=='gif':
 								ext = 'gif'
 							elif u.mime[1]=='png':
 								ext = 'png'
+							elif u.mime[1]=='octet-stream':
+								# FIXME: somewhat lame
+								ext = 'gif'
 							else:
 								raise Exception, "Don't know extension " + str(u.mime)
 						index +=1
