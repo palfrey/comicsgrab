@@ -2412,7 +2412,7 @@ strip foxtrot
 	name FoxTrot
 	type search
 	homepage http://www.foxtrot.com/
-	searchpattern (http://images.ucomics.com/[^\"]+)
+	searchpattern (http://www.foxtrot.com/comics/[^\"]+)
 end
 
 strip thefuscobrothers
