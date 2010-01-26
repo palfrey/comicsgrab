@@ -10,7 +10,7 @@
 import os,md5
 from cPickle import dump,load
 try:
-	from urlgrab import URLTimeout
+	from urlgrab import URLTimeout, URLTimeoutError
 except ImportError:
 	from sys import exit
 	print "Get urlgrab with 'git clone git://github.com/palfrey/urlgrab.git'"
@@ -91,7 +91,7 @@ class URLCache:
 				#	r = urllib2.Request(url)
 				#	r.add_header("Referer",ref)
 				#	data = urllib2.urlopen(r)
-				data = URLTimeout.URLTimeout().get_url(url,ref=ref,proxy=self.proxy)
+				data = URLTimeout().get_url(url,ref=ref,proxy=self.proxy)
 
 			except urllib2.HTTPError,err:
 				if err.code==404:
@@ -108,7 +108,7 @@ class URLCache:
 				self.gen_failed(old)
 				raise CacheError, err.reason[1]+" while getting <a href=\""+url+"\">"+url+"</a>"
 			
-			except URLTimeout.URLTimeoutError, err:
+			except URLTimeoutError, err:
 				#self.gen_failed(old)
 				raise CacheError, str(err)+" while getting <a href=\""+url+"\">"+url+"</a>"
 
