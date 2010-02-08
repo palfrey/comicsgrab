@@ -14,7 +14,7 @@ end
 group palfrey
 	desc Tom's favourite strips
 
-	include ctrlaltdel dilbert dominicdeegan ffn foxtrot nemi precocious qc
+	include butternutsquash ctrlaltdel dilbert dominicdeegan ffn foxtrot nemi precocious qc
 	include schlockmercenary skinhorse somethingpositive uh2 userfriendly xkcd
 
 # Yes, I probably need medical help for having this many listed...
@@ -663,10 +663,11 @@ end
 
 strip butternutsquash
 	name butternutsquash
+	days Thursday
 	homepage http://www.butternutsquash.net/
 	type search
 	searchpage $homepage
-	searchpattern (http://www.butternutsquash.net/comics/\d+-\d+-\d+[^\"]+)
+	searchpattern (http://www.butternutsquash.net/v3/comics/\d+-\d+-\d+[^\"]+)
 end
 
 strip gamingguardians
