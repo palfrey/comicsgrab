@@ -440,7 +440,7 @@ strip nemi
 	name Nemi
 	type search
 	homepage http://www.metro.co.uk/nemi
-	searchpattern (http://img.metro.co.uk/i/pix/cartoons/nemi/[^\"]*)
+	searchpattern (http://img.metro.co.uk//?i/pix/cartoons/nemi/[^\"]*)
 	index 1
 	days Mon-Fri
 end
