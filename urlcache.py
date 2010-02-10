@@ -85,13 +85,7 @@ class URLCache:
 		
 		if old.status == self.STAT_START:
 			try:
-				#if ref==None:
-				#	data = urllib2.urlopen(url)
-				#else:
-				#	r = urllib2.Request(url)
-				#	r.add_header("Referer",ref)
-				#	data = urllib2.urlopen(r)
-				data = URLTimeout().get_url(url,ref=ref,proxy=self.proxy)
+				data = URLTimeout().get(url,ref=ref,proxy=self.proxy)
 
 			except urllib2.HTTPError,err:
 				if err.code==404:
