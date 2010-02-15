@@ -261,6 +261,7 @@ end
 
 strip subnormality
 	name Subnormality
+	days Tuesday
 	homepage http://www.viruscomix.com/subnormality.html
 	type search
 	searchpattern alt="" src="(subnorma.[^\"]+)
