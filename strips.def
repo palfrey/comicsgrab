@@ -451,6 +451,7 @@ strip nemi
 	homepage http://www.metro.co.uk/nemi
 	searchpattern (http://img.metro.co.uk//?i/pix/cartoons/nemi/[^\"]*)
 	index 1
+	zoom 1.5
 	days Mon-Fri
 end
 
