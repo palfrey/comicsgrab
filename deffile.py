@@ -11,6 +11,7 @@ from cPickle import load,dump
 from date_manip import CalcWeek,DateManip
 import urlcache
 import urlparse
+from PIL import Image
 
 class ComicsDef:
 	def __init__(self,deffile,cachedir,debug=0,proxy=None):
@@ -326,7 +327,12 @@ class ComicsDef:
 				if not oldstuff:
 					htmlout.write("<h3><a href=\""+g.entries["homepage"]+"\">"+g.entries["name"]+"</a></h3>\n")
 					for f in found:
-						htmlout.write("<img src=\""+f.replace(os.sep,"/")+"\" /><br />\n")
+						dimensions = Image.open(os.path.join(directory,f)).size
+						if "zoom" in g.entries:
+							zoom = float(g.entries["zoom"])
+							if zoom>0:
+								dimensions = [x*zoom for x in dimensions]
+						htmlout.write("<img src=\"%s\" width=\"%d\" height=\"%d\"/><br />\n"%(f.replace(os.sep,"/"),dimensions[0],dimensions[1]))
 					htmlout.write("<br />\n")
 				else:
 					self.store_err(g.entries["strip"],1,"Got the old stuff in "+ folder)

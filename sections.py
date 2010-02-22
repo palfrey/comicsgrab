@@ -68,7 +68,7 @@ class comic_class(Section):
 	def __init__(self,name):
 		Section.__init__(self,name)
 		self.searches = []
-		self.good_keys = ("class","homepage","type","searchpattern","baseurl","provides","imageurl","searchpage","prefetch","referer","days","subbeg","subend","ext","noperl","index","infopage","infoval")
+		self.good_keys = ("class","homepage","type","searchpattern","baseurl","provides","imageurl","searchpage","prefetch","referer","days","subbeg","subend","ext","noperl","index","infopage","infoval", "zoom")
 		self.curr = None
 
 	def new_entry(self,key,data):
