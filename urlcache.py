@@ -18,8 +18,6 @@ except ImportError:
 import urllib2
 from os.path import exists
 
-debug = True
-
 class CacheError(Exception):
 	pass	
 
