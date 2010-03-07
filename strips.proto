@@ -1,0 +1,77 @@
+message Config
+{
+	repeated string must = 1;
+	repeated string may = 2;
+}
+
+message Group
+{
+	optional string desc = 1;
+	repeated string include = 2;
+	repeated string comment = 3;
+	required string name = 4;
+}
+
+message User
+{
+	required string name = 1;
+	repeated string include = 2;
+}
+
+message Subsection
+{
+	optional string baseurl = 1;
+	optional string searchpattern = 2;
+	optional uint32 index = 3;
+	optional string searchpage = 4;
+	optional Type type = 5;
+	optional string imageurl = 6;
+}
+
+enum Type
+{
+	search = 0;
+	generate = 1;		
+}
+
+message Class
+{
+	optional string desc = 1;
+	required Type type = 2;
+	optional string searchpage = 3;
+	optional string searchpattern = 4;
+	optional uint32 index = 5;
+	optional string homepage = 6;
+	optional string imageurl = 7;
+	optional string baseurl = 8;
+	optional string referer = 9;
+	optional string days = 10 [default="Mo-Su"];
+	repeated Subsection subs = 11;
+	required string name = 12;
+	optional string prefetch = 13;
+}
+
+message Strip
+{
+	optional bytes desc = 1;
+	optional Type type = 2;
+	optional string searchpage = 3;
+	optional string searchpattern = 4;
+	optional uint32 index = 5;
+	optional string homepage = 6;
+	optional string imageurl = 7;
+	optional string baseurl = 8;
+	optional string referer = 9;
+	optional string useclass = 10;
+	optional string days = 11 [default="Mo-Su"];
+	repeated Subsection subs = 12;
+	required string name = 13;
+	optional string _var_1 = 14;
+	optional string infopage = 15;
+	optional string infoval = 16;
+	optional bool noperl = 17 [default=false];
+	optional string artist = 18;
+	optional string _var_2 = 19;
+	optional float zoom = 20 [default=1.0];
+	optional string ext = 21;
+}

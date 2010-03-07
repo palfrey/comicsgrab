@@ -1,5 +1,6 @@
 *.pyc
-*.pickle
 cache
 .*.swp
 output
+strips_pb2.py
+comics.db

@@ -1051,7 +1051,7 @@ strip techfox
 		searchpage http://www.hirezfox.com/21cf/
 		baseurl $searchpage
 		searchpattern <(?:IMG|img)[^S]*src="(comics/tf[^\"]*)"
-	subbeg
+	subend
 
 	#tertiary option! emergencies only!
 	#subbeg
@@ -1901,15 +1901,6 @@ strip elflifeadult
 	imageurl http://www.elflife.com/current/%Y%m%dm.gif
 end
 
-strip funnyfarm
-	name Funny Farm
-	homepage http://www.funnyfarmcomics.com/
-	type search
-	searchpage http://www.funnyfarmcomics.com/d/%Y%m%d.html
-	searchpattern <IMG.+?SRC="(/comics/%Y%m%da\..+?)"
-	baseurl $homepage
-end
-
 strip elflife
 	name Elf Life
 	homepage http://www.elflife.com/
@@ -2026,7 +2017,6 @@ strip sexylosers
 	type search
 	searchpattern <IMG.+?SRC.*?=.*?"(http://sexylosers\.(keenspace\.)?com/)?(images/sl\d+\.jpg)"
 	#searchpattern <IMG.+?SRC="http://sexylosers=com/(images/sl\d+\.jpg)"
-	matchpart 3
 
 	baseurl $homepage
 end
@@ -2114,10 +2104,8 @@ strip pcnpixel
 	homepage http://www.pccomix.com/PCandPixel/
 	type search
 	searchpage http://www.pccomix.com/PCandPixel/pc_dailystrip/PCdaily.html
-	searchpattern <p><img SRC="pc(\w+).gif".+?WIDTH=
-	matchpart 1
-	imageurl http://www.pccomix.com/PCandPixel/pc_dailystrip/pc$match.gif
-	
+	searchpattern <p><img SRC="(pc\w+.gif)".+?WIDTH=
+	baseurl http://www.pccomix.com/PCandPixel/pc_dailystrip/
 end
 
 strip bobbins

@@ -6,102 +6,38 @@
 
 import re,os,sys
 from sections import *
-from stat import ST_MTIME
-from cPickle import load,dump
 from date_manip import CalcWeek,DateManip
 import urlcache
 import urlparse
 from PIL import Image
 
+from database import Sqlite as Database,NoSuchUser,NoSuchStrip
+
 class ComicsDef:
 	def __init__(self,deffile,cachedir,debug=0,proxy=None):
-		pickle = deffile+".pickle"		
-		
+		self.db = Database()
 		self.debug = debug
 		self.maxdays = 14
 		self.proxy = proxy
-		input = open(deffile)
-		storage = None
 		self.cache = urlcache.URLCache(cachedir,self.proxy)
-		if os.path.exists(pickle) and os.stat(deffile)[ST_MTIME]<os.stat(pickle)[ST_MTIME]:
-			out = load(file(pickle))
-			self.classes = out.classes
-			self.groups = out.groups
-			self.strips = out.strips
-			self.config = out.config
-			return
-		else:
-			self.strips = []
-			self.groups = []
-			self.classes = []
-			self.config = comic_config()
-
-		line = input.readline()
-		lineno = 1
-		while line!="":
-			if storage!=None:
-				storage.lines.append(line)
-			
-			while line.find("#")<>-1:
-				line = line[:line.find("#")-1]
-			line = line.strip()
-			if line == "":
-				line = input.readline()
-				lineno += 1
-				continue
-
-			try:
-				data = re.split('[ \t]',line,1)
-				#print data 
-				if storage == None:
-					if data[0] == "group":
-						storage = comic_group(data[1])
-						self.groups.append(storage)
-					elif data[0] == "class":
-						storage = comic_class(data[1])
-						self.classes.append(storage)
-					elif data[0] == "strip":
-						storage = comic_strip(data[1])
-						self.strips.append(storage)
-					elif data[0] == "config":
-						storage = self.config
-					else:
-						raise Exception,"Unknown block type '%s'"%data[0]
-					if len(data)==2:
-						storage.new_entry(data[0],data[1])
-				elif data[0] == 'end':
-					storage = None
-				else:
-					if len(data)==1:
-						storage.new_entry(data[0],"")
-					else:
-						storage.new_entry(data[0],data[1])
-			except:
-				print "error at line number %d in file %s"%(lineno,deffile)
-				raise
-			line = input.readline()
-			lineno+=1
-		input.close()
-		dump(self,file(pickle,'w'))
 
 	def get_strips(self,strips=None,group=None,now=DateManip()):
 		ret = []
 		if strips!=None:
 			for d in strips:
-				for s in self.strips:
-					if d == s.name:
-						ret.append(s)
-						s.gen_search(self.classes,self.now,self.cache)
-						break
-				else:
+				try:
+					s = self.db.get_strip(d)
+					search = gen_search(s,self.db,self.now,self.cache)
+					ret.append((s,search))
+				except NoSuchStrip:
+					raise
 					raise Exception("No strip found "+d)
-		if group!=None:
+		if group != None:
 			for d in group:
-				for g in self.groups:
-					if d == g.name:
-						ret.extend(g.get_strips(self.strips,self.classes,now,self.cache))
-						break
-				else:
+				try:
+					ret.extend(group_strips(self.db.get_user(d),self.db,now,self.cache))
+				except NoSuchUser:
+					raise
 					raise Exception("No group found "+d)
 			
 		if strips==None and group==None:
@@ -165,7 +101,7 @@ class ComicsDef:
 		last = self.now.copy()
 		last.mod_days(-self.maxdays)
 
-		l =last.strftime("%Y-%m-%d")
+		l = last.strftime("%Y-%m-%d")
 		lastdir = None
 		for d in dirs:
 			if d<l:
@@ -176,9 +112,9 @@ class ComicsDef:
 		dirs.reverse()
 		print "dirs",dirs,lastdir
 
-		for g in self.get_strips(strips,group):
-			print "Running",g.entries["name"], "("+g.entries["days"]+")"
-			last = DateManip(c.get_last_day(g.entries["days"]))
+		for (g,search) in self.get_strips(strips,group):
+			print "Running",g.name, "("+g.days+")"
+			last = DateManip(c.get_last_day(g.days))
 			curr = self.now.copy()
 			found = []
 			oldstuff = False
@@ -188,7 +124,7 @@ class ComicsDef:
 					files = os.listdir(folder)
 					print "Checking",folder
 					for f in files:
-						if f[:len(g.entries["strip"])] == g.entries["strip"]:
+						if f[:len(g.name)] == g.name:
 							found.append(os.path.join(curr.strftime("%Y-%m-%d"),f))
 							if self.now.compare(curr)!=0:
 								oldstuff = True
@@ -207,7 +143,7 @@ class ComicsDef:
 					files = os.listdir(folder)
 					#print "Checking for deletable",folder
 					for f in files:
-						if f[:len(g.entries["strip"])] == g.entries["strip"]:
+						if f[:len(g.name)] == g.name:
 							if found_last and d<lastdir:
 								print "removing",os.path.join(folder,f)
 								os.unlink(os.path.join(folder,f))
@@ -218,21 +154,22 @@ class ComicsDef:
 			if len(found)==0:
 				get = []
 				tried = 0
-				#print g.get_searches()
-				for s in g.get_searches(self.now):
+				for s in get_searches(g,search):
 					(type,data) = s.retr(now)
+					print "type",type
 					if type=="generate":
 						print "Getting (image)",data
-						self.cache.set_varying(data,ref=g.entries["homepage"])
-						get = [self.get_url(g.entries["strip"],data,ref=g.entries["homepage"])]
+						self.cache.set_varying(data,ref=g.homepage)
+						get = [self.get_url(g.name,data,ref=g.homepage)]
 					else: # type == "search"
 						if self.debug>=4:
 							print "data",data
 						(pattern,baseurl,searchpage) = data
 						print "Getting (searchpage)",searchpage
-						page = self.get_url(g.entries["strip"],searchpage,ref=searchpage)
+						page = self.get_url(g.name,searchpage,ref=searchpage)
 						if page!=None:# and page.status != urlcache.URLCache.STAT_UNCHANGED:
 							print "Searching for",pattern
+							assert pattern!=""
 							retr = re.findall("(?i)"+pattern,page.content)
 							if self.debug>=4:
 								print page.content
@@ -247,11 +184,11 @@ class ComicsDef:
 							retr = keep
 
 							for x in range(len(retr)):
-								if not s.look.has_key("index") or int(s.look["index"]) == x+1:
+								if not s.look.HasField("index") or s.look.index == x+1:
 									r = retr[x]
 									
 									print "Getting (image from search)",urlparse.urljoin(baseurl,r)
-									get.append(self.get_url(g.entries["strip"],urlparse.urljoin(baseurl,r),ref=searchpage))
+									get.append(self.get_url(g.name,urlparse.urljoin(baseurl,r),ref=searchpage))
 							tried += 1
 						else:
 							print "Got no page at all!"
@@ -274,7 +211,7 @@ class ComicsDef:
 							files = os.listdir(folder)
 							print "Looking for old in",folder
 							for f in files:
-								if f[:len(g.entries["strip"])] == g.entries["strip"]:
+								if f[:len(g.name)] == g.name:
 									old.append(os.path.join(folder,f))
 							if old!=[]:
 								break
@@ -286,7 +223,7 @@ class ComicsDef:
 							if len(get[o].content) != os.stat(old[o]).st_size:
 								break
 						else:
-							self.store_err(g.entries["strip"],1,"Got the old stuff in "+ folder)
+							self.store_err(g.name,1,"Got the old stuff in "+ folder)
 							print ""
 							continue
 				
@@ -294,11 +231,11 @@ class ComicsDef:
 					folder = os.path.join(directory,self.now.strftime("%Y-%m-%d"+os.sep))
 
 					for u in get:
-						if g.entries.has_key("ext"):
-							ext = g.entries["ext"]
+						if g.HasField("ext"):
+							ext = g.ext
 						else:
 							if u.mime[0]!="image" and u.mime[0] !="application":
-								self.store_err(g.entries["strip"],2,"Getting for <a href=\""+g.entries["homepage"]+"\">"+g.entries["homepage"]+"</a> found us a %s/%s (non-image) while retrieving %s"%(u.mime[0],u.mime[1],u.url))
+								self.store_err(g.name,2,"Getting for <a href=\""+g.homepage+"\">"+g.homepage+"</a> found us a %s/%s (non-image) while retrieving %s"%(u.mime[0],u.mime[1],u.url))
 								continue
 							if u.mime[1]=='jpeg':
 								ext = 'jpg'
@@ -314,28 +251,24 @@ class ComicsDef:
 						index +=1
 						if not os.path.exists(folder):
 							os.mkdir(folder)
-						fname = folder+g.entries["strip"]+"-"+str(index)+"."+ext
+						fname = folder+g.name+"-"+str(index)+"."+ext
 						outfile = file(fname,'wb')
 						outfile.write(u.content)
 						outfile.close()
-						found.append(self.now.strftime("%Y-%m-%d"+os.sep+g.entries["strip"]+"-"+str(index)+"."+ext))
+						found.append(self.now.strftime("%Y-%m-%d"+os.sep+g.name+"-"+str(index)+"."+ext))
 				elif tried>0: # if get == []
-					self.store_err(g.entries["strip"],2,"Failed to get anything for <a href=\""+g.entries["homepage"]+"\">"+g.entries["homepage"]+"</a>")
+					self.store_err(g.name,2,"Failed to get anything for <a href=\""+g.homepage+"\">"+g.homepage+"</a>")
 
 			if len(found)>0:
 				print "We found",found
 				if not oldstuff:
-					htmlout.write("<h3><a href=\""+g.entries["homepage"]+"\">"+g.entries["name"]+"</a></h3>\n")
+					htmlout.write("<h3><a href=\""+g.homepage+"\">"+g.desc+"</a></h3>\n")
 					for f in found:
-						dimensions = Image.open(os.path.join(directory,f)).size
-						if "zoom" in g.entries:
-							zoom = float(g.entries["zoom"])
-							if zoom>0:
-								dimensions = [x*zoom for x in dimensions]
+						dimensions = [x*g.zoom for x in Image.open(os.path.join(directory,f)).size]
 						htmlout.write("<img src=\"%s\" width=\"%d\" height=\"%d\"/><br />\n"%(f.replace(os.sep,"/"),dimensions[0],dimensions[1]))
 					htmlout.write("<br />\n")
 				else:
-					self.store_err(g.entries["strip"],1,"Got the old stuff in "+ folder)
+					self.store_err(g.name,1,"Got the old stuff in "+ folder)
 			print ""
 		self.errors.sort()
 		for (l,e) in self.errors:

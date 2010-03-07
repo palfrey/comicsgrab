@@ -21,14 +21,16 @@ class PerlREEval:
 		found = True
 		while found:
 			found = False
-			for k in self.look.keys():
+			for (fd,v) in self.look.ListFields():
+				k = fd.name
+				if k.find("_var_") == 0:
+					k = "$%s"%k[len("_var_"):]
 				if ret.find("$"+k)!=-1:
 					found = True
-					ret = ret.replace("$"+k,self.look[k])
-				if k[0] == '$':
-					if ret.find(k)!=-1:
-						found = True
-						ret = ret.replace(k,self.look[k])
+					ret = ret.replace("$"+k,getattr(self.look,k))
+				if k[0] == '$' and ret.find(k)!=-1:
+					found = True
+					ret = ret.replace(k,getattr(self.look,"_var_%s"%k[1:]))
 	
 		local_vars = {}
 		funcs = {}
@@ -47,7 +49,7 @@ class PerlREEval:
 				i += 1
 				l = lines[i]
 				l = l.strip()
-				if z == 0:					
+				if z == 0:
 					for k in funcs.keys():
 						#print "lookfor","(?<!@)(?<!"+funcs[k]+")"+k,funcs[k]
 						l = re.sub("(?<!@)(?<!"+funcs[k]+")"+k, funcs[k], l)
@@ -188,6 +190,3 @@ class PerlREEval:
 			pass
 			
 		return ret
-		
-
-
