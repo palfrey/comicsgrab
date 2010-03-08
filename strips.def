@@ -15,7 +15,7 @@ group palfrey
 	desc Tom's favourite strips
 
 	include butternutsquash ctrlaltdel dilbert dominicdeegan ffn foxtrot nemi precocious qc
-	include schlockmercenary skinhorse somethingpositive subnormality uh2 userfriendly xkcd
+	include schlockmercenary skinhorse somethingpositive subnormality twolumps uh2 userfriendly xkcd
 
 # Yes, I probably need medical help for having this many listed...
 # You don't have to have things in alphabetical order, but I kinda like it this way
@@ -911,7 +911,6 @@ strip twolumps
 	homepage http://www.twolumps.net
 	useclass keenspace
 	$1
-	days Mo Wed Fri
 end
 
 strip antihero
