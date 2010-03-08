@@ -13,7 +13,7 @@ try:
 	from urlgrab import URLTimeout, URLTimeoutError
 except ImportError:
 	from sys import exit
-	print "Get urlgrab with 'git clone git://github.com/palfrey/urlgrab.git'"
+	print "Get urlgrab with 'git submodule init;git submodule update'"
 	exit(1)
 import urllib2
 from os.path import exists
