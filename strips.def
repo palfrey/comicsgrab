@@ -264,9 +264,8 @@ strip subnormality
 	days Tuesday
 	homepage http://www.viruscomix.com/subnormality.html
 	type search
-	searchpattern alt="" src="([^\"]+)"><br>
+	searchpattern src="(?!sphynxlogo)([^\"]+)"><br>
 	noperl 1
-	index 1
 	baseurl http://www.viruscomix.com/
 end
 
