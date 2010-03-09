@@ -57,13 +57,18 @@ class Sqlite(Database):
 				else:
 					raise
 		
-	def list_strips(self):
-		self._cur.execute("select name from strips order by name")
+	def _list(self, table):
+		self._cur.execute("select name from %s order by name"%table)
 		return [x[0] for x in self._cur.fetchall()]
 
 	def list_users(self):
-		self._cur.execute("select name from users order by name")
-		return [x[0] for x in self._cur.fetchall()]
+		return self._list("users")
+
+	def list_classes(self):
+		return self._list("classes")
+
+	def list_strips(self):
+		return self._list("strips")
 
 	def list_user_strips(self, user):
 		return list(user.include)
