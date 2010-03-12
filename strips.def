@@ -1457,8 +1457,14 @@ strip userfriendly
 	name User Friendly
 	homepage http://www.userfriendly.org/static/
 	type search
-	searchpage http://ars.userfriendly.org/cartoons/?id=%Y%m%d&mode=classic
-	searchpattern <img.+?src="(http://www.userfriendly.org/cartoons/archives/%y.+?/uf.+?\.gif)"
+	subbeg
+		searchpage http://ars.userfriendly.org/cartoons/?id=%Y%m%d&mode=classic
+		searchpattern <img.+?src="(http://www.userfriendly.org/cartoons/archives/%y.+?/uf.+?\.gif)"
+	subend
+	subbeg
+		searchpage http://www.userfriendly.org/static/
+		searchpattern (http://www.userfriendly.org/cartoons/archives/%y[^/]+/xuf\d+.gif)
+	subend
 end
 
 strip exploitnow
