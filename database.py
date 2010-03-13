@@ -48,7 +48,7 @@ class Sqlite(Database):
 			raise Exception,(s,type(s))
 	
 	def clear(self):
-		for table in ("strips","groups","classes"):
+		for table in ("strips","users","classes"):
 			try:
 				self._cur.execute("drop table %s"%table)
 			except sqlite.OperationalError,e:
@@ -56,6 +56,8 @@ class Sqlite(Database):
 					pass
 				else:
 					raise
+		self._con.commit()
+		self._setup()
 		
 	def _list(self, table):
 		self._cur.execute("select name from %s order by name"%table)
