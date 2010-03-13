@@ -1,12 +1,13 @@
 from google.protobuf.internal.containers import BaseContainer
 from strips_pb2 import Class,Group,Strip,Subsection,Config,_TYPE
 from re import split
-
+from sys import argv
 from database import Sqlite as Database
 
 db = Database()
+db.clear()
 
-deffile = "strips.def"
+deffile = argv[1]
 infile = open(deffile)
 storage = []
 strips = []
@@ -75,8 +76,3 @@ for lineno,line in enumerate(infile):
 		print "error at line number %d in file %s"%(lineno+1,deffile)
 		raise
 infile.close()
-
-#print db.list_user_strips(db.list_users()[-1])
-print db.list_user_strips(db.get_user('palfrey'))
-print db.get_strip('skinhorse')
-
