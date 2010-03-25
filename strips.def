@@ -449,7 +449,7 @@ end
 strip nemi
 	name Nemi
 	type search
-	homepage http://www.metro.co.uk/nemi
+	homepage http://www.metro.co.uk/games/nemi
 	searchpattern (http://img.metro.co.uk//?i/pix/cartoons/nemi/[^\"]*)
 	index 1
 	zoom 1.5
