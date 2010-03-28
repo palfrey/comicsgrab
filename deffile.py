@@ -117,7 +117,7 @@ class ComicsDef:
 			curr = self.now.copy()
 			found = []
 			oldstuff = False
-			while curr.compare(last)!=-1:
+			while curr>=last:
 				folder = os.path.join(directory,curr.strftime("%Y-%m-%d"))
 				if os.path.exists(folder):
 					files = os.listdir(folder)
@@ -125,7 +125,7 @@ class ComicsDef:
 					for f in files:
 						if f[:len(g.name)] == g.name:
 							found.append(os.path.join(curr.strftime("%Y-%m-%d"),f))
-							if self.now.compare(curr)!=0:
+							if self.now != curr:
 								oldstuff = True
 							
 					if len(found)!=0:

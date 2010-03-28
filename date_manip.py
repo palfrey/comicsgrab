@@ -46,7 +46,7 @@ class DateManip:
 			self.year += 1
 			self.month -= 12
 
-	def compare(self,other):
+	def __cmp__(self, other):
 		s1 = self.secs()
 		s2 = other.secs()
 		if s1==s2:
