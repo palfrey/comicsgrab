@@ -12,6 +12,10 @@ import time,calendar,re
 class DateManip:
 	hour_mod = ( (time.altzone/60) + (time.daylight*60) ) / -60 # allow for gmt offsets and daylight
 
+	@staticmethod
+	def strptime(format, date):
+		return DateManip(init_date=time.mktime(time.strptime(date,format)))
+
 	def __init__(self,init_date=time.time()):
 		tup = time.localtime(init_date)
 		self.year = tup[0]
