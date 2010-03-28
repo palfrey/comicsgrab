@@ -1,21 +1,9 @@
-message Config
-{
-	repeated string must = 1;
-	repeated string may = 2;
-}
-
-message Group
-{
-	optional string desc = 1;
-	repeated string include = 2;
-	repeated string comment = 3;
-	required string name = 4;
-}
-
 message User
 {
 	required string name = 1;
 	repeated string include = 2;
+	optional string password = 3;
+	optional bool enabled = 4 [default = true];
 }
 
 message Subsection

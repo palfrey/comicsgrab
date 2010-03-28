@@ -21,6 +21,10 @@ class DateManip:
 		self.year = tup[0]
 		self.month = tup[1]
 		self.day = tup[2]
+
+	@staticmethod
+	def today():
+		return DateManip()
 	
 	def mod_days(self,num):
 		ret = self.copy()

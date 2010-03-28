@@ -21,7 +21,7 @@ class ComicsDef:
 		self.proxy = proxy
 		self.cache = urlcache.URLCache(cachedir,self.proxy)
 
-	def get_strips(self,strips=None,group=None,now=DateManip()):
+	def get_strips(self,strips=None,user=None,now=DateManip()):
 		ret = []
 		if strips!=None:
 			for d in strips:
@@ -30,18 +30,16 @@ class ComicsDef:
 					search = gen_search(s,self.db,self.now,self.cache)
 					ret.append((s,search))
 				except NoSuchStrip:
-					raise
 					raise Exception("No strip found "+d)
-		if group != None:
-			for d in group:
+		if user != None:
+			for d in user:
 				try:
-					ret.extend(group_strips(self.db.get_user(d),self.db,now,self.cache))
+					ret.extend(user_strips(self.db.get_user(d),self.db,now,self.cache))
 				except NoSuchUser:
-					raise
-					raise Exception("No group found "+d)
+					raise Exception("No user found "+d)
 			
-		if strips==None and group==None:
-			raise Exception, "No strips or groups!"
+		if strips==None and user==None:
+			raise Exception, "No strips or users!"
 		return ret
 
 	def store_err(self,strip,level,msg):
@@ -56,7 +54,7 @@ class ComicsDef:
 			self.store_err(strip,3,err)
 			return None
 
-	def update(self,directory,strips=None,group=None,now=DateManip()):
+	def update(self,directory,strips=None,user=None,now=DateManip()):
 		self.now = now
 		self.errors = []
 		c = CalcWeek(self.now)
@@ -111,7 +109,7 @@ class ComicsDef:
 		dirs.reverse()
 		print "dirs",dirs,lastdir
 
-		for (g,search) in self.get_strips(strips,group):
+		for (g,search) in self.get_strips(strips,user):
 			print "Running",g.name, "("+g.days+")"
 			last = DateManip(c.get_last_day(g.days))
 			curr = self.now.copy()

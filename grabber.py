@@ -16,7 +16,7 @@ parser.add_option("-d","--debug",help="Debug level (default is 2).\n1 is random 
 parser.add_option("-f", dest="strips", default="strips.def", help="Strips definition file (default is strips.def)")
 parser.add_option("-c","--cache",default="./cache", dest="cache",help="Cache directory (default is './cache')")
 parser.add_option("-s","--comic",default =[],dest="comics", action="append", help="Add a strip to get")
-parser.add_option("-g","--group",default =[],dest="groups", action="append", help="Add a group to get")
+parser.add_option("-u","--user",default =[],dest="users", action="append", help="Add a user to get")
 parser.add_option("-p","--proxy",default=None, dest="proxy", help="Set proxy URL")
 parser.add_option("--db", dest="db", default="comics.db")
 parser.add_option("--listme", dest="listme", default=False, action="store_true", help="Prints out an HTML formatted list of the comics specified")
@@ -27,12 +27,11 @@ if not opts.listme and len(args)!=1:
 	parser.error("Need an output directory!")
 
 now = DateManip()
-#now.mod_days(-1)
 df = ComicsDef(opts.strips,opts.cache,debug=opts.debug,proxy=opts.proxy, db=opts.db)
 if opts.listme:
 	print "<ul>"
-	for x in df.get_strips(opts.comics,opts.groups,now=now):
+	for x in df.get_strips(opts.comics,opts.users,now=now):
 		print "<li><a href=\""+x.entries["homepage"]+"\">"+x.entries["name"]+"</a></li>"
 	print "</ul>"
 else:
-	df.update(args[0],group=opts.groups,strips=opts.comics,now=now)
+	df.update(args[0],user=opts.users,strips=opts.comics,now=now)

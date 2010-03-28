@@ -13,7 +13,7 @@ from strips_pb2 import Strip, _TYPE as Type, Subsection
 from google.protobuf.internal.containers import RepeatedCompositeFieldContainer
 import types
 
-def group_strips(user,db,now,cache):
+def user_strips(user,db,now,cache):
 	strips = db.list_user_strips(user)
 	ret = []
 	for s in strips:

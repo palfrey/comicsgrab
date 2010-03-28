@@ -1,5 +1,5 @@
 import sqlite3 as sqlite
-from strips_pb2 import Class,Group,Strip,Subsection,Config,User
+from strips_pb2 import Class,Strip,Subsection,User
 
 class NoSuchStrip(Exception):
 	pass
@@ -19,21 +19,25 @@ class Sqlite(Database):
 		self._cur = self._con.cursor()
 		self._cur.execute("select name from sqlite_master where type='table' and name='strips'")
 		if len(self._cur.fetchall())==0:
-			self._setup()
+			self._setup("users","strips","classes")
 	
-	def _setup(self):
-		self._cur.execute("create table strips (name text primary key, desc text,homepage text, pb blob)")
-		self._cur.execute("create table users (name text primary key, pb blob)")
-		self._cur.execute("create table classes (name text primary key, desc text,pb blob)")
+	def _setup(self, tables):
+		for t in tables:
+			if t == "users":
+				self._cur.execute("create table users (name text primary key, pb blob)")
+			elif t == "strips":
+				self._cur.execute("create table strips (name text primary key, desc text,homepage text, pb blob)")
+			elif t == "classes":
+				self._cur.execute("create table classes (name text primary key, desc text,pb blob)")
+			else:
+				raise Exception, t
 		self._con.commit()
 
 	def add_section(self, s):
 		if isinstance(s,Strip):
 			self._cur.execute("insert into strips values (?,?,?,?)",(s.name,s.desc,s.homepage,sqlite.Binary(s.SerializeToString())))
 			self._con.commit()
-		elif isinstance(s,Config):
-			pass # ignore for now
-		elif isinstance(s,Group):
+		elif isinstance(s,User):
 			u = User()
 			u.name = s.name
 			u.include.extend(list(s.include))
@@ -47,18 +51,27 @@ class Sqlite(Database):
 		else:
 			raise Exception,(s,type(s))
 	
-	def clear(self):
-		for table in ("strips","users","classes"):
-			try:
-				self._cur.execute("drop table %s"%table)
-			except sqlite.OperationalError,e:
-				if e.message == "no such table: %s"%table:
-					pass
-				else:
-					raise
+	def _clear_table(self,table):
+		try:
+			self._cur.execute("drop table %s"%table)
+		except sqlite.OperationalError,e:
+			if e.message == "no such table: %s"%table:
+				pass
+			else:
+				raise
+
+	def _clear_tables(self, tables):
+		for table in (tables):
+			self._clear_table(table)
 		self._con.commit()
-		self._setup()
+		self._setup(tables)
+
+	def clear_strips(self):
+		self._clear_tables(("strips","classes"))
 		
+	def clear_users(self):
+		self._clear_tables(("users",))
+	
 	def _list(self, table):
 		self._cur.execute("select name from %s order by name"%table)
 		return [x[0] for x in self._cur.fetchall()]

@@ -1,18 +1,27 @@
 from google.protobuf.internal.containers import BaseContainer
-from strips_pb2 import Class,Group,Strip,Subsection,Config,_TYPE
+from strips_pb2 import Class,User,Strip,Subsection,_TYPE
 from re import split
-from sys import argv
 from database import Sqlite as Database
 
-db = Database()
-db.clear()
+from optparse import OptionParser
 
-deffile = argv[1]
+parser = OptionParser()
+parser.add_option("-d","--db",dest="database",default="comics.db",help="Set database to use")
+parser.add_option("-u","--user",dest="user",default=False,action="store_true",help="Load user database")
+(opts,args) = parser.parse_args()
+
+if len(args)!=1:
+	parser.error("Need a definitions file!")
+
+db = Database(opts.database)
+if opts.user:
+	db.clear_users()
+else:
+	db.clear_strips()
+
+deffile = args[0]
 infile = open(deffile)
 storage = []
-strips = []
-groups = []
-classes = []
 for lineno,line in enumerate(infile):
 	while line.find("#")<>-1:
 		line = line[:line.find("#")-1]
@@ -24,20 +33,15 @@ for lineno,line in enumerate(infile):
 		data = split('[ \t]',line,1)
 		#print data 
 		if storage == []:
-			if data[0] == "group":
-				storage.append(Group())
+			if data[0] == "user":
+				storage.append(User())
 				storage[-1].name = data[1]
-				groups.append(storage[-1])
 			elif data[0] == "class":
 				storage.append(Class())
 				storage[-1].name = data[1]
-				classes.append(storage[-1])
 			elif data[0] == "strip":
 				storage.append(Strip())
 				storage[-1].name = data[1]
-				strips.append(storage[-1])
-			elif data[0] == "config":
-				storage.append(Config())
 			else:
 				raise Exception,"Unknown block type '%s'"%data[0]
 		elif data[0] == 'end':
