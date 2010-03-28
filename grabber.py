@@ -20,6 +20,7 @@ parser.add_option("-u","--user",default =[],dest="users", action="append", help=
 parser.add_option("-p","--proxy",default=None, dest="proxy", help="Set proxy URL")
 parser.add_option("--db", dest="db", default="comics.db")
 parser.add_option("--listme", dest="listme", default=False, action="store_true", help="Prints out an HTML formatted list of the comics specified")
+parser.add_option("--all-users", dest="all_users", default=False, action="store_true", help="Get comics for all enabled users")
 
 (opts, args) = parser.parse_args()
 
@@ -34,4 +35,4 @@ if opts.listme:
 		print "<li><a href=\""+x.entries["homepage"]+"\">"+x.entries["name"]+"</a></li>"
 	print "</ul>"
 else:
-	df.update(args[0],user=opts.users,strips=opts.comics,now=now)
+	df.update(args[0],user=opts.users,strips=opts.comics,now=now, all_users=opts.all_users)

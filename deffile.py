@@ -21,7 +21,7 @@ class ComicsDef:
 		self.proxy = proxy
 		self.cache = urlcache.URLCache(cachedir,self.proxy)
 
-	def get_strips(self,strips=None,user=None,now=DateManip()):
+	def get_strips(self,strips=None,user=None,now=DateManip(),all_users=False):
 		ret = []
 		if strips!=None:
 			for d in strips:
@@ -31,6 +31,13 @@ class ComicsDef:
 					ret.append((s,search))
 				except NoSuchStrip:
 					raise Exception("No strip found "+d)
+		if all_users:
+			user = []
+			for u in self.db.list_users():
+				print "u",u
+				u = self.db.get_user(u)
+				if u.enabled:
+					user.append(u.name)
 		if user != None:
 			for d in user:
 				try:
@@ -54,7 +61,7 @@ class ComicsDef:
 			self.store_err(strip,3,err)
 			return None
 
-	def update(self,directory,strips=None,user=None,now=DateManip()):
+	def update(self,directory,strips=None,user=None,now=DateManip(), all_users=False):
 		self.now = now
 		self.errors = []
 		c = CalcWeek(self.now)
@@ -109,7 +116,7 @@ class ComicsDef:
 		dirs.reverse()
 		print "dirs",dirs,lastdir
 
-		for (g,search) in self.get_strips(strips,user):
+		for (g,search) in self.get_strips(strips,user, all_users=all_users):
 			print "Running",g.name, "("+g.days+")"
 			last = DateManip(c.get_last_day(g.days))
 			curr = self.now.copy()
