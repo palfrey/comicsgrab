@@ -18,6 +18,7 @@ parser.add_option("-c","--cache",default="./cache", dest="cache",help="Cache dir
 parser.add_option("-s","--comic",default =[],dest="comics", action="append", help="Add a strip to get")
 parser.add_option("-g","--group",default =[],dest="groups", action="append", help="Add a group to get")
 parser.add_option("-p","--proxy",default=None, dest="proxy", help="Set proxy URL")
+parser.add_option("--db", dest="db", default="comics.db")
 
 (opts, args) = parser.parse_args()
 
@@ -26,7 +27,7 @@ if len(args)!=1:
 
 now = DateManip()
 #now.mod_days(-1)
-df = ComicsDef(opts.strips,opts.cache,debug=opts.debug,proxy=opts.proxy)
+df = ComicsDef(opts.strips,opts.cache,debug=opts.debug,proxy=opts.proxy, db=opts.db)
 if args[0] == "listme":
 	print "<ul>"
 	for x in df.get_strips(opts.comics,opts.groups,now=now):

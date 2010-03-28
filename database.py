@@ -14,8 +14,8 @@ class Database:
 	pass
 
 class Sqlite(Database):
-	def __init__(self):
-		self._con = sqlite.connect("comics.db")
+	def __init__(self,db="comics.db"):
+		self._con = sqlite.connect(db)
 		self._cur = self._con.cursor()
 		self._cur.execute("select name from sqlite_master where type='table' and name='strips'")
 		if len(self._cur.fetchall())==0:

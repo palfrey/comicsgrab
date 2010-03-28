@@ -14,8 +14,8 @@ from PIL import Image
 from database import Sqlite as Database,NoSuchUser,NoSuchStrip
 
 class ComicsDef:
-	def __init__(self,deffile,cachedir,debug=0,proxy=None):
-		self.db = Database()
+	def __init__(self,deffile,cachedir,debug=0,proxy=None, db="comics.db"):
+		self.db = Database(db)
 		self.debug = debug
 		self.maxdays = 14
 		self.proxy = proxy
