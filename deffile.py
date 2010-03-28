@@ -98,8 +98,7 @@ class ComicsDef:
 		dirs = [x for x in os.listdir(directory) if os.path.isdir(os.path.join(directory,x))]
 		dirs.sort()
 		
-		last = self.now.copy()
-		last.mod_days(-self.maxdays)
+		last = self.now.mod_days(-self.maxdays)
 
 		l = last.strftime("%Y-%m-%d")
 		lastdir = None
@@ -133,7 +132,7 @@ class ComicsDef:
 						break
 				else:
 					print "no such folder",folder
-				curr.mod_days(-1)
+				curr = curr.mod_days(-1)
 			if lastdir!=None:
 				removes = []
 				found_last = False

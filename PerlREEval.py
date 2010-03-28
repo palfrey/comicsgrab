@@ -8,7 +8,6 @@
 # Released under the GPL Version 2 (http://www.gnu.org/copyleft/gpl.html)
 
 import time,string,re,math,sys
-from date_manip import DateManip
 
 class PerlREEval:
 	def __init__(self, now):

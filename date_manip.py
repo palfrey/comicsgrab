@@ -19,20 +19,22 @@ class DateManip:
 		self.day = tup[2]
 	
 	def mod_days(self,num):
-		self.day += num
-		while self.day<1:
-			self.month -= 1
-			self.check_mon()
-			self.day += calendar.monthrange(self.year, self.month)[1]
-		while self.day>calendar.monthrange(self.year, self.month)[1]:
-			self.day -= calendar.monthrange(self.year, self.month)[1]
-			self.month += 1
-			self.check_mon()
-		#print self.year,self.month,self.day,calendar.monthrange(self.year,self.month)
-		if self.day>31:
+		ret = self.copy()
+		ret.day += num
+		while ret.day<1:
+			ret.month -= 1
+			ret._check_mon()
+			ret.day += calendar.monthrange(ret.year, ret.month)[1]
+		while ret.day>calendar.monthrange(ret.year, ret.month)[1]:
+			ret.day -= calendar.monthrange(ret.year, ret.month)[1]
+			ret.month += 1
+			ret._check_mon()
+		#print ret.year,ret.month,ret.day,calendar.monthrange(ret.year,ret.month)
+		if ret.day>31:
 			raise Exception
+		return ret
 	
-	def check_mon(self):
+	def _check_mon(self):
 		while self.month<1:
 			self.year -= 1
 			self.month += 12
@@ -75,7 +77,7 @@ class CalcWeek:
 			if days[curr_day.dow()]!=0:
 				break
 			days[curr_day.dow()] = curr_day.secs()
-			curr_day.mod_days(-1)
+			curr_day = curr_day.mod_days(-1)
 		self.days = days
 
 	def map_filter(self,x,y):
