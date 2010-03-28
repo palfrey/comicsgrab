@@ -56,6 +56,9 @@ class DateManip:
 		else:
 			return -1
 
+	def __repr__(self):
+		return "<%s - %d/%d/%d>"%(self.__class__,self.year,self.month,self.day)
+
 	def dow(self):
 		return calendar.weekday(self.year, self.month, self.day)
 		
