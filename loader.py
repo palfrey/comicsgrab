@@ -69,6 +69,11 @@ for lineno,line in enumerate(infile):
 						data[1] = int(data[1])
 					elif data[0] in ("zoom",):
 						data[1] = float(data[1])
+					elif data[0] in ("enabled",):
+						if data[1] in ("true","True"):
+							data[1] = True
+						else:
+							data[1] = False
 					elif data[0] == "type":
 						data[1] = _TYPE.values_by_name[data[1]].number
 					else:

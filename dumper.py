@@ -26,7 +26,9 @@ def print_pb_indent(pb,indent="\t"):
 			val = fd.enum_type.values_by_number[val].name
 		elif isinstance(val,unicode) or isinstance(val,long) or isinstance(val,str) or isinstance(val,float):
 			pass
-		elif isinstance(val,bool) or isinstance(val,int):
+		elif isinstance(val,bool):
+			pass
+		elif isinstance(val,int):
 			val = int(val)
 		else:
 			print dir(fd)
