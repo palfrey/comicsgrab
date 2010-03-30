@@ -6,9 +6,15 @@ from database import Sqlite as Database
 from optparse import OptionParser
 
 def print_pb_indent(pb,indent="\t"):
-	for (fd,val) in pb.ListFields():
+	if opts.user:
+		fields = pb.DESCRIPTOR.fields
+	else:
+		fields = [x[0] for x in pb.ListFields()]
+
+	for fd in fields:
 		if fd.name == "name":
 			continue
+		val = getattr(pb,fd.name)
 		if isinstance(val,RepeatedScalarFieldContainer):
 			val = " ".join(val)
 		elif isinstance(val,RepeatedCompositeFieldContainer):

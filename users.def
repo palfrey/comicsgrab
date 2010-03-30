@@ -8,9 +8,13 @@
 
 user extras
 	include techfox ableandbaker alp applegeeks betterdays buckgodot butternutsquash captainexcelsior countyoursheep crapidrew courtingdisaster dandy devilspanties dmfa dorktower dresdencodak evilinc exterminatusnow extralife flem fragilegravity freefall fwf garfield geebasonparade gg101 ghastly goats goobs gpf gws hatesong helpdesk kevinandkell krakow leasticoulddo lfg luann megatokyo midlands namirdeiter nn2s nodwick nonsequitur nukees octopuspie okcancel orderofthestick pennyarcade pvp reallife sinfest soar somethinghappens spareparts ssdd starslipcrisis treadingground turnsignals twolumps underpower unshelved vgcats whiteboard wotch wulff yht zebragirl
+	password 
+	enabled True
 end
 
 user palfrey
 	include butternutsquash ctrlaltdel dilbert dominicdeegan ffn foxtrot nemi precocious qc schlockmercenary skinhorse somethingpositive subnormality twolumps uh2 userfriendly xkcd
+	password 
+	enabled True
 end
 
