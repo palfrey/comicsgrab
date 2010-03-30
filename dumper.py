@@ -12,10 +12,15 @@ def print_pb_indent(pb,indent="\t"):
 		if isinstance(val,RepeatedScalarFieldContainer):
 			val = " ".join(val)
 		elif isinstance(val,RepeatedCompositeFieldContainer):
+			use = fd.name
+			end = "end"
+			if use == "subs":
+				use = "subbeg"
+				end = "subend"
 			for v in val:
-				print "%s%s"%(indent,fd.name)
+				print "%s%s"%(indent,use)
 				print_pb_indent(v,indent+"\t")
-				print "%send"%indent
+				print "%s%s"%(indent,end)
 			continue
 		elif fd.enum_type!=None:
 			val = fd.enum_type.values_by_number[val].name
