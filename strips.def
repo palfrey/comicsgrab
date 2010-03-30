@@ -119,7 +119,7 @@ end
 
 class unitedmedia-srch-comics-lag
 	type search
-	searchpattern <img.+?src="(http://assets.comics.com/dyn/str_strip/.*\.full\.gif)"
+	searchpattern <img.+?src="(http://[^/]*/dyn/str_strip/.*\.full\.gif)"
 	homepage http://comics.com/$strip/
 	baseurl http://www.unitedmedia.com
 end
