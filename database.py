@@ -38,10 +38,7 @@ class Sqlite(Database):
 			self._cur.execute("insert into strips values (?,?,?,?)",(s.name,s.desc,s.homepage,sqlite.Binary(s.SerializeToString())))
 			self._con.commit()
 		elif isinstance(s,User):
-			u = User()
-			u.name = s.name
-			u.include.extend(list(s.include))
-			data = (u.name,sqlite.Binary(u.SerializeToString()))
+			data = (s.name,sqlite.Binary(s.SerializeToString()))
 			self._cur.execute("insert into users values (?,?)",data)
 			self._con.commit()
 		
