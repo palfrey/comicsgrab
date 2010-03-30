@@ -31,8 +31,8 @@ now = DateManip()
 df = ComicsDef(opts.strips,opts.cache,debug=opts.debug,proxy=opts.proxy, db=opts.db)
 if opts.listme:
 	print "<ul>"
-	for x in df.get_strips(opts.comics,opts.users,now=now):
-		print "<li><a href=\""+x.entries["homepage"]+"\">"+x.entries["name"]+"</a></li>"
+	for (x, search) in df.get_strips(opts.comics,opts.users,now=now):
+		print "<li><a href=\""+x.homepage+"\">"+x.name+"</a></li>"
 	print "</ul>"
 else:
 	df.update(args[0],user=opts.users,strips=opts.comics,now=now, all_users=opts.all_users)
