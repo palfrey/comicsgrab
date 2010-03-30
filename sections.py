@@ -52,7 +52,7 @@ def gen_search(strip,db,now,cache, search = None):
 		update_entries(strip, new_c)
 		if strip.homepage.find("$")!=-1:
 			pre = PerlREEval(now)
-			pre.look = self.entries
+			pre.look = new_c
 			strip.homepage = pre.eval_perl(strip.homepage)
 		ns = copy.copy(get_searches(strip, search))
 		for n in ns:

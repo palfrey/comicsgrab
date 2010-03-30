@@ -30,6 +30,12 @@ class PerlREEval:
 				if k[0] == '$' and ret.find(k)!=-1:
 					found = True
 					ret = ret.replace(k,getattr(self.look,"_var_%s"%k[1:]))
+
+			k = self.look.DESCRIPTOR.name.lower()
+			if ret.find("$"+k)!=-1:
+				found = True
+				assert self.look.name!="",[(fd.name,val) for (fd,val) in self.look.ListFields()]
+				ret = ret.replace("$"+k,self.look.name)
 	
 		local_vars = {}
 		funcs = {}
