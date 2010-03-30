@@ -21,7 +21,7 @@ def print_pb_indent(pb,indent="\t"):
 			val = fd.enum_type.values_by_number[val].name
 		elif isinstance(val,unicode) or isinstance(val,long) or isinstance(val,str) or isinstance(val,float):
 			pass
-		elif isinstance(val,bool):
+		elif isinstance(val,bool) or isinstance(val,int):
 			val = int(val)
 		else:
 			print dir(fd)
@@ -49,7 +49,7 @@ print """# Comics Grabber by Tom Parker <palfrey@tevp.net>
 
 parser = OptionParser()
 parser.add_option("-u","--user",dest="user",default=False,action="store_true",help="Dump user database")
-parser.add_option("-d","--db",dest="database",default="comics.db",help="Set database to use")
+parser.add_option("-d","--db",dest="db",default="comics.db",help="Set database to use")
 (opts,args) = parser.parse_args()
 
 if len(args) != 0:
