@@ -1989,9 +1989,9 @@ strip nancy
 	useclass unitedmedia-srch-comics
 end
 
-strip naturalselection
+strip natural_selection
 	desc Natural Selection
-	useclass unitedmedia-srch-creators
+	useclass unitedmedia-srch-comics-lag
 end
 
 strip neko
