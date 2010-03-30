@@ -72,7 +72,7 @@ for lineno,line in enumerate(infile):
 					elif data[0] == "type":
 						data[1] = _TYPE.values_by_name[data[1]].number
 					else:
-						data[1] = data[1].decode("latin-1")
+						pass
 					setattr(storage[-1],data[0],data[1])
 	except:
 		print "error at line number %d in file %s"%(lineno+1,deffile)
