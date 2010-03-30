@@ -37,9 +37,9 @@ def get_searches(strip,other_searches):
 def update_entries(strip, cl):
 	for (fd,val) in cl.ListFields():
 		n = fd.name
-		if n == "name":
-			continue
 		if hasattr(strip,n):
+			if n == "name" and strip.name!="":
+				continue
 			old = getattr(strip,n)
 			if isinstance(old,RepeatedCompositeFieldContainer):
 				old.MergeFrom(getattr(cl,n))
