@@ -35,15 +35,13 @@ for lineno,line in enumerate(infile):
 		if storage == []:
 			if data[0] == "user":
 				storage.append(User())
-				storage[-1].name = data[1]
 			elif data[0] == "class":
 				storage.append(Class())
-				storage[-1].name = data[1]
 			elif data[0] == "strip":
 				storage.append(Strip())
-				storage[-1].name = data[1]
 			else:
 				raise Exception,"Unknown block type '%s'"%data[0]
+			storage[-1].name = data[1]
 		elif data[0] == 'end':
 			assert len(storage) == 1,storage
 			db.add_section(storage[0])
