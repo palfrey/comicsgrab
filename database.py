@@ -19,7 +19,7 @@ class Sqlite(Database):
 		self._cur = self._con.cursor()
 		self._cur.execute("select name from sqlite_master where type='table' and name='strips'")
 		if len(self._cur.fetchall())==0:
-			self._setup("users","strips","classes")
+			self._setup(("users","strips","classes"))
 	
 	def _setup(self, tables):
 		for t in tables:
