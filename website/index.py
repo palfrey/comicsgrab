@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 from wsgiref.handlers import CGIHandler
 from wsgiref.util import request_uri
+
 output_folder = "output"
 
 try:
@@ -9,14 +10,14 @@ except NameError: # python <2.5
 	exception = Exception
 
 def comicsapp(environ, start_response):
+	import traceback
 	from cStringIO import StringIO
 	ret = StringIO()
 	try:
 		from cgi import parse_qs
 		from comicsgrab.date_manip import DateManip
-		import traceback
 		from time import localtime,strftime
-		from os.path import join, abspath
+		from os.path import join
 		from glob import glob
 
 		from comicsgrab.database import MySQL, Sqlite
@@ -47,7 +48,7 @@ def comicsapp(environ, start_response):
 			if now != DateManip().today():
 				print >> ret, "<a href=\"?user=%s&date=%s\">Next day</a><br />"%(user,now.mod_days(+1).strftime("%Y-%m-%d"))
 			today = join(output_folder,folder)
-			user = db.get_user(query['user'][0])
+			user = db.get_user(user)
 			for strip in sorted(db.list_user_strips(user)):
 				st = db.get_strip(strip)
 				items = glob(join(today,"%s-*"%strip))
