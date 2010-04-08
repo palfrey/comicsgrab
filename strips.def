@@ -624,7 +624,7 @@ strip butternutsquash
 	desc butternutsquash
 	type search
 	searchpage $homepage
-	searchpattern (http://www.butternutsquash.net/v3/comics/\d+-\d+-\d+[^\"]+)
+	searchpattern (http://www.butternutsquash.net/comics/\d+-\d+-\d+[^\"]+)
 	homepage http://www.butternutsquash.net/
 	days Thursday
 end
