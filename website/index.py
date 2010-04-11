@@ -1,7 +1,6 @@
 from wsgiref.handlers import CGIHandler
 from wsgiref.util import request_uri
 from cgi import parse_qs
-from comicsgrab.database import Sqlite as Database
 from comicsgrab.date_manip import DateManip
 import traceback
 from cStringIO import StringIO
@@ -9,14 +8,14 @@ from time import localtime,strftime
 from os.path import join
 from glob import glob
 
-path_to_db = "../comics.db"
 output_folder = "output"
 
 def comicsapp(environ, start_response):
-	db = Database(db=path_to_db)
 		
 	ret = StringIO()
 	try:
+		from comicsgrab.database import MySQL as Database
+		db = Database()
 		uri = request_uri(environ)
 		if uri.find("?")!=-1:
 			uri = uri[uri.find("?")+1:]
