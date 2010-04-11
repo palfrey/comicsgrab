@@ -51,15 +51,6 @@ def print_pb(kind,pb):
 	print_pb_indent(pb)
 	print "end\n"
 
-print """# Comics Grabber by Tom Parker <palfrey@tevp.net>
-# http://tevp.net
-#
-# Comics definition file (partially derived from the strips.def at
-# http://dailystrips.sf.net)
-#
-# Released under the GPL Version 2 (http://www.gnu.org/copyleft/gpl.html)
-"""
-
 parser = OptionParser()
 parser.add_option("-u","--user",dest="user",default=False,action="store_true",help="Dump user database")
 parser.add_option("-d","--db",dest="db",default="comics.db",help="Set database to use")
@@ -75,6 +66,16 @@ if opts.db_module == "Sqlite":
 	db = Database(opts.db)
 else:
 	db = Database()
+
+print """# Comics Grabber by Tom Parker <palfrey@tevp.net>
+# http://tevp.net
+#
+# Comics definition file (partially derived from the strips.def at
+# http://dailystrips.sf.net)
+#
+# Released under the GPL Version 2 (http://www.gnu.org/copyleft/gpl.html)
+"""
+
 if opts.user:
 	for user in db.list_users():
 		print_pb("user",db.get_user(user))
