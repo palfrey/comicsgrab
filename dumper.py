@@ -63,12 +63,18 @@ print """# Comics Grabber by Tom Parker <palfrey@tevp.net>
 parser = OptionParser()
 parser.add_option("-u","--user",dest="user",default=False,action="store_true",help="Dump user database")
 parser.add_option("-d","--db",dest="db",default="comics.db",help="Set database to use")
+parser.add_option("-m","--module",dest="db_module",default="Sqlite",help="Specify database module")
 (opts,args) = parser.parse_args()
 
 if len(args) != 0:
 	parser.error("dumper doesn't take any non-option arguments!")
 
-db = Database(opts.db)
+globals()['Database'] = getattr(__import__('database',globals(),locals(),[opts.db_module],-1),opts.db_module)
+
+if opts.db_module == "Sqlite":
+	db = Database(opts.db)
+else:
+	db = Database()
 if opts.user:
 	for user in db.list_users():
 		print_pb("user",db.get_user(user))
