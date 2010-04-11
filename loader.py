@@ -1,19 +1,24 @@
 from google.protobuf.internal.containers import BaseContainer
 from strips_pb2 import Class,User,Strip,Subsection,_TYPE
 from re import split
-from database import Sqlite as Database
 
 from optparse import OptionParser
 
 parser = OptionParser()
 parser.add_option("-d","--db",dest="database",default="comics.db",help="Set database to use")
 parser.add_option("-u","--user",dest="user",default=False,action="store_true",help="Load user database")
+parser.add_option("-m","--module",dest="db_module",default="Sqlite",help="Specify database module")
 (opts,args) = parser.parse_args()
 
 if len(args)!=1:
 	parser.error("Need a definitions file!")
 
-db = Database(opts.database)
+globals()['Database'] = getattr(__import__('database',globals(),locals(),[opts.db_module],-1),opts.db_module)
+
+if opts.db_module == "Sqlite":
+	db = Database(opts.db)
+else:
+	db = Database()
 if opts.user:
 	db.clear_users()
 else:
