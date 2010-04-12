@@ -1,13 +1,6 @@
+#!/usr/bin/env python
 from wsgiref.handlers import CGIHandler
 from wsgiref.util import request_uri
-from cgi import parse_qs
-from comicsgrab.date_manip import DateManip
-import traceback
-from cStringIO import StringIO
-from time import localtime,strftime
-from os.path import join
-from glob import glob
-
 output_folder = "output"
 
 try:
@@ -16,16 +9,27 @@ except NameError: # python <2.5
 	exception = Exception
 
 def comicsapp(environ, start_response):
-		
+	from cStringIO import StringIO
 	ret = StringIO()
 	try:
-		from comicsgrab.database import MySQL as Database
-		db = Database()
-		uri = request_uri(environ)
-		if uri.find("?")!=-1:
-			uri = uri[uri.find("?")+1:]
+		from cgi import parse_qs
+		from comicsgrab.date_manip import DateManip
+		import traceback
+		from time import localtime,strftime
+		from os.path import join, abspath
+		from glob import glob
 
-		query = parse_qs(uri)
+		from comicsgrab.database import MySQL, Sqlite
+		db = Sqlite("comicsgrab/comics.db")
+		
+		try:
+			uri = request_uri(environ)
+			if uri.find("?")!=-1:
+				uri = uri[uri.find("?")+1:]
+
+			query = parse_qs(uri)
+		except KeyError:
+			query = {}
 
 		if 'user' not in query:
 			print >> ret,  "Users:<br />"
@@ -33,12 +37,12 @@ def comicsapp(environ, start_response):
 				print >> ret, "<a href=\"?user=%s\">%s</a><br />"%(user,user)
 		else:
 			user = query['user'][0]
-			print >> ret, "Strips for <b>%s<b/><br />"%user
 			if 'date' not in query:
 				now = DateManip()
 			else:
 				now = DateManip.strptime("%Y-%m-%d", query['date'][0])
 			folder = now.strftime("%Y-%m-%d")
+			print >> ret, "Strips for <b>%s<b/>, %s<br />"%(user,folder)
 			print >> ret, "<a href=\"?user=%s&date=%s\">Previous day</a><br />"%(user,now.mod_days(-1).strftime("%Y-%m-%d"))
 			if now != DateManip().today():
 				print >> ret, "<a href=\"?user=%s&date=%s\">Next day</a><br />"%(user,now.mod_days(+1).strftime("%Y-%m-%d"))
