@@ -14,11 +14,14 @@ try:
 except ImportError: # no PIL!
 	Image = None
 
-from database import Sqlite as Database,NoSuchUser,NoSuchStrip
+import database
 
 class ComicsDef:
-	def __init__(self,deffile,cachedir,debug=0,proxy=None, db="comics.db"):
-		self.db = Database(db)
+	def __init__(self,deffile,cachedir,debug=0,proxy=None, db="comics.db", module="Sqlite"):
+		if db!=None:
+			self.db = getattr(database,module)(db)
+		else:
+			self.db = getattr(database,module)(user="palfrey_palfrey",database="palfrey_palfrey",password="epsilon", prefix="comics_")
 		self.debug = debug
 		self.maxdays = 14
 		self.proxy = proxy
@@ -32,7 +35,7 @@ class ComicsDef:
 					s = self.db.get_strip(d)
 					search = gen_search(s,self.db,self.now,self.cache)
 					ret.append((s,search))
-				except NoSuchStrip:
+				except database.NoSuchStrip:
 					raise Exception("No strip found "+d)
 		if all_users:
 			user = []
@@ -45,7 +48,7 @@ class ComicsDef:
 			for d in user:
 				try:
 					ret.extend(user_strips(self.db.get_user(d),self.db,now,self.cache))
-				except NoSuchUser:
+				except database.NoSuchUser:
 					raise Exception("No user found "+d)
 			
 		if strips==None and user==None:
