@@ -41,15 +41,15 @@ class Database:
 
 	def add_section(self, s):
 		if isinstance(s,Strip):
-			self._cur.execute("insert into "+self.prefix+"strips values ("+self.replace_str+","+self.replace_str+","+self.replace_str+","+self.replace_str+")",(s.name,s.desc,s.homepage,sqlite.binary(s.SerializeToString())))
+			self._cur.execute("insert into "+self.prefix+"strips values ("+self.replace_str+","+self.replace_str+","+self.replace_str+","+self.replace_str+")",(s.name,s.desc,s.homepage,self.binary(s.SerializeToString())))
 			self._con.commit()
 		elif isinstance(s,User):
-			data = (s.name,sqlite.Binary(s.SerializeToString()))
+			data = (s.name,self.binary(s.SerializeToString()))
 			self._cur.execute("insert into "+self.prefix+"users values ("+self.replace_str+","+self.replace_str+")",data)
 			self._con.commit()
 		
 		elif isinstance(s,Class):
-			self._cur.execute("insert into "+self.prefix+"classes values ("+self.replace_str+","+self.replace_str+","+self.replace_str+")",(s.name,s.desc,sqlite.binary(s.SerializeToString())))
+			self._cur.execute("insert into "+self.prefix+"classes values ("+self.replace_str+","+self.replace_str+","+self.replace_str+")",(s.name,s.desc,self.binary(s.SerializeToString())))
 			self._con.commit()
 		else:
 			raise Exception,(s,type(s))
@@ -124,6 +124,9 @@ class MySQL(Database):
 			else:
 				raise Exception, t
 		self._con.commit()
+	
+	def binary(self, data):
+		return data
 
 class Sqlite(Database):
 	replace_str = "?"
@@ -147,4 +150,5 @@ class Sqlite(Database):
 				raise Exception, t
 		self._con.commit()
 
-
+	def binary(self, data):
+		return sqlite.Binary(data)
