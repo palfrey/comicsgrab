@@ -1,5 +1,12 @@
-import sqlite3 as sqlite
-import MySQLdb
+try:
+	import sqlite3 as sqlite
+except ImportError:
+	sqlite = None
+try:
+	import MySQLdb
+except ImportError:
+	MySQLdb = None
+
 from strips_pb2 import Class,Strip,Subsection,User
 
 class NoSuchStrip(Exception):
