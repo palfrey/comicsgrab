@@ -19,6 +19,8 @@ class NoSuchClass(Exception):
 	pass
 
 class Database:
+	prefix = ""
+
 	def list_users(self):
 		return self._list("users")
 
@@ -39,22 +41,22 @@ class Database:
 
 	def add_section(self, s):
 		if isinstance(s,Strip):
-			self._cur.execute("insert into strips values ("+self.replace_str+","+self.replace_str+","+self.replace_str+","+self.replace_str+")",(s.name,s.desc,s.homepage,sqlite.Binary(s.SerializeToString())))
+			self._cur.execute("insert into "+self.prefix+"strips values ("+self.replace_str+","+self.replace_str+","+self.replace_str+","+self.replace_str+")",(s.name,s.desc,s.homepage,sqlite.binary(s.SerializeToString())))
 			self._con.commit()
 		elif isinstance(s,User):
 			data = (s.name,sqlite.Binary(s.SerializeToString()))
-			self._cur.execute("insert into users values ("+self.replace_str+","+self.replace_str+")",data)
+			self._cur.execute("insert into "+self.prefix+"users values ("+self.replace_str+","+self.replace_str+")",data)
 			self._con.commit()
 		
 		elif isinstance(s,Class):
-			self._cur.execute("insert into classes values ("+self.replace_str+","+self.replace_str+","+self.replace_str+")",(s.name,s.desc,sqlite.Binary(s.SerializeToString())))
+			self._cur.execute("insert into "+self.prefix+"classes values ("+self.replace_str+","+self.replace_str+","+self.replace_str+")",(s.name,s.desc,sqlite.binary(s.SerializeToString())))
 			self._con.commit()
 		else:
 			raise Exception,(s,type(s))
 	
 	def _clear_table(self,table):
 		try:
-			self._cur.execute("drop table %s"%table)
+			self._cur.execute("drop table %s"%(self.prefix+table))
 		except sqlite.OperationalError,e:
 			if e.message == "no such table: %s"%table:
 				pass
@@ -68,11 +70,11 @@ class Database:
 		self._setup(tables)
 	
 	def _list(self, table):
-		self._cur.execute("select name from %s order by name"%table)
+		self._cur.execute("select name from %s order by name"%(self.prefix+table))
 		return [x[0] for x in self._cur.fetchall()]
 
 	def get_strip(self, strip):
-		self._cur.execute("select pb from strips where name='%s'"%strip)
+		self._cur.execute("select pb from %sstrips where name='%s'"%(self.prefix,strip))
 		f = self._cur.fetchall()
 		if len(f)!=1:
 			raise NoSuchStrip
@@ -81,7 +83,7 @@ class Database:
 		return s
 
 	def get_class(self, cl):
-		self._cur.execute("select pb from classes where name='%s'"%cl)
+		self._cur.execute("select pb from %sclasses where name='%s'"%(self.prefix,cl))
 		f = self._cur.fetchall()
 		if len(f)!=1:
 			raise NoSuchClass
@@ -90,7 +92,7 @@ class Database:
 		return c
 
 	def get_user(self, user):
-		self._cur.execute("select pb from users where name="+self.replace_str+"",(user,))
+		self._cur.execute("select pb from "+self.prefix+"users where name="+self.replace_str+"",(user,))
 		f = self._cur.fetchall()
 		if len(f)!=1:
 			print f
@@ -102,22 +104,23 @@ class Database:
 class MySQL(Database):
 	replace_str = "%s"
 
-	def __init__(self,database="comics"):
-		self._con = MySQLdb.connect(user="comics",passwd="comics",db=database)
+	def __init__(self,database="comics", prefix="", user="comics", password="comics"):
+		self.prefix = prefix
+		self._con = MySQLdb.connect(user=user,passwd=password,db=database)
 		self._cur = self._con.cursor()
 		for table in ("users","strips","classes"):
-			self._cur.execute("show tables like '%s'"%table)
+			self._cur.execute("show tables like '%s'"%(self.prefix+table))
 			if len(self._cur.fetchall())==0:
 				self._setup((table,))
 
 	def _setup(self, tables):
 		for t in tables:
 			if t == "users":
-				self._cur.execute("create table users (name varchar(100) primary key, pb blob)")
+				self._cur.execute("create table %susers (name varchar(100) primary key, pb blob)"%self.prefix)
 			elif t == "strips":
-				self._cur.execute("create table strips (name varchar(100) primary key, description varchar(200), homepage varchar(200), pb blob)")
+				self._cur.execute("create table %sstrips (name varchar(100) primary key, description varchar(200), homepage varchar(200), pb blob)"%self.prefix)
 			elif t == "classes":
-				self._cur.execute("create table classes (name varchar(100) primary key, description varchar(200), pb blob)")
+				self._cur.execute("create table %sclasses (name varchar(100) primary key, description varchar(200), pb blob)"%self.prefix)
 			else:
 				raise Exception, t
 		self._con.commit()
