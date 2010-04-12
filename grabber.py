@@ -18,9 +18,10 @@ parser.add_option("-c","--cache",default="./cache", dest="cache",help="Cache dir
 parser.add_option("-s","--comic",default =[],dest="comics", action="append", help="Add a strip to get")
 parser.add_option("-u","--user",default =[],dest="users", action="append", help="Add a user to get")
 parser.add_option("-p","--proxy",default=None, dest="proxy", help="Set proxy URL")
-parser.add_option("--db", dest="db", default="comics.db")
+parser.add_option("--db", dest="db", default=None)
 parser.add_option("--listme", dest="listme", default=False, action="store_true", help="Prints out an HTML formatted list of the comics specified")
 parser.add_option("--all-users", dest="all_users", default=False, action="store_true", help="Get comics for all enabled users")
+parser.add_option("-m","--module",dest="db_module",default="Sqlite",help="Specify database module")
 
 (opts, args) = parser.parse_args()
 
@@ -28,7 +29,7 @@ if not opts.listme and len(args)!=1:
 	parser.error("Need an output directory!")
 
 now = DateManip()
-df = ComicsDef(opts.strips,opts.cache,debug=opts.debug,proxy=opts.proxy, db=opts.db)
+df = ComicsDef(opts.strips,opts.cache,debug=opts.debug,proxy=opts.proxy, db=opts.db, module=opts.db_module)
 if opts.listme:
 	print "<ul>"
 	for (x, search) in df.get_strips(opts.comics,opts.users,now=now):
