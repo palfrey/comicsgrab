@@ -9,7 +9,10 @@ from sections import *
 from date_manip import CalcWeek,DateManip
 import urlcache
 import urlparse
-from PIL import Image
+try:
+	from PIL import Image
+except ImportError: # no PIL!
+	Image = None
 
 from database import Sqlite as Database,NoSuchUser,NoSuchStrip
 
@@ -268,8 +271,11 @@ class ComicsDef:
 				if not oldstuff:
 					htmlout.write("<h3><a href=\""+g.homepage+"\">"+g.desc+"</a></h3>\n")
 					for f in found:
-						dimensions = [x*g.zoom for x in Image.open(os.path.join(directory,f)).size]
-						htmlout.write("<img src=\"%s\" width=\"%d\" height=\"%d\"/><br />\n"%(f.replace(os.sep,"/"),dimensions[0],dimensions[1]))
+						if Image:
+							dimensions = [x*g.zoom for x in Image.open(os.path.join(directory,f)).size]
+							htmlout.write("<img src=\"%s\" width=\"%d\" height=\"%d\"/><br />\n"%(f.replace(os.sep,"/"),dimensions[0],dimensions[1]))
+						else:
+							htmlout.write("<img src=\"%s\" /><br />\n"%f.replace(os.sep,"/"))
 					htmlout.write("<br />\n")
 				else:
 					self.store_err(g.name,1,"Got the old stuff in "+ folder)
