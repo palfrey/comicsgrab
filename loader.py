@@ -13,10 +13,10 @@ parser.add_option("-m","--module",dest="db_module",default="Sqlite",help="Specif
 if len(args)!=1:
 	parser.error("Need a definitions file!")
 
-globals()['Database'] = getattr(__import__('database',globals(),locals(),[opts.db_module],-1),opts.db_module)
+globals()['Database'] = getattr(__import__('database',globals(),locals(),[opts.db_module]),opts.db_module)
 
 if opts.db_module == "Sqlite":
-	db = Database(opts.db)
+	db = Database(opts.database)
 else:
 	db = Database()
 if opts.user:
