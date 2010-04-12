@@ -10,6 +10,11 @@ from glob import glob
 
 output_folder = "output"
 
+try:
+	exception = BaseException
+except NameError: # python <2.5
+	exception = Exception
+
 def comicsapp(environ, start_response):
 		
 	ret = StringIO()
@@ -51,7 +56,7 @@ def comicsapp(environ, start_response):
 		start_response(status, response_headers)
 		return [ret.getvalue()]
 
-	except BaseException, e:
+	except exception, e:
 		status = '500 Exception'
 		response_headers = [('Content-type','text/html')]
 		start_response(status, response_headers)
