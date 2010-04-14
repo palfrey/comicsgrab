@@ -131,21 +131,22 @@ class MySQL(Database):
 class Sqlite(Database):
 	replace_str = "?"
 
-	def __init__(self,db="comics.db"):
+	def __init__(self,db="comics.db", prefix=""):
 		self._con = sqlite.connect(db)
 		self._cur = self._con.cursor()
-		self._cur.execute("select name from sqlite_master where type='table' and name='strips'")
+		self.prefix = prefix
+		self._cur.execute("select name from sqlite_master where type='table' and name='%sstrips'"%prefix)
 		if len(self._cur.fetchall())==0:
 			self._setup(("users","strips","classes"))
 	
 	def _setup(self, tables):
 		for t in tables:
 			if t == "users":
-				self._cur.execute("create table users (name text primary key, pb blob)")
+				self._cur.execute("create table %susers (name text primary key, pb blob)"%self.prefix)
 			elif t == "strips":
-				self._cur.execute("create table strips (name text primary key, desc text,homepage text, pb blob)")
+				self._cur.execute("create table %sstrips (name text primary key, desc text,homepage text, pb blob)"%self.prefix)
 			elif t == "classes":
-				self._cur.execute("create table classes (name text primary key, desc text,pb blob)")
+				self._cur.execute("create table %sclasses (name text primary key, desc text,pb blob)"%self.prefix)
 			else:
 				raise Exception, t
 		self._con.commit()
