@@ -17,8 +17,8 @@ except ImportError: # no PIL!
 import database
 
 class ComicsDef:
-	def __init__(self,deffile,cachedir,debug=0,proxy=None, db="comics.db", module="Sqlite"):
-		if db!=None:
+	def __init__(self,deffile,cachedir,debug=0,proxy=None, db=None, module="Sqlite"):
+		if db != None:
 			self.db = getattr(database,module)(db)
 		else:
 			self.db = getattr(database,module)(user="palfrey_palfrey",database="palfrey_palfrey",password="epsilon", prefix="comics_")
