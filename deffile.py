@@ -18,10 +18,10 @@ import database
 
 class ComicsDef:
 	def __init__(self,deffile,cachedir,debug=0,proxy=None, db=None, module="Sqlite"):
-		if db != None:
-			self.db = getattr(database,module)(db)
+		if module == "Sqlite":
+			self.db = database.Sqlite(db)
 		else:
-			self.db = getattr(database,module)(user="palfrey_palfrey",database="palfrey_palfrey",password="epsilon", prefix="comics_")
+			self.db = MySQL(user="palfrey_palfrey",database="palfrey_palfrey",password="epsilon", prefix="comics_")
 		self.debug = debug
 		self.maxdays = 14
 		self.proxy = proxy
