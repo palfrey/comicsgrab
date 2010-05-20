@@ -918,7 +918,8 @@ end
 strip dominicdeegan
 	desc Dominic Deegan
 	homepage http://www.dominic-deegan.com
-	useclass btphp
+	type search
+	searchpattern (http://cdn.dominic-deegan.com/comics/\d+\.gif)
 end
 
 strip doonesbury
