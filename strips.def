@@ -418,7 +418,7 @@ strip bdk
 		baseurl http://www.badlydrawnkitties.com/
 		searchpattern <br><img.+?src=(getdat.php\?id=\d+)
 	subend
-	noperl 1
+	noperl True
 end
 
 strip beetlebailey
@@ -433,7 +433,7 @@ strip betterdays
 	searchpattern <img.+?src=(.*?comic/BD.*\.gif)
 	homepage http://www.jaynaylor.com/betterdays/
 	days Mo Fri
-	noperl 1
+	noperl True
 end
 
 strip betty
@@ -2678,7 +2678,7 @@ strip spareparts
 	type search
 	searchpattern (http://www.sparepartscomics.com/comics/\d+[^\"\'> ]+)
 	homepage http://www.sparepartscomics.com/
-	noperl 1
+	noperl True
 end
 
 strip spazlabs
@@ -2785,7 +2785,7 @@ strip subnormality
 	homepage http://www.viruscomix.com/subnormality.html
 	baseurl http://www.viruscomix.com/
 	days Tuesday
-	noperl 1
+	noperl True
 end
 
 strip suburbanjungle

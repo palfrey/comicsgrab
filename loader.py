@@ -70,11 +70,11 @@ for lineno,line in enumerate(infile):
 				else:
 					if len(data)==1:
 						data.append("")
-					if data[0] in ("index","noperl"):
+					if data[0] in ("index",):
 						data[1] = int(data[1])
 					elif data[0] in ("zoom",):
 						data[1] = float(data[1])
-					elif data[0] in ("enabled",):
+					elif data[0] in ("enabled","noperl"):
 						if data[1] in ("true","True"):
 							data[1] = True
 						else:
