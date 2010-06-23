@@ -816,14 +816,13 @@ end
 strip ctrlaltdel
 	desc Ctrl+Alt+Del
 	type search
-	homepage http://www.ctrlaltdel-online.com/comic.php
+	homepage http://www.cad-comic.com/cad/
 	days Mon Wed Fri Sat
 	subbeg
 		searchpattern <img.+?src="(http://img.ctrlaltdel-online.com/comics/[^\"]+)"
 	subend
 	subbeg
-		baseurl http://www.ctrlaltdel-online.com/
-		searchpattern <img.+?src="(/comics/[^\"]+)"
+		searchpattern src="(/comics/[^\"]+)"
 	subend
 end
 
