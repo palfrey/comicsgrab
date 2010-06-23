@@ -100,8 +100,10 @@ class search:
 		method = Type.values_by_number[self.look.type].name
 		if method == "search":
 			data = [self.look.searchpattern,self.look.baseurl,self.look.searchpage]
-			if data[-1] == "":
-				data[-1] = self.look.homepage
+			if data[2] == "":
+				data[2] = self.look.homepage
+			if data[1] == "":
+				data[1] = self.look.homepage
 			if not self.look.noperl:
 				for d in range(len(data)):
 					data[d] = self.eval_perl(data[d])
