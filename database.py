@@ -133,6 +133,7 @@ class Sqlite(Database):
 
 	def __init__(self,db="comics.db", prefix=""):
 		self._con = sqlite.connect(db)
+		self._con.text_factory = str
 		self._cur = self._con.cursor()
 		self.prefix = prefix
 		self._cur.execute("select name from sqlite_master where type='table' and name='%sstrips'"%prefix)
