@@ -7,7 +7,7 @@
 #
 # Released under the GPL Version 2 (http://www.gnu.org/copyleft/gpl.html)
 
-import os,md5
+import os
 from cPickle import dump,load
 try:
 	from urlgrab import URLTimeout, URLTimeoutError
@@ -17,6 +17,18 @@ except ImportError:
 	exit(1)
 import urllib2
 from os.path import exists
+
+try:
+	import hashlib
+except ImportError: # python < 2.5
+	import md5
+	hashlib = None
+
+def hexdigest_md5(data):
+	if hashlib:
+		return hashlib.md5(data).hexdigest()
+	else:
+		return md5.new(data).hexdigest()
 
 class CacheError(Exception):
 	pass	
@@ -55,10 +67,7 @@ class URLCache:
 					os.unlink(p)
 				
 	def md5(self,url,ref):
-		m = md5.new()
-		m.update(url)
-		m.update(str(ref))
-		return m.hexdigest()
+		return hexdigest_md5(url+str(ref))
 	
 	def set_varying(self,url,ref=None):
 		hash = self.md5(url,ref)
