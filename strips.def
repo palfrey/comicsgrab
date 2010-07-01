@@ -916,9 +916,9 @@ end
 
 strip dominicdeegan
 	desc Dominic Deegan
-	homepage http://www.dominic-deegan.com
 	type search
-	searchpattern (http://cdn.dominic-deegan.com/comics/\d+\.gif)
+	searchpattern (http://[a-z]+.dominic-deegan.com/comics/\d+\.gif)
+	homepage http://www.dominic-deegan.com
 end
 
 strip doonesbury
