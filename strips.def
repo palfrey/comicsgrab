@@ -825,7 +825,7 @@ strip ctrlaltdel
 		searchpattern src="(/comics/[^\"]+)"
 	subend
 	subbeg
-		searchpattern (http://static.cad-comic.com/comics/[\da-z]+\.jpg)
+		searchpattern (http://(?:cdn|static).cad-comic.com/comics/[\da-z]+\.jpg)
 	subend
 end
 
