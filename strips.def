@@ -1138,6 +1138,7 @@ strip foxtrot
 	type search
 	searchpattern (http://www.foxtrot.com/comics/[^\"]+)
 	homepage http://www.foxtrot.com/
+	days Sunday
 end
 
 strip fragilegravity
@@ -3163,6 +3164,7 @@ strip xkcd
 	searchpattern (http://imgs.xkcd.com/comics/[^\"]+)
 	index 1
 	homepage http://xkcd.com/
+	days Monday Wednesday Friday
 end
 
 strip yehudamoon
