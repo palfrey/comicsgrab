@@ -920,7 +920,7 @@ end
 strip dominicdeegan
 	desc Dominic Deegan
 	type search
-	searchpattern (http://[a-z]+.dominic-deegan.com/comics/\d+\.gif)
+	searchpattern (http://[a-z]+.dominic-deegan.com/comics/\d+\.(?:gif|jpg|png))
 	homepage http://www.dominic-deegan.com
 end
 
