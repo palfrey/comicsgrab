@@ -1410,6 +1410,14 @@ strip hatesong
 	baseurl $homepage
 end
 
+strip headtrip
+	desc Head Trip
+	homepage http://headtripcomics.comicgenesis.com
+	useclass keenspace
+	days Mon Wed Fri
+	$1 
+end
+
 strip heartofthecity
 	desc Heart of the City
 	useclass ucomics-gen
