@@ -2509,6 +2509,10 @@ strip schlockmercenary
 	desc Schlock Mercenary
 	homepage http://www.schlockmercenary.com
 	useclass keenspace
+	subbeg
+		searchpattern (http://static.schlockmercenary.com/comics/schlock\d+(?:-[\da-f]+)?\.jpg\?\d+)
+		type search
+	subend
 	$1 schlock
 end
 
