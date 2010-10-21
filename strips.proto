@@ -14,6 +14,7 @@ message Subsection
 	optional string searchpage = 4;
 	optional Type type = 5;
 	optional string imageurl = 6;
+	optional bool noperl = 7 [default=false];
 }
 
 enum Type
