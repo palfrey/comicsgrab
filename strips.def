@@ -3177,7 +3177,6 @@ strip xkcd
 	searchpattern (http://imgs.xkcd.com/comics/[^\"]+)
 	index 1
 	homepage http://xkcd.com/
-	days Monday Wednesday Friday
 end
 
 strip yehudamoon
