@@ -2510,8 +2510,9 @@ strip schlockmercenary
 	homepage http://www.schlockmercenary.com
 	useclass keenspace
 	subbeg
-		searchpattern (http://static.schlockmercenary.com/comics/schlock\d+(?:-[\da-f]+)?\.jpg\?\d+)
+		searchpattern <div id='comic'>\s+(?:<img src="(http://static.schlockmercenary.com/comics/schlock\d+(?:-[\da-f]+)?\.jpg\?\d+)"[^>]+>\s+(?:<br />)?)+</div>
 		type search
+		noperl True
 	subend
 	$1 schlock
 end
