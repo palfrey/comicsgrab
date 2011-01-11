@@ -92,8 +92,9 @@ class URLCache:
 		
 		if old.status == self.STAT_START:
 			try:
-				data = URLTimeout().get(url,ref=ref,proxy=self.proxy)
-
+				ut = URLTimeout() 
+				ut.setTimeout(120)
+				data = ut.get(url,ref=ref,proxy=self.proxy)
 			except urllib2.HTTPError,err:
 				if err.code==404:
 					return None
