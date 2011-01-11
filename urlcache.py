@@ -8,7 +8,7 @@
 # Released under the GPL Version 2 (http://www.gnu.org/copyleft/gpl.html)
 
 import os
-from cPickle import dump,load
+from cPickle import dump,load,UnpicklingError
 try:
 	from urlgrab import URLTimeout, URLTimeoutError
 except ImportError:
@@ -56,7 +56,7 @@ class URLCache:
 					old.used = False
 					self.store[self.md5(old.url,old.ref)] = old
 
-				except (EOFError, ValueError): # ignore and discard
+				except (EOFError, ValueError, UnpicklingError): # ignore and discard
 					os.unlink(os.path.join(self.cache,f))
 	
 	def cleanup(self):
