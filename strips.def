@@ -1418,7 +1418,7 @@ end
 
 strip headtrip
 	desc Head Trip
-	homepage http://headtripcomics.comicgenesis.com
+	homepage http://headtripcomics.keenspot.com
 	useclass keenspace
 	days Mon Wed Fri
 	$1 
