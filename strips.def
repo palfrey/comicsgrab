@@ -1108,7 +1108,7 @@ strip ffn
 	type search
 	searchpattern <img src="(http://nodwick.humor.gamespy.com/ffn/strips/[^\"]*)
 	homepage http://nodwick.humor.gamespy.com/ffn/
-	days Wed
+	days Wed Sun
 end
 
 strip flem
