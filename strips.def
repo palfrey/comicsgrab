@@ -2650,8 +2650,8 @@ end
 strip skinhorse
 	desc Skin Horse
 	type search
-	searchpattern (http://www.webcomicsnation.com/memberimages/.*?.(?:jpg|gif|png))" border="0" alt=""
-	homepage http://www.webcomicsnation.com/shaenongarrity/skinhorse/series.php
+	searchpattern (http://skin-horse.com/comics/[^\"]*?.(?:jpg|gif|png))"
+	homepage http://skin-horse.com/
 end
 
 strip slowwave
