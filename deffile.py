@@ -247,7 +247,7 @@ class ComicsDef:
 							if u.mime[0]!="image" and u.mime[0] !="application":
 								self.store_err(g.name,2,"Getting for <a href=\""+g.homepage+"\">"+g.homepage+"</a> found us a %s/%s (non-image) while retrieving %s"%(u.mime[0],u.mime[1],u.url))
 								continue
-							if u.mime[1]=='jpeg':
+							if u.mime[1] in ('jpeg', 'jpg'):
 								ext = 'jpg'
 							elif u.mime[1]=='gif':
 								ext = 'gif'
