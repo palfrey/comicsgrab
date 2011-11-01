@@ -2320,7 +2320,7 @@ end
 strip precocious
 	desc Precocious
 	type search
-	searchpattern (http://www.precociouscomic.com/archive/strips/\d+.jpg)
+	searchpattern (/comics/\d+.jpg)
 	homepage http://www.precociouscomic.com/
 end
 
