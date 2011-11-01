@@ -2347,7 +2347,6 @@ strip qc
 	searchpattern comics/(?:\r\n)?(\d+\.(?:png|gif|jpg))
 	homepage http://www.questionablecontent.net/
 	baseurl http://www.questionablecontent.net/comics/
-	days Mo-Fri
 end
 
 strip queenofwands
