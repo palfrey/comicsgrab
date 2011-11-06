@@ -99,7 +99,7 @@ class search:
 
 		method = Type.values_by_number[self.look.type].name
 		if method == "search":
-			data = [self.look.searchpattern,self.look.baseurl,self.look.searchpage]
+			data = [self.look.searchpattern,self.look.baseurl,self.look.searchpage, self.look.initialpattern]
 			if data[2] == "":
 				data[2] = self.look.homepage
 			if data[1] == "":

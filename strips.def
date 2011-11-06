@@ -2514,7 +2514,8 @@ strip schlockmercenary
 	homepage http://www.schlockmercenary.com
 	useclass keenspace
 	subbeg
-		searchpattern <div id='comic'>\s+(?:<img src="(http://static.schlockmercenary.com/comics/schlock\d+(?:-[\da-f]+)?\.jpg\?\d+)"[^>]+>\s+(?:<br />)?)+</div>
+		initialpattern (?s)<div id='comic'>\s*((?:<img\s*src="http://static.schlockmercenary.com/comics/schlock\d+(?:-[\da-f]+)?\.jpg\?\d+"[^>]+>\s*(?:<br />)?)+)
+		searchpattern (?:src=\"([^\"]+))+
 		type search
 		noperl True
 	subend

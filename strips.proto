@@ -15,6 +15,7 @@ message Subsection
 	optional Type type = 5;
 	optional string imageurl = 6;
 	optional bool noperl = 7 [default=false];
+	optional string initialpattern = 14;
 }
 
 enum Type
@@ -63,4 +64,5 @@ message Strip
 	optional string _var_2 = 19;
 	optional float zoom = 20 [default=1.0];
 	optional string ext = 21;
+	optional string initialpattern = 22;
 }

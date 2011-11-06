@@ -174,13 +174,20 @@ class ComicsDef:
 					else: # type == "search"
 						if self.debug>=4:
 							print "data",data
-						(pattern,baseurl,searchpage) = data
+						(pattern,baseurl,searchpage, initialpattern) = data
 						print "Getting (searchpage)",searchpage
 						page = self.get_url(g.name,searchpage,ref=searchpage)
 						if page!=None:# and page.status != urlcache.URLCache.STAT_UNCHANGED:
+							content = page.content
+							if initialpattern != "":
+								print "Intially searching for",initialpattern
+								iretr = re.findall("(?i)"+initialpattern,content)
+								assert len(iretr) == 1 # other patterns not supported yet
+								content = iretr[0]
+								
 							print "Searching for",pattern
 							assert pattern!=""
-							retr = re.findall("(?i)"+pattern,page.content)
+							retr = re.findall("(?i)"+pattern,content)
 							if self.debug>=4:
 								print page.content
 
