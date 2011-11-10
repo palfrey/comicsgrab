@@ -13,7 +13,7 @@ user extras
 end
 
 user palfrey
-	include butternutsquash ctrlaltdel dilbert dominicdeegan ffn foxtrot headtrip nemi phd precocious qc schlockmercenary skinhorse somethingpositive subnormality twolumps uh2 userfriendly xkcd
+	include ctrlaltdel dilbert dominicdeegan ffn foxtrot headtrip nemi phd precocious qc schlockmercenary skinhorse somethingpositive subnormality twolumps uh2 userfriendly xkcd
 	password 
 	enabled True
 end
