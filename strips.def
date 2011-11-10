@@ -2994,7 +2994,7 @@ end
 strip uh2
 	desc Umlaut House 2
 	type search
-	searchpattern (http://maskedretriever.com/uh2/comics/\d+.(?:png|jpg))
+	searchpattern (http://maskedretriever.com/uh2/comics/[\da-z]+.(?:png|jpg))
 	homepage http://maskedretriever.com/uh2/
 end
 
