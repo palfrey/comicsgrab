@@ -104,9 +104,9 @@ class Database:
 class MySQL(Database):
 	replace_str = "%s"
 
-	def __init__(self,database="comics", prefix="", user="comics", password="comics"):
+	def __init__(self,database="comics", prefix="", user="comics", password="comics", host="127.0.0.1"):
 		self.prefix = prefix
-		self._con = MySQLdb.connect(user=user,passwd=password,db=database)
+		self._con = MySQLdb.connect(user=user,passwd=password,db=database, host=host)
 		self._cur = self._con.cursor()
 		for table in ("users","strips","classes"):
 			self._cur.execute("show tables like '%s'"%(self.prefix+table))
