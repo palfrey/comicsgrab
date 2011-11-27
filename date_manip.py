@@ -18,9 +18,11 @@ class DateManip:
 
 	def __init__(self,init_date=time.time()):
 		tup = time.localtime(init_date)
-		self.year = tup[0]
-		self.month = tup[1]
-		self.day = tup[2]
+		self.year = tup.tm_year
+		self.month = tup.tm_mon
+		self.day = tup.tm_mday
+		self.hour = tup.tm_hour
+		self.min = tup.tm_min
 
 	@staticmethod
 	def today():
@@ -67,7 +69,7 @@ class DateManip:
 		return calendar.weekday(self.year, self.month, self.day)
 		
 	def gmtime(self):
-		return time.localtime(time.mktime((self.year,self.month,self.day,self.hour_mod,0,0,0,1,0)))
+		return time.localtime(time.mktime((self.year,self.month,self.day,self.hour+self.hour_mod,self.min,0,0,1,0)))
 		
 	def secs(self):
 		return time.mktime(self.gmtime())
