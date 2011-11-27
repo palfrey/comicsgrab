@@ -20,8 +20,9 @@ def comicsapp(environ, start_response):
 		from os.path import join
 		from glob import glob
 
-		from comicsgrab.database import MySQL, Sqlite
-		db = Sqlite("comicsgrab/comics.db")
+		from comicsgrab.database import MySQL
+		from comicsgrab import settings
+		db = MySQL(user=settings.user, password=settings.password, database=settings.database, prefix=settings.prefix)
 		
 		try:
 			uri = request_uri(environ)

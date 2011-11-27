@@ -4,3 +4,4 @@ cache
 output
 strips_pb2.py
 comics.db
+settings.py

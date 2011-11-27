@@ -15,13 +15,14 @@ except ImportError: # no PIL!
 	Image = None
 
 import database
+import settings
 
 class ComicsDef:
 	def __init__(self,deffile,cachedir,debug=0,proxy=None, db=None, module="Sqlite"):
 		if module == "Sqlite":
 			self.db = database.Sqlite(db)
 		else:
-			self.db = MySQL(user="palfrey_palfrey",database="palfrey_palfrey",password="epsilon", prefix="comics_")
+			self.db = database.MySQL(user=settings.user, password=settings.password, database=settings.database, prefix=settings.prefix)
 		self.debug = debug
 		self.maxdays = 14
 		self.proxy = proxy
