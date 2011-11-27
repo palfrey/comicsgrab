@@ -2,7 +2,7 @@
 from wsgiref.handlers import CGIHandler
 from wsgiref.util import request_uri
 
-output_folder = "output"
+output_folder = "comicsgrab/output"
 
 try:
 	exception = BaseException
