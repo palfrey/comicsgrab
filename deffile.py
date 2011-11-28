@@ -142,8 +142,6 @@ class ComicsDef:
 							
 					if len(found)!=0:
 						break
-				else:
-					print "no such folder",folder
 				curr = curr.mod_days(-1)
 			if lastdir!=None:
 				removes = []
