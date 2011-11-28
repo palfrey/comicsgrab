@@ -70,9 +70,12 @@ class DateManip:
 		
 	def gmtime(self):
 		return time.localtime(time.mktime((self.year,self.month,self.day,self.hour+self.hour_mod,self.min,0,0,1,0)))
+
+	def localtime(self):
+		return time.localtime(time.mktime((self.year,self.month,self.day,self.hour,self.min,0,0,1,0)))
 		
 	def secs(self):
-		return time.mktime(self.gmtime())
+		return time.mktime(self.localtime())
 	
 	def strftime(self,format):
 		return time.strftime(format,self.gmtime())
