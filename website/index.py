@@ -22,6 +22,10 @@ def comicsapp(environ, start_response):
 
 		from comicsgrab.database import MySQL
 		from comicsgrab import settings
+		try:
+			from PIL import Image
+		except ImportError,e : # no PIL!
+			Image = None
 		db = MySQL(user=settings.user, password=settings.password, database=settings.database, prefix=settings.prefix)
 		
 		try:
@@ -56,7 +60,11 @@ def comicsapp(environ, start_response):
 				if items != []:
 					print >> ret, "<h3><a href=\"%s\">%s</a></h3>"%(st.homepage,st.desc)
 					for s in items:
-						print >> ret,"<img src=\"%s\" /><br />"%s
+						if Image and st.zoom != 1.0:
+							dimensions = [x*st.zoom for x in Image.open(s).size]
+							print >> ret,"<img src=\"%s\" width=\"%d\" height=\"%d\"/><br />\n"%(s,dimensions[0],dimensions[1])
+						else:
+							print >> ret,"<img src=\"%s\" /><br />"%s
 		status = '200 OK'
 		response_headers = [('Content-type','text/html')]
 		start_response(status, response_headers)
