@@ -54,7 +54,7 @@ def comicsapp(environ, start_response):
 				st = db.get_strip(strip)
 				items = glob(join(today,"%s-*"%strip))
 				if items != []:
-					print >> ret, "<h3><a href=\"%s\">%s</a></h3>"%(st.homepage,st.name)
+					print >> ret, "<h3><a href=\"%s\">%s</a></h3>"%(st.homepage,st.desc)
 					for s in items:
 						print >> ret,"<img src=\"%s\" /><br />"%s
 		status = '200 OK'
