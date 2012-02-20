@@ -44,7 +44,7 @@ def comicsapp(environ, start_response):
 		else:
 			user = query['user'][0]
 			if 'date' not in query:
-				now = DateManip()
+				now = DateManip().today()
 			else:
 				now = DateManip.strptime("%Y-%m-%d", query['date'][0])
 			folder = now.strftime("%Y-%m-%d")

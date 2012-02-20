@@ -26,7 +26,9 @@ class DateManip:
 
 	@staticmethod
 	def today():
-		return DateManip()
+		td = DateManip()
+		td.hour = td.min = 0
+		return td
 	
 	def mod_days(self,num):
 		ret = self.copy()
