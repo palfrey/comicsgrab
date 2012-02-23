@@ -18,7 +18,7 @@ def comicsapp(environ, start_response):
 		db = MySQL(user=settings.user, password=settings.password, database=settings.database, prefix=settings.prefix)
 
 		print >> ret, load_data(db, False, "comicsgrab/strips.def")
-		#print >> ret, load_data(db, True, "comicsgrab/users.def")
+		print >> ret, load_data(db, True, "comicsgrab/users.def")
 
 		status = '200 OK'
 		response_headers = [('Content-type','text/html')]
