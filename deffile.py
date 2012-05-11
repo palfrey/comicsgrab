@@ -179,7 +179,7 @@ class ComicsDef:
 						if page!=None:# and page.status != urlcache.URLCache.STAT_UNCHANGED:
 							content = page.content
 							if initialpattern != "":
-								print "Intially searching for",initialpattern
+								print "Initially searching for",initialpattern
 								iretr = re.findall("(?i)"+initialpattern,content)
 								assert len(iretr) == 1 # other patterns not supported yet
 								content = iretr[0]
