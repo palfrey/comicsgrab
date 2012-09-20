@@ -90,7 +90,7 @@ class search:
 			ret[fd.name] = val
 		return ret.__repr__()
 
-	def retr(self,now):
+	def retr(self,now, archive = False):
 		if self.eval == None:
 			self.eval = PerlREEval(now)
 			self.eval.look = self.look
@@ -100,6 +100,10 @@ class search:
 		method = Type.values_by_number[self.look.type].name
 		if method == "search":
 			data = [self.look.searchpattern,self.look.baseurl,self.look.searchpage, self.look.initialpattern]
+			if archive:
+				data[2] = self.look.firstpage
+				data.append(self.look.namepattern)
+				data.append(self.look.nextpage)
 			if data[2] == "":
 				data[2] = self.look.homepage
 			if data[1] == "":
@@ -112,6 +116,8 @@ class search:
 						print data
 						raise Exception("Unevaluated variable! - "+str(data[d]))
 		elif method == "generate":
+			if archive:
+				raise Exception, self.look
 			data = self.eval_perl(self.look.imageurl)
 		else:
 			print method

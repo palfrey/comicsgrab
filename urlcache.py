@@ -39,7 +39,7 @@ class URLCache:
 	STAT_UNCHANGED = 3
 	STAT_FAILED = 4
 
-	def __init__(self,cache_dir,proxy=None):
+	def __init__(self,cache_dir,proxy=None,archive = False):
 		self.store = {}
 		self.cache = cache_dir
 		self.proxy = proxy
@@ -49,7 +49,7 @@ class URLCache:
 			for f in os.listdir(self.cache):
 				try:
 					old = load(file(os.path.join(self.cache,f)))
-					if old.mime[0] == "image":
+					if old.mime[0] == "image" or archive:
 						old.status = self.STAT_UNCHANGED
 					else:
 						old.status = self.STAT_START
@@ -89,7 +89,7 @@ class URLCache:
 			self.store[hash] = old
 		if old.status == self.STAT_FAILED:
 			return None
-		
+
 		if old.status == self.STAT_START:
 			try:
 				ut = URLTimeout() 
@@ -160,6 +160,4 @@ class URLData:
 		self.content = ""
 		self.status = URLCache.STAT_START
 		self.mime = ("","")
-		
-		
-	
+

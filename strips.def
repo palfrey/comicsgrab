@@ -2638,6 +2638,10 @@ strip sinfest
 	type search
 	searchpattern <(?:IMG|img).*?SRC="([^\"]*comikaze[^\"]*)"
 	homepage http://sinfest.net
+	firstpage http://www.sinfest.net/archive_page.php?comicID=1
+	nextpage <a href=\"(http://sinfest.net/archive_page.php\?comicID=\d+)\"><img src=\"images/next_a.gif\"
+	namepattern <font fact=\"Fixedsys\">\s*?<br>(\d+-\d+-\d+)
+	noperl True
 end
 
 strip sixchix

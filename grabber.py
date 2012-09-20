@@ -22,6 +22,7 @@ parser.add_option("--db", dest="db", default="comics.db")
 parser.add_option("--listme", dest="listme", default=False, action="store_true", help="Prints out an HTML formatted list of the comics specified")
 parser.add_option("--all-users", dest="all_users", default=False, action="store_true", help="Get comics for all enabled users")
 parser.add_option("-m","--module",dest="db_module",default="Sqlite",help="Specify database module")
+parser.add_option("--archive", dest="archive", default=False, action="store_true")
 
 (opts, args) = parser.parse_args()
 
@@ -29,11 +30,13 @@ if not opts.listme and len(args)!=1:
 	parser.error("Need an output directory!")
 
 now = DateManip()
-df = ComicsDef(opts.strips,opts.cache,debug=opts.debug,proxy=opts.proxy, db=opts.db, module=opts.db_module)
+df = ComicsDef(opts.strips,opts.cache,debug=opts.debug,proxy=opts.proxy, db=opts.db, module=opts.db_module, archive = opts.archive)
 if opts.listme:
 	print "<ul>"
 	for (x, search) in df.get_strips(opts.comics,opts.users,now=now):
 		print "<li><a href=\""+x.homepage+"\">"+x.name+"</a></li>"
 	print "</ul>"
+elif opts.archive:
+	df.archive(args[0],opts.comics)
 else:
 	df.update(args[0],user=opts.users,strips=opts.comics,now=now, all_users=opts.all_users)

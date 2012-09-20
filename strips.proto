@@ -65,4 +65,7 @@ message Strip
 	optional float zoom = 20 [default=1.0];
 	optional string ext = 21;
 	optional string initialpattern = 22;
+	optional string firstpage = 23;
+	optional string nextpage = 24;
+	optional string namepattern = 25;
 }

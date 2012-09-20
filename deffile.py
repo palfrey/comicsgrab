@@ -18,7 +18,7 @@ import database
 import settings
 
 class ComicsDef:
-	def __init__(self,deffile,cachedir,debug=0,proxy=None, db=None, module="Sqlite"):
+	def __init__(self,deffile,cachedir,debug=0,proxy=None, db=None, module="Sqlite", archive = False):
 		if module == "Sqlite":
 			self.db = database.Sqlite(db)
 		else:
@@ -26,7 +26,7 @@ class ComicsDef:
 		self.debug = debug
 		self.maxdays = 14
 		self.proxy = proxy
-		self.cache = urlcache.URLCache(cachedir,self.proxy)
+		self.cache = urlcache.URLCache(cachedir,self.proxy, archive)
 
 	def get_strips(self,strips=None,user=None,now=DateManip(),all_users=False):
 		ret = []
@@ -34,7 +34,7 @@ class ComicsDef:
 			for d in strips:
 				try:
 					s = self.db.get_strip(d)
-					search = gen_search(s,self.db,self.now,self.cache)
+					search = gen_search(s,self.db,now,self.cache)
 					ret.append((s,search))
 				except database.NoSuchStrip:
 					raise Exception("No strip found "+d)
@@ -67,6 +67,102 @@ class ComicsDef:
 		except urlcache.CacheError,err:
 			self.store_err(strip,3,err)
 			return None
+
+	def makeext(self, u, g):
+		if g.HasField("ext"):
+			ext = g.ext
+		else:
+			if u.mime[0]!="image" and u.mime[0] !="application":
+				self.store_err(g.name,2,"Getting for <a href=\""+g.homepage+"\">"+g.homepage+"</a> found us a %s/%s (non-image) while retrieving %s"%(u.mime[0],u.mime[1],u.url))
+				raise Exception
+			if u.mime[1] in ('jpeg', 'jpg'):
+				ext = 'jpg'
+			elif u.mime[1]=='gif':
+				ext = 'gif'
+			elif u.mime[1]=='png':
+				ext = 'png'
+			elif u.mime[1]=='octet-stream':
+				# FIXME: somewhat lame
+				ext = 'gif'
+			else:
+				raise Exception, "Don't know extension " + str(u.mime)
+		return ext
+
+	def archive(self, directory, strips, now=DateManip()):
+		assert len(strips) == 1
+		self.errors = []
+		g = self.db.get_strip(strips[0])
+		search = gen_search(g,self.db,now,self.cache)
+		if not os.path.exists(directory):
+			os.makedirs(directory)
+
+		current = g.firstpage
+
+		for s in get_searches(g, search):
+			(type,data) = s.retr(now, archive=True)
+			print "type",type
+			if type=="generate":
+				print "Getting (image)",data
+				self.cache.set_varying(data,ref=current)
+				get = [self.get_url(g.name,data,ref=current)]
+			else: # type == "search"
+				if self.debug>=4:
+					print "data",data
+				(pattern,baseurl,searchpage,initialpattern,namepattern, nextpattern) = data
+				while True:
+					print "Getting (searchpage)",searchpage
+					page = self.get_url(g.name,searchpage,ref=searchpage)
+					if page!=None:# and page.status != urlcache.URLCache.STAT_UNCHANGED:
+						content = page.content
+						if initialpattern != "":
+							print "Initially searching for",initialpattern
+							iretr = re.findall("(?i)"+initialpattern,content)
+							assert len(iretr) == 1 # other patterns not supported yet
+							content = iretr[0]
+							
+						print "Searching for",pattern
+						assert pattern!=""
+						retr = re.findall("(?i)"+pattern,content)
+						if self.debug>=4:
+							print page.content
+
+		  # remove duplicate images/paths
+						dups = set([])
+						keep = []
+						for item in retr:
+							if item not in dups:
+									dups.add(item)
+									keep.append(item)
+						retr = keep
+
+						get = []
+
+						for x in range(len(retr)):
+							if not s.look.HasField("index") or s.look.index == x+1:
+								r = retr[x]
+								
+								print "Getting (image from search)",urlparse.urljoin(baseurl,r)
+								get.append(self.get_url(g.name,urlparse.urljoin(baseurl,r),ref=searchpage))
+						retr = re.findall(namepattern, content, re.IGNORECASE | re.DOTALL | re.MULTILINE)
+						file("dump","wb").write(content)
+						assert len(retr) == 1, (namepattern, retr)
+						print "name", retr[0], get
+						assert len(get) == 1 # FIXME: handle >1
+						u = get[0]
+						ext = self.makeext(u, g)
+						comicpath = os.path.join(directory, retr[0] + "." + ext)
+						print comicpath
+						if not os.path.exists(comicpath):
+							file(comicpath, "wb").write(u.content)
+
+						nextpage = re.findall(nextpattern, content, re.IGNORECASE | re.DOTALL | re.MULTILINE)
+						assert len(nextpage) == 1, nextpage
+						searchpage = nextpage[0]
+
+						#tried += 1
+					else:
+						print "Got no page at all!"
+						break
 
 	def update(self,directory,strips=None,user=None,now=DateManip(), all_users=False):
 		self.now = now
@@ -247,23 +343,7 @@ class ComicsDef:
 					folder = os.path.join(directory,self.now.strftime("%Y-%m-%d"+os.sep))
 
 					for u in get:
-						if g.HasField("ext"):
-							ext = g.ext
-						else:
-							if u.mime[0]!="image" and u.mime[0] !="application":
-								self.store_err(g.name,2,"Getting for <a href=\""+g.homepage+"\">"+g.homepage+"</a> found us a %s/%s (non-image) while retrieving %s"%(u.mime[0],u.mime[1],u.url))
-								continue
-							if u.mime[1] in ('jpeg', 'jpg'):
-								ext = 'jpg'
-							elif u.mime[1]=='gif':
-								ext = 'gif'
-							elif u.mime[1]=='png':
-								ext = 'png'
-							elif u.mime[1]=='octet-stream':
-								# FIXME: somewhat lame
-								ext = 'gif'
-							else:
-								raise Exception, "Don't know extension " + str(u.mime)
+						ext = self.makeext(u, g)
 						index +=1
 						if not os.path.exists(folder):
 							os.mkdir(folder)
