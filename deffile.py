@@ -16,6 +16,8 @@ except ImportError: # no PIL!
 
 import database
 import settings
+from time import sleep
+from glob import glob
 
 class ComicsDef:
 	def __init__(self,deffile,cachedir,debug=0,proxy=None, db=None, module="Sqlite", archive = False):
@@ -112,7 +114,11 @@ class ComicsDef:
 				while True:
 					print "Getting (searchpage)",searchpage
 					page = self.get_url(g.name,searchpage,ref=searchpage)
-					if page!=None:# and page.status != urlcache.URLCache.STAT_UNCHANGED:
+					if page==None:# and page.status != urlcache.URLCache.STAT_UNCHANGED:
+						print "Got no page at all!"
+						self.cache.remove(searchpage, searchpage)
+						sleep(5)
+					else:
 						content = page.content
 						if initialpattern != "":
 							print "Initially searching for",initialpattern
@@ -135,34 +141,41 @@ class ComicsDef:
 									keep.append(item)
 						retr = keep
 
-						get = []
-
-						for x in range(len(retr)):
-							if not s.look.HasField("index") or s.look.index == x+1:
-								r = retr[x]
-								
-								print "Getting (image from search)",urlparse.urljoin(baseurl,r)
-								get.append(self.get_url(g.name,urlparse.urljoin(baseurl,r),ref=searchpage))
-						retr = re.findall(namepattern, content, re.IGNORECASE | re.DOTALL | re.MULTILINE)
+						np = re.findall(namepattern, content, re.IGNORECASE | re.DOTALL | re.MULTILINE)
 						file("dump","wb").write(content)
-						assert len(retr) == 1, (namepattern, retr)
-						print "name", retr[0], get
-						assert len(get) == 1 # FIXME: handle >1
-						u = get[0]
-						ext = self.makeext(u, g)
-						comicpath = os.path.join(directory, retr[0] + "." + ext)
-						print comicpath
-						if not os.path.exists(comicpath):
-							file(comicpath, "wb").write(u.content)
+						assert len(np) == 1, (namepattern, np)
+						print "name", np[0]
+
+						shortpath = os.path.join(directory, np[0])
+						if len(glob(shortpath + "*")) == 0:
+							while True:
+								get = []
+
+								for x in range(len(retr)):
+									if not s.look.HasField("index") or s.look.index == x+1:
+										r = retr[x]
+										
+										img = urlparse.urljoin(baseurl,r)
+										self.cache.remove(img, searchpage)
+										print "Getting (image from search)", img
+										get.append(self.get_url(g.name,img,ref=searchpage))
+								assert len(get) == 1 # FIXME: handle >1
+								u = get[0]
+								if u != None:
+									break
+								sleep(5)
+
+							ext = self.makeext(u, g)
+							comicpath = shortpath + "." + ext
+							print comicpath
+							if not os.path.exists(comicpath):
+								file(comicpath, "wb").write(u.content)
 
 						nextpage = re.findall(nextpattern, content, re.IGNORECASE | re.DOTALL | re.MULTILINE)
 						assert len(nextpage) == 1, nextpage
 						searchpage = nextpage[0]
 
 						#tried += 1
-					else:
-						print "Got no page at all!"
-						break
 
 	def update(self,directory,strips=None,user=None,now=DateManip(), all_users=False):
 		self.now = now
