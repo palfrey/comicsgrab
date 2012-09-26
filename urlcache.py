@@ -59,10 +59,23 @@ class URLCache:
 				except (EOFError, ValueError, UnpicklingError): # ignore and discard
 					os.unlink(os.path.join(self.cache,f))
 	
+	def remove(self, url, ref):
+		url = url.replace("&amp;","&")
+		h = self.md5(url,ref)
+		if h in self.store:
+			del self.store[h]
+			print "removed", h
+			p = os.path.join(self.cache, h)
+			if exists(p):
+				print "deleted", p
+				os.unlink(p)
+		else:
+			print "no page in cache", url, ref, h
+
 	def cleanup(self):
 		for h in self.store.keys():
 			if self.store[h].status != self.STAT_FAILED and (not self.store[h].__dict__.has_key("used") or self.store[h].used == False):
-				p =os.path.join(self.cache,h)
+				p = os.path.join(self.cache,h)
 				if exists(p):
 					os.unlink(p)
 				
