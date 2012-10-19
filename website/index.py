@@ -44,19 +44,20 @@ def comicsapp(environ, start_response):
 		else:
 			user = query['user'][0]
 			if 'date' not in query:
-				now = DateManip().today()
+				now = today = DateManip().today()
 			else:
 				now = DateManip.strptime("%Y-%m-%d", query['date'][0])
+				today = DateManip().today()
 			folder = now.strftime("%Y-%m-%d")
 			print >> ret, "Strips for <b>%s<b/>, %s<br />"%(user,folder)
 			print >> ret, "<a href=\"?user=%s&date=%s\">Previous day</a><br />"%(user,now.mod_days(-1).strftime("%Y-%m-%d"))
-			if now != DateManip().today():
+			if now != today:
 				print >> ret, "<a href=\"?user=%s&date=%s\">Next day</a><br />"%(user,now.mod_days(+1).strftime("%Y-%m-%d"))
-			today = join(output_folder,folder)
+			todaypath = join(output_folder,folder)
 			user = db.get_user(user)
 			for strip in sorted(db.list_user_strips(user)):
 				st = db.get_strip(strip)
-				items = glob(join(today,"%s-*"%strip))
+				items = glob(join(todaypath,"%s-*"%strip))
 				if items != []:
 					print >> ret, "<h3><a href=\"%s\">%s</a></h3>"%(st.homepage,st.desc)
 					for s in sorted(items):
