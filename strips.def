@@ -3080,6 +3080,14 @@ strip wapsi
 	$1 
 end
 
+strip warehouse
+	desc The Warehouse comic
+	type search
+	searchpattern (comic/theWAREHOUSE_comic_\d+.jpg)
+	homepage http://warehousecomic.com/
+	baseurl $homepage
+end
+
 strip warped
 	desc Warped
 	useclass unitedmedia-srch-comics
