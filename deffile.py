@@ -160,7 +160,7 @@ class ComicsDef:
 										self.cache.remove(img, searchpage)
 										print "Getting (image from search)", img
 										get.append(self.get_url(g.name,img,ref=searchpage))
-								assert len(get) == 1 # FIXME: handle >1
+								assert len(get) == 1, (get, retr) # FIXME: handle >1
 								u = get[0]
 								if u != None:
 									break
