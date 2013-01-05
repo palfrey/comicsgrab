@@ -43,21 +43,27 @@ class URLCache:
 		self.store = {}
 		self.cache = cache_dir
 		self.proxy = proxy
+		self.archive = archive
 		if not os.path.exists(self.cache):
 			os.makedirs(self.cache)
-		else:
-			for f in os.listdir(self.cache):
-				try:
-					old = load(file(os.path.join(self.cache,f)))
-					if old.mime[0] == "image" or archive:
-						old.status = self.STAT_UNCHANGED
-					else:
-						old.status = self.STAT_START
-					old.used = False
-					self.store[self.md5(old.url,old.ref)] = old
 
-				except (EOFError, ValueError, UnpicklingError): # ignore and discard
-					os.unlink(os.path.join(self.cache,f))
+	def __load__(self,hash):
+		if self.store.has_key(hash):
+			return
+		f = hash
+		if f in os.listdir(self.cache):
+			try:
+				print "loading",os.path.join(self.cache,f)
+				old = load(file(os.path.join(self.cache,f)))
+				if old.mime[0] == "image" or self.archive:
+					old.status = self.STAT_UNCHANGED
+				else:
+					old.status = self.STAT_START
+				old.used = False
+				self.store[self.md5(old.url,old.ref)] = old
+
+			except (EOFError, ValueError, UnpicklingError): # ignore and discard
+				os.unlink(os.path.join(self.cache,f))
 	
 	def remove(self, url, ref):
 		url = url.replace("&amp;","&")
@@ -95,6 +101,7 @@ class URLCache:
 	def get(self,url,ref=None):
 		url = url.replace("&amp;","&")
 		hash = self.md5(url,ref)
+		self.__load__(hash)
 		if self.store.has_key(hash):
 			old = self.store[hash]
 		else:
