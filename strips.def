@@ -3275,3 +3275,13 @@ strip zits
 	$1 $name
 end
 
+strip menage
+	desc Menage
+	type search
+	searchpattern (http://zii.[^/]+/comics/mat\d+\.(?:png|jpg))
+	homepage http://www.ma3comic.com
+	firstpage http://www.ma3comic.com/strips-ma3/room_for_two_more_(vol1)
+	nextpage <a\s+id=\"cndnext\"\s+href=\"([^\"]+)
+	namepattern (mat\d+)
+	noperl True
+end
