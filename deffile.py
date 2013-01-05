@@ -141,8 +141,9 @@ class ComicsDef:
 									keep.append(item)
 						retr = keep
 
-						np = re.findall(namepattern, content, re.IGNORECASE | re.DOTALL | re.MULTILINE)
+						np = list(set(re.findall(namepattern, content, re.IGNORECASE | re.DOTALL | re.MULTILINE)))
 						file("dump","wb").write(content)
+					
 						assert len(np) == 1, (namepattern, np)
 						print "name", np[0]
 
