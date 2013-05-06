@@ -160,7 +160,7 @@ class ComicsDef:
 										self.cache.remove(img, searchpage)
 										print "Getting (image from search)", img
 										get.append(self.get_url(g.name,img,ref=searchpage))
-								assert len(get) == 1 # FIXME: handle >1
+								assert len(get) == 1, get # FIXME: handle >1
 								u = get[0]
 								if u != None:
 									break
@@ -172,9 +172,9 @@ class ComicsDef:
 							if not os.path.exists(comicpath):
 								file(comicpath, "wb").write(u.content)
 
-						nextpage = re.findall(nextpattern, content, re.IGNORECASE | re.DOTALL | re.MULTILINE)
+						nextpage = list(set(re.findall(nextpattern, content, re.IGNORECASE | re.DOTALL | re.MULTILINE)))
 						assert len(nextpage) == 1, nextpage
-						searchpage = nextpage[0]
+						searchpage = urlparse.urljoin(baseurl, nextpage[0])
 
 						#tried += 1
 

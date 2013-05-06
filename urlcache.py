@@ -132,6 +132,7 @@ class URLCache:
 			
 			except URLTimeoutError, err:
 				#self.gen_failed(old)
+				raise
 				raise CacheError, str(err)+" while getting <a href=\""+url+"\">"+url+"</a>"
 
 			content = data.read()
