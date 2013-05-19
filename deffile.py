@@ -140,40 +140,57 @@ class ComicsDef:
 									dups.add(item)
 									keep.append(item)
 						retr = keep
-
+						
+						assert len(namepattern) > 0
 						np = list(set(re.findall(namepattern, content, re.IGNORECASE | re.DOTALL | re.MULTILINE)))
 						file("dump","wb").write(content)
 					
-						assert len(np) == 1, (namepattern, np)
-						print "name", np[0]
+						assert len(np) >=1, (namepattern, np)
+						names = np
 
-						shortpath = os.path.join(directory, np[0])
-						if len(glob(shortpath + "*")) == 0:
+						for idx, name in enumerate(names):
+							try:
+								val = int(name)
+								names[idx] = "%05d" % val
+							except ValueError: # not a number
+								pass
+
+						print "names", names
+
+						shortpaths = [os.path.join(directory, x) for x in names]
+						missing = False
+						for shortpath in shortpaths:
+							if len(glob(shortpath + "*")) == 0:
+								missing = True
+								break
+						if missing:
 							while True:
 								get = []
 
 								for x in range(len(retr)):
 									if not s.look.HasField("index") or s.look.index == x+1:
 										r = retr[x]
-										
 										img = urlparse.urljoin(baseurl,r)
 										self.cache.remove(img, searchpage)
 										print "Getting (image from search)", img
 										get.append(self.get_url(g.name,img,ref=searchpage))
-								assert len(get) == 1, get # FIXME: handle >1
-								u = get[0]
-								if u != None:
+
+								get = [u for u in get if u != None]
+								assert len(get) == len(names), (get, names)
+								if len(get) > 0:
 									break
 								sleep(5)
 
-							ext = self.makeext(u, g)
-							comicpath = shortpath + "." + ext
-							print comicpath
-							if not os.path.exists(comicpath):
-								file(comicpath, "wb").write(u.content)
+							exts = [self.makeext(u,g) for u in get]
+							comicpaths = ["%s.%s"%(x,y) for (x,y) in zip(shortpaths, exts)]
+							for (comicpath, u) in zip(comicpaths, get):
+								print comicpath
+								if not os.path.exists(comicpath):
+									file(comicpath, "wb").write(u.content)
 
+						assert len(nextpattern) >0
 						nextpage = list(set(re.findall(nextpattern, content, re.IGNORECASE | re.DOTALL | re.MULTILINE)))
-						assert len(nextpage) == 1, nextpage
+						assert len(nextpage) == 1, (nextpage, nextpattern)
 						searchpage = urlparse.urljoin(baseurl, nextpage[0])
 
 						#tried += 1
