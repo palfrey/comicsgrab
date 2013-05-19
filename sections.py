@@ -100,17 +100,18 @@ class search:
 
 		method = Type.values_by_number[self.look.type].name
 		if method == "search":
-			data = [self.look.searchpattern,self.look.baseurl,self.look.searchpage, self.look.initialpattern]
+			data = {"searchpattern":self.look.searchpattern,"baseurl":self.look.baseurl,"searchpage":self.look.searchpage, "initialpattern": self.look.initialpattern}
 			if archive:
-				data[2] = self.look.firstpage
-				data.append(self.look.namepattern)
-				data.append(self.look.nextpage)
-			if data[2] == "":
-				data[2] = self.look.homepage
-			if data[1] == "":
-				data[1] = self.look.homepage
+				data["searchpage"] = self.look.firstpage
+				data["namepattern"] = self.look.namepattern
+				data["nextpattern"] = self.look.nextpage
+				data["namepage"] = self.look.namepage
+			if data["searchpage"] == "":
+				data["searchpage"] = self.look.homepage
+			if data["baseurl"] == "":
+				data["baseurl"] = self.look.homepage
 			if not self.look.noperl:
-				for d in range(len(data)):
+				for d in data.keys():
 					data[d] = self.eval_perl(data[d])
 					if data[d].find("$")!=-1:
 						print self.look

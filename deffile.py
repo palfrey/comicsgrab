@@ -110,9 +110,9 @@ class ComicsDef:
 			else: # type == "search"
 				if self.debug>=4:
 					print "data",data
-				(pattern,baseurl,searchpage,initialpattern,namepattern, nextpattern) = data
+				searchpage = data["searchpage"]
 				while True:
-					print "Getting (searchpage)",searchpage
+					print "Getting (searchpage)", searchpage
 					page = self.get_url(g.name,searchpage,ref=searchpage)
 					if page==None:# and page.status != urlcache.URLCache.STAT_UNCHANGED:
 						print "Got no page at all!"
@@ -120,15 +120,15 @@ class ComicsDef:
 						sleep(5)
 					else:
 						content = page.content
-						if initialpattern != "":
-							print "Initially searching for",initialpattern
-							iretr = re.findall("(?i)"+initialpattern,content)
+						if data["initialpattern"] != "":
+							print "Initially searching for",data["initialpattern"]
+							iretr = re.findall("(?i)"+data["initialpattern"],content)
 							assert len(iretr) == 1 # other patterns not supported yet
 							content = iretr[0]
 							
-						print "Searching for",pattern
-						assert pattern!=""
-						retr = re.findall("(?i)"+pattern,content)
+						print "Searching for", data["searchpattern"]
+						assert data["searchpattern"]!=""
+						retr = re.findall("(?i)"+data["searchpattern"],content)
 						if self.debug>=4:
 							print page.content
 
@@ -141,11 +141,15 @@ class ComicsDef:
 									keep.append(item)
 						retr = keep
 						
-						assert len(namepattern) > 0
-						np = list(set(re.findall(namepattern, content, re.IGNORECASE | re.DOTALL | re.MULTILINE)))
+						if data["namepage"] != "":
+							np = list(set(re.findall(data["namepage"], searchpage, re.IGNORECASE | re.DOTALL | re.MULTILINE)))
+						elif data["namepattern"] != "":
+							np = list(set(re.findall(data["namepattern"], content, re.IGNORECASE | re.DOTALL | re.MULTILINE)))
+						else:
+							raise Exception, data
 						file("dump","wb").write(content)
 					
-						assert len(np) >=1, (namepattern, np)
+						assert len(np) >=1, (data["namepattern"], np)
 						names = np
 
 						for idx, name in enumerate(names):
@@ -170,7 +174,7 @@ class ComicsDef:
 								for x in range(len(retr)):
 									if not s.look.HasField("index") or s.look.index == x+1:
 										r = retr[x]
-										img = urlparse.urljoin(baseurl,r)
+										img = urlparse.urljoin(data["baseurl"],r)
 										self.cache.remove(img, searchpage)
 										print "Getting (image from search)", img
 										get.append(self.get_url(g.name,img,ref=searchpage))
@@ -188,10 +192,10 @@ class ComicsDef:
 								if not os.path.exists(comicpath):
 									file(comicpath, "wb").write(u.content)
 
-						assert len(nextpattern) >0
-						nextpage = list(set(re.findall(nextpattern, content, re.IGNORECASE | re.DOTALL | re.MULTILINE)))
-						assert len(nextpage) == 1, (nextpage, nextpattern)
-						searchpage = urlparse.urljoin(baseurl, nextpage[0])
+						assert len(data["nextpattern"]) >0
+						nextpage = list(set(re.findall(data["nextpattern"], content, re.IGNORECASE | re.DOTALL | re.MULTILINE)))
+						assert len(nextpage) == 1, (nextpage, data["nextpattern"])
+						searchpage = urlparse.urljoin(data["baseurl"], nextpage[0])
 
 						#tried += 1
 
@@ -300,7 +304,6 @@ class ComicsDef:
 					else: # type == "search"
 						if self.debug>=4:
 							print "data",data
-						(pattern,baseurl,searchpage, initialpattern) = data
 						print "Getting (searchpage)",searchpage
 						page = self.get_url(g.name,searchpage,ref=searchpage)
 						if page!=None:# and page.status != urlcache.URLCache.STAT_UNCHANGED:
@@ -330,8 +333,8 @@ class ComicsDef:
 								if not s.look.HasField("index") or s.look.index == x+1:
 									r = retr[x]
 									
-									print "Getting (image from search)",urlparse.urljoin(baseurl,r)
-									get.append(self.get_url(g.name,urlparse.urljoin(baseurl,r),ref=searchpage))
+									print "Getting (image from search)",urlparse.urljoin(data["baseurl"],r)
+									get.append(self.get_url(g.name,urlparse.urljoin(data["baseurl"],r),ref=searchpage))
 							tried += 1
 						else:
 							print "Got no page at all!"
