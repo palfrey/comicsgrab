@@ -43,6 +43,9 @@ class Database:
 		if isinstance(s, Strip):
 			ret = self._cur.execute("select 1 from "+self.prefix+"strips where name = '%s'"%s.name)
 			return len(ret.fetchall()) == 1
+		elif isinstance(s, Class):
+			ret = self._cur.execute("select 1 from "+self.prefix+"classes where name = '%s'"%s.name)
+			return len(ret.fetchall()) == 1
 		else:
 			raise Exception,(s,type(s))
 
