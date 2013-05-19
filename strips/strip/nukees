@@ -1,0 +1,7 @@
+strip nukees
+	desc Nukees
+	homepage http://www.nukees.com
+	useclass keenspace
+	days Mo Wed Fri
+	$1 
+end

@@ -1,0 +1,7 @@
+strip countyoursheep
+	desc Count Your Sheep
+	homepage http://countyoursheep.com
+	useclass keenspace
+	days Mo-Fri
+	$1 
+end

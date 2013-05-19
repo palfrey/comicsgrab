@@ -1,0 +1,8 @@
+strip asylum
+	desc Asylum on 5th Street
+	type search
+	searchpattern <img src="(images/comics/\d+.jpg)"
+	homepage http://www.asylumon5thstreet.com/
+	baseurl $homepage
+	days Mo-Fri
+end

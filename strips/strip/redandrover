@@ -1,0 +1,5 @@
+strip redandrover
+	desc Red and Rover
+	index 1
+	useclass unitedmedia-srch-wash
+end

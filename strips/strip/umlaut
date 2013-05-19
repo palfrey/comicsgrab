@@ -1,0 +1,7 @@
+strip umlaut
+	desc Umlaut House
+	homepage http://umlauthouse.comicgenesis.com
+	useclass keenspace
+	days Tu-Fri
+	$1 
+end

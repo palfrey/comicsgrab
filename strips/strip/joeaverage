@@ -1,0 +1,7 @@
+strip joeaverage
+	desc Joe Average
+	type search
+	searchpattern <IMG.+?SRC="(/comics/\d+\..+?)"
+	homepage http://www.joeaverage.org
+	baseurl http://www.joeaverage.org/
+end

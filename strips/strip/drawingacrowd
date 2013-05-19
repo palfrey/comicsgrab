@@ -1,0 +1,4 @@
+strip drawingacrowd
+	desc Drawing a Crowd
+	useclass unitedmedia-srch-creators
+end

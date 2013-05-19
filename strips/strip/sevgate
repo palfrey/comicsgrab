@@ -1,0 +1,4 @@
+strip sevgate
+	desc Sevgate SEV1
+	useclass sev-comics
+end

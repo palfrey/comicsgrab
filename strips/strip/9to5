@@ -1,0 +1,6 @@
+strip 9to5
+	desc 9 to 5
+	useclass comicspage-panels-gen
+	$1 9to5
+	$2 ntf
+end

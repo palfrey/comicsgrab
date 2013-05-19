@@ -1,0 +1,7 @@
+strip antihero
+	desc Antihero for Hire
+	homepage http://www.antiheroforhire.com/
+	useclass keenspace
+	days Mo Wed-Fri
+	$1 afh
+end

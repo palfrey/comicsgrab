@@ -1,0 +1,6 @@
+strip littlegamers
+	desc Little Gamers
+	homepage http://www.little-gamers.com
+	useclass ioncomix
+	days Mo-Fr
+end

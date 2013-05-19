@@ -1,0 +1,7 @@
+strip megatokyo
+	desc MegaTokyo
+	type search
+	searchpattern <IMG.+?SRC="(/?strips/\d+\.(?:gif|jpg))"
+	homepage http://www.megatokyo.com
+	baseurl $homepage
+end

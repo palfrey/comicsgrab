@@ -1,0 +1,13 @@
+strip alice
+	desc Alice!
+	type search
+	homepage http://www.alicecomics.com/today.html
+	days Wed-Fri
+	subbeg
+		searchpattern <(?:IMG|img)[^S]*SRC="(http://www.alicecomics.com/comics/alice[^\"]*)"
+	subend
+	subbeg
+		baseurl http://www.alicecomics.com
+		searchpattern <(?:IMG|img)[^S]*SRC="(/comics/alice[^\"]*)"
+	subend
+end

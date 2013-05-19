@@ -1,0 +1,12 @@
+strip lfg
+	desc Looking For Group
+	type search
+	searchpattern src="(http://www.lfgcomic.com/wp-content/uploads/\d+/\d+/.+?\.gif)" class="attachment-post-thumbnail wp-post-image"
+	namepattern src="http://www.lfgcomic.com/wp-content/uploads/\d+/\d+/(?:.+?-)?(\d+).gif" class="attachment-post-thumbnail wp-post-image"
+	homepage http://lfgcomic.com/
+	baseurl $homepage
+	days mon thu
+	firstpage http://www.lfgcomic.com/page/402/
+	nextpage <a href="(http://www.lfgcomic.com/page/\d+[^"]*?/)" id="navtop-next" title="Next Page">Next</a>
+	noperl True
+end

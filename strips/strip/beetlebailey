@@ -1,0 +1,5 @@
+strip beetlebailey
+	desc Beetle Bailey
+	useclass sfgate-gen
+	$1 Beetle_Bailey
+end

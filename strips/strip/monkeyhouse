@@ -1,0 +1,6 @@
+strip monkeyhouse
+	desc Monkeyhouse
+	useclass comicspage-strips-gen
+	$1 monkeyhouse
+	$2 mhs
+end

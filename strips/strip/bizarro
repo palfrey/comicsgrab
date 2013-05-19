@@ -1,0 +1,5 @@
+strip bizarro
+	desc Bizarro
+	useclass ucomics-gen
+	$1 bz
+end

@@ -1,0 +1,6 @@
+strip grimmy
+	desc Mother Goose and Grimm
+	type generate
+	homepage http://www.grimmy.com/comics.php
+	imageurl http://www.grimmy.com/images/MGG_Archive/MGG_%Y/MGG%m%d.gif
+end

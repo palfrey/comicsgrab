@@ -1,0 +1,6 @@
+strip queenofwands
+	desc Queen of Wands
+	homepage http://www.queenofwands.net
+	useclass keenspace
+	$1 
+end

@@ -1,0 +1,12 @@
+strip pvp
+	desc Player vs. Player
+	type search
+	homepage http://www.pvponline.com/
+	subbeg
+		baseurl $homepage
+		searchpattern <img.+?SRC="(archive/%Y/pvp\d+.gif)"
+	subend
+	subbeg
+		searchpattern (http://www.pvponline.com/images/\d+\.gif)
+	subend
+end

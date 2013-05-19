@@ -1,0 +1,7 @@
+strip shadowfall
+	desc Shadowfall
+	type search
+	searchpattern <img.+?src="(http://www.kyokipress.com/shadowfall/comics/.+?\.(?:jpg|gif))"
+	homepage http://www.kyokipress.com/shadowfall/
+	baseurl http://www.kyokipress.com/
+end

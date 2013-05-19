@@ -1,0 +1,5 @@
+strip ineedhelp
+	desc I Need Help
+	useclass sfgate-gen
+	$1 Hagar_The_Horrible
+end

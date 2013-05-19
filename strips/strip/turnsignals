@@ -1,0 +1,5 @@
+strip turnsignals
+	desc Turn Signals On A Land Raider
+	homepage http://tsoalr.com/
+	useclass btphp
+end

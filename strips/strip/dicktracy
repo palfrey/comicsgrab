@@ -1,0 +1,6 @@
+strip dicktracy
+	desc Dick Tracy
+	useclass comicspage-strips-gen
+	$1 dicktracy
+	$2 dty
+end

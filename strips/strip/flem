@@ -1,0 +1,7 @@
+strip flem
+	desc FLEM!
+	homepage http://www.flemcomics.com
+	useclass keenspace
+	days Tues Thu
+	$1 
+end

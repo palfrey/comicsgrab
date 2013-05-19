@@ -1,0 +1,6 @@
+class sfgate-srch
+	type search
+	searchpattern <img.+?src=".+?(/comics/graphics/$2/.+?\..+?)"
+	homepage http://www.sfgate.com/cgi-bin/article.cgi?file=/comics/$1.dtl
+	baseurl http://www.sfgate.com
+end

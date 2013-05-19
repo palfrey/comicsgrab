@@ -1,0 +1,7 @@
+strip boasas
+	desc Boy on a Stick and Slither
+	type search
+	searchpattern <img.+?src="(boasas/\d+\..+?)"
+	homepage http://www.boasas.com/
+	baseurl http://www.boasas.com/
+end

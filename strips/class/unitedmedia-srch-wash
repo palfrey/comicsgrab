@@ -1,0 +1,6 @@
+class unitedmedia-srch-wash
+	type search
+	searchpattern (/wash/$strip/archive/images/(?:.*?)\.(?:gif|jpg))
+	homepage http://www.unitedmedia.com/wash/$strip/index.html
+	baseurl http://www.unitedmedia.com
+end

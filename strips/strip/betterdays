@@ -1,0 +1,8 @@
+strip betterdays
+	desc Better Days...
+	type search
+	searchpattern <img.+?src=(.*?comic/BD.*\.gif)
+	homepage http://www.jaynaylor.com/betterdays/
+	days Mo Fri
+	noperl True
+end

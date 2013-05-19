@@ -1,0 +1,4 @@
+strip nancy
+	desc Nancy
+	useclass unitedmedia-srch-comics
+end

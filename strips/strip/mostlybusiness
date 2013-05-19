@@ -1,0 +1,6 @@
+strip mostlybusiness
+	desc Mostly Business
+	type generate
+	homepage http://www.tedgoff.com/
+	imageurl http://www.tedgoff.com/mb/images/today.gif
+end

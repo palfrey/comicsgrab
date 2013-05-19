@@ -1,0 +1,5 @@
+strip inthebleachers
+	desc In the Bleachers
+	useclass ucomics-gen
+	$1 bl
+end

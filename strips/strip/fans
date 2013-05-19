@@ -1,0 +1,6 @@
+strip fans
+	desc Fans!
+	type search
+	searchpattern <IMG.+?SRC="(http://faans.com/images/%Y/.+?\..+?)"
+	homepage http://faans.com
+end

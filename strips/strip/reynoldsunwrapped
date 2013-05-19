@@ -1,0 +1,5 @@
+strip reynoldsunwrapped
+	desc Reynolds Unwrapped
+	useclass ucomics-gen
+	$1 rw
+end

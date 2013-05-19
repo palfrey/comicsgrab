@@ -1,0 +1,5 @@
+strip piranhaclub
+	desc Piranha Club
+	useclass sfgate-gen
+	$1 Piranha
+end

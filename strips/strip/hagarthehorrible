@@ -1,0 +1,5 @@
+strip hagarthehorrible
+	desc Hagar the Horrible
+	useclass sfgate-gen
+	$1 Hagar_The_Horrible
+end

@@ -1,0 +1,5 @@
+strip popeye
+	desc Popeye
+	useclass sfgate-gen
+	$1 $name
+end

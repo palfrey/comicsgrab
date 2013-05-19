@@ -1,0 +1,7 @@
+strip pgs
+	desc Pathetic Geek Stories
+	type search
+	searchpattern <a.+?HREF="/avclub\d+/pgs(\d+).html"
+	homepage http://www.theonionavclub.com/
+	imageurl http://graphics.theonion.com/avpics_$match/pgs_$match.gif
+end

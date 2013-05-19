@@ -1,0 +1,8 @@
+strip btb
+	desc Ban The Basics
+	type search
+	searchpattern (archives/\d+\.(?:png|jpg|gif))
+	index 1
+	homepage http://crebheadcomics.com
+	baseurl $homepage
+end

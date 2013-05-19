@@ -1,0 +1,6 @@
+strip horsey
+	desc David Horsey
+	useclass comicspage-editorial-gen
+	$1 horsey
+	$2 hor
+end

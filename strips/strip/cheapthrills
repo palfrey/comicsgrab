@@ -1,0 +1,4 @@
+strip cheapthrills
+	desc Cheap Thrills
+	useclass unitedmedia-srch-wash
+end

@@ -1,0 +1,17 @@
+strip bdk
+	desc Badly Drawn Kitties
+	type search
+	homepage http://www.badlydrawnkitties.com/
+	subbeg
+		searchpattern <img.+?src="(http://(?:www\.)?badlydrawnkitties.com/(?:active|comics)/\d+\.gif)"
+	subend
+	subbeg
+		baseurl http://www.badlydrawnkitties.com/
+		searchpattern <img.+?src="(active/\d+\.gif)"
+	subend
+	subbeg
+		baseurl http://www.badlydrawnkitties.com/
+		searchpattern <br><img.+?src=(getdat.php\?id=\d+)
+	subend
+	noperl True
+end

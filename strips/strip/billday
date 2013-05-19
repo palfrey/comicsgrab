@@ -1,0 +1,5 @@
+strip billday
+	desc Bill Day
+	useclass unitedmedia-srch-editoons
+	$1 day
+end

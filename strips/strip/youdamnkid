@@ -1,0 +1,7 @@
+strip youdamnkid
+	desc You Damn Kid
+	type search
+	searchpattern <IMG.+?SRC="/(comics/ydk\d+\.gif)"
+	homepage http://www.youdamnkid.com/
+	baseurl $homepage
+end

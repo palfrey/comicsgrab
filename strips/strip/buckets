@@ -1,0 +1,4 @@
+strip buckets
+	desc The Buckets
+	useclass unitedmedia-srch-comics
+end

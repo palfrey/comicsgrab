@@ -1,0 +1,8 @@
+strip suburbanjungle
+	desc Suburban Jungle
+	type search
+	searchpage http://suburbanjungle.com/d/%Y%m%d.html
+	searchpattern <img.+?SRC="(/comics/sj%Y%m%d\..+?)"
+	homepage http://www.suburbanjungle.com/
+	baseurl http://www.suburbanjungle.com
+end

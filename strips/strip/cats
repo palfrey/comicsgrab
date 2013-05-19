@@ -1,0 +1,6 @@
+strip cats
+	desc Cats with Hands
+	useclass comicspage-strips-gen
+	$1 cats
+	$2 cwh
+end

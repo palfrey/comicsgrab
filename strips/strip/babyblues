@@ -1,0 +1,5 @@
+strip babyblues
+	desc Baby Blues
+	useclass sfgate-gen
+	$1 Baby_Blues
+end

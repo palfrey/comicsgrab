@@ -1,0 +1,5 @@
+strip shermanslagoon
+	desc Sherman's Lagoon
+	useclass sfgate-gen
+	$1 Shermans_Lagoon
+end

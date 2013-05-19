@@ -1,0 +1,7 @@
+strip quirit
+	desc Quirit - alltaegliches auf den Punkt gebracht
+	type search
+	searchpattern <img.+?src="(http://img.web.de/c/00.+?)"
+	homepage http://portale.web.de/Boulevard/Comics/Quirit/
+	artist Quirit -> www.quirit.com
+end

@@ -1,0 +1,6 @@
+strip marlette
+	desc Doug Marlette
+	useclass comicspage-editorial-gen
+	$1 marlette
+	$2 mar
+end

@@ -1,0 +1,4 @@
+strip sevtrek
+	desc Sev Trek
+	useclass sev-comics
+end

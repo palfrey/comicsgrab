@@ -1,0 +1,4 @@
+strip topofworld
+	desc Top of the World!
+	useclass unitedmedia-srch-comics-lag
+end

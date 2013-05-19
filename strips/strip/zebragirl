@@ -1,0 +1,7 @@
+strip zebragirl
+	desc Zebra Girl
+	homepage http://zebragirl.keenspot.com
+	useclass keenspace
+	days Fri
+	$1 ze
+end

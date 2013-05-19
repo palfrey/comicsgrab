@@ -1,0 +1,6 @@
+strip locher
+	desc Dick Locher
+	useclass comicspage-editorial-gen
+	$1 locher
+	$2 dik
+end

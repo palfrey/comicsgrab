@@ -1,0 +1,7 @@
+strip unshelved
+	desc Unshelved
+	type search
+	searchpattern (strips/\d+.(?:gif|png|jpg))
+	homepage http://www.unshelved.com/
+	baseurl $homepage
+end

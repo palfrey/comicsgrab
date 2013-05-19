@@ -1,0 +1,6 @@
+strip meehan
+	desc Meehan Streak
+	useclass comicspage-strips-gen
+	$1 meehan
+	$2 mst
+end

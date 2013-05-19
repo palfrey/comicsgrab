@@ -1,0 +1,7 @@
+strip lifesuchasitis
+	desc Life, Such As It Is
+	homepage http://lifesuchasitis.comicgenesis.com
+	useclass keenspace
+	days Mo Wed Fri
+	$1 
+end

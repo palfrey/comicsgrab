@@ -1,0 +1,8 @@
+strip altermeta
+	desc Altermeta
+	type search
+	searchpattern <img.+?src="(comics/[\dA-Za-z_-]+\.jpg)"
+	homepage http://www.altermeta.com/
+	baseurl $homepage
+	days Wed Thu Sun
+end

@@ -1,0 +1,6 @@
+strip greytown
+	desc Living in Greytown
+	type generate
+	homepage http://www.livingingreytown.com/
+	imageurl $homepage/comics/grey%Y%m%d.jpg
+end

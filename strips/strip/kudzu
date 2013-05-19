@@ -1,0 +1,6 @@
+strip kudzu
+	desc Kudzu
+	useclass comicspage-strips-gen
+	$1 kudzu
+	$2 kdz
+end

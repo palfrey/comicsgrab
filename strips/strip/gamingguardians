@@ -1,0 +1,6 @@
+strip gamingguardians
+	desc Gaming Guardians
+	homepage http://www.gamingguardians.com
+	useclass keenspace
+	$1 
+end

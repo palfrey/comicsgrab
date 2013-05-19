@@ -1,0 +1,5 @@
+strip ettahulme
+	desc Etta Hulme
+	useclass unitedmedia-srch-editoons
+	$1 hulme
+end

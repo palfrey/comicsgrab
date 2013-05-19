@@ -1,0 +1,8 @@
+strip labgoats
+	desc Labgoats, Inc.
+	type search
+	searchpattern <img SRC="(strips/\d+\.(?:gif|png|jpg))"
+	homepage http://labgoats.com/
+	baseurl $homepage
+	days Mo Wed Fri
+end

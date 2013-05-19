@@ -1,0 +1,5 @@
+class comicspage-editorial-gen
+	type generate
+	homepage http://www.comicspage.com/$1/index.html
+	imageurl http://www.tmsfeatures.com/tmsfeatures/servlet/com.featureserv.util.Download?file=%Y%m%ded$2-a-p.jpg&code=ed$2
+end

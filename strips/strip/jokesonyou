@@ -1,0 +1,6 @@
+strip jokesonyou
+	desc The Joke's on You
+	type search
+	searchpattern <img.+src="(http://www.thefunnypages.com/archives/.+?\.gif)"
+	homepage http://www.thefunnypages.com/
+end

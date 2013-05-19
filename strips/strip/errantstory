@@ -1,0 +1,7 @@
+strip errantstory
+	desc Errant Story
+	homepage http://www.errantstory.com
+	useclass keenspace
+	days Mo Wed Fri
+	$1 es
+end

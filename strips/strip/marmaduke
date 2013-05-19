@@ -1,0 +1,4 @@
+strip marmaduke
+	desc Marmaduke
+	useclass unitedmedia-srch-comics
+end

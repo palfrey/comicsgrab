@@ -1,0 +1,6 @@
+strip ffn
+	desc Full Frontal Nerdity
+	type search
+	searchpattern <img src="(http://nodwick.humor.gamespy.com/ffn/strips/[^\"]*)
+	homepage http://nodwick.humor.gamespy.com/ffn/
+end

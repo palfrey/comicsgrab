@@ -1,0 +1,4 @@
+strip strangebrew
+	desc Strange Brew
+	useclass unitedmedia-srch-creators
+end

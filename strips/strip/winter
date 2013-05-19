@@ -1,0 +1,5 @@
+strip winter
+	desc Winter
+	homepage http://www.wintercomic.com/
+	useclass ioncomix
+end

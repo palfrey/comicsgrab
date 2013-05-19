@@ -1,0 +1,7 @@
+strip hatesong
+	desc Hate Song
+	type search
+	searchpattern (strips/\d{4}-\d{2}-\d{2}\.(?:jpg|png|gif))
+	homepage http://www.hatesong.com
+	baseurl $homepage
+end

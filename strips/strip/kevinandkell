@@ -1,0 +1,14 @@
+strip kevinandkell
+	desc Kevin and Kell
+	homepage http://www.kevinandkell.com/
+	subbeg
+		type generate
+		imageurl http://www.kevinandkell.com/%Y/strips/kk%Y%m%d.gif
+	subend
+	subbeg
+		baseurl http://www.reuben.org/holbrook/
+		searchpattern <IMG SRC="(kk\d+\.gif)"
+		searchpage http://www.reuben.org/holbrook/index.html
+		type search
+	subend
+end

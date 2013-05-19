@@ -1,0 +1,13 @@
+strip crapidrew
+	desc Crap I Drew On My Lunch Break
+	type search
+	homepage http://crap.jinwicked.com/
+	baseurl $homepage
+	days Tue Thur Sat
+	subbeg
+		searchpattern <img src="(imgs/comics/\d+.jpg)"
+	subend
+	subbeg
+		searchpattern <img src="(images/comics/\d+.jpg)"
+	subend
+end

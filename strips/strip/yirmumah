@@ -1,0 +1,14 @@
+strip yirmumah
+	desc Yirmumah
+	type search
+	searchpage http://yirmumah.net/archives.php
+	index 1
+	homepage http://yirmumah.net/
+	subbeg
+		searchpattern (http://.*/strips/[^\"]*)
+	subend
+	subbeg
+		baseurl $homepage
+		searchpattern (strips/[^\"]*)
+	subend
+end

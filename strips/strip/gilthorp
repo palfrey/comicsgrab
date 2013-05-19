@@ -1,0 +1,6 @@
+strip gilthorp
+	desc Gil Thorp
+	useclass comicspage-strips-gen
+	$1 gilthorp
+	$2 gtp
+end

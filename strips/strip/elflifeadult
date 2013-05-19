@@ -1,0 +1,6 @@
+strip elflifeadult
+	desc Elf Life: R Rated
+	type generate
+	homepage http://www.elflife.com/adults.html
+	imageurl http://www.elflife.com/current/%Y%m%dm.gif
+end

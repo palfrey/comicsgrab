@@ -1,0 +1,4 @@
+strip ripleys
+	desc Ripley's Believe It or Not!
+	useclass unitedmedia-srch-comics
+end

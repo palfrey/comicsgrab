@@ -1,0 +1,6 @@
+strip annie
+	desc Annie
+	useclass comicspage-strips-gen
+	$1 annie
+	$2 ann
+end

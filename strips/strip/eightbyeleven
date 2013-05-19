@@ -1,0 +1,7 @@
+strip eightbyeleven
+	desc 8 1/2 by Eleven
+	type search
+	searchpattern (istrip_files/strips/\d+.png)
+	homepage http://www.lucastds.com/webcomic/
+	baseurl $homepage
+end

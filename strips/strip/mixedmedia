@@ -1,0 +1,6 @@
+strip mixedmedia
+	desc Mixed Media
+	useclass comicspage-strips-gen
+	$1 mixedmedia
+	$2 mix
+end

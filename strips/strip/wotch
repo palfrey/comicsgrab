@@ -1,0 +1,7 @@
+strip wotch
+	desc The Wotch
+	type search
+	searchpattern <img src=["'](comics/\d+/\d+/\d+\.jpg)["']
+	homepage http://www.thewotch.com/
+	baseurl $homepage
+end

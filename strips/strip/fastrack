@@ -1,0 +1,5 @@
+strip fastrack
+	desc On The Fast Track
+	useclass sfgate-gen
+	$1 Fast_Track
+end

@@ -1,0 +1,6 @@
+strip lola
+	desc Lola
+	useclass comicspage-strips-gen
+	$1 lola
+	$2 lol
+end

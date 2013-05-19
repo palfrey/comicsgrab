@@ -1,0 +1,6 @@
+strip peters
+	desc Mike Peters
+	useclass comicspage-editorial-gen
+	$1 peters
+	$2 pet
+end

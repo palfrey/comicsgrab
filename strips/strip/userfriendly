@@ -1,0 +1,13 @@
+strip userfriendly
+	desc User Friendly
+	type search
+	homepage http://www.userfriendly.org/static/
+	subbeg
+		searchpattern <img.+?src="(http://www.userfriendly.org/cartoons/archives/%y.+?/uf.+?\.gif)"
+		searchpage http://ars.userfriendly.org/cartoons/?id=%Y%m%d&mode=classic
+	subend
+	subbeg
+		searchpattern (http://www.userfriendly.org/cartoons/archives/%y[^/]+/xuf\d+.gif)
+		searchpage http://www.userfriendly.org/static/
+	subend
+end

@@ -1,0 +1,7 @@
+strip whiteboard
+	desc The Whiteboard
+	type search
+	searchpattern <img.+?SRC="(auto[a-z\d]*\.(?:jpg|gif))"
+	homepage http://www.the-whiteboard.com/
+	baseurl $homepage
+end

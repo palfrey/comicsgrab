@@ -1,0 +1,6 @@
+strip drfun
+	desc Doctor Fun
+	type generate
+	homepage http://www.ibiblio.org/Dave/drfun.html
+	imageurl http://www.ibiblio.org/Dave/Dr-Fun/latest.jpg
+end

@@ -1,0 +1,18 @@
+strip nodwick
+	desc Nodwick
+	type search
+	searchpage http://nodwick.humor.gamespy.com/gamespyarchive/
+	homepage http://nodwick.humor.gamespy.com/
+	days Th
+	subbeg
+		searchpattern <img src="(http://nodwick.humor.gamespy.com/gamespyarchive/strips/[^\"]*)
+	subend
+	subbeg
+		baseurl http://nodwick.humor.gamespy.com/gamespyarchive/
+		searchpattern <img src="(Page.+?\.jpg)
+	subend
+	subbeg
+		baseurl http://nodwick.humor.gamespy.com/gamespyarchive/
+		searchpattern <img src="(Nodwick[A-Za-z0-9]+\.jpg)
+	subend
+end

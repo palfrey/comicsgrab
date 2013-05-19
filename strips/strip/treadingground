@@ -1,0 +1,7 @@
+strip treadingground
+	desc Treading Ground
+	homepage http://treadingground.comicgenesis.com
+	useclass keenspace
+	days Mon Thu
+	$1 
+end

@@ -1,0 +1,5 @@
+strip tankmcnamara
+	desc Tank McNamara
+	useclass ucomics-gen
+	$1 tm
+end

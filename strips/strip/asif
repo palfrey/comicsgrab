@@ -1,0 +1,8 @@
+strip asif
+	desc As If!
+	type search
+	searchpattern <img.+?src="(?:\.\.)?/?(strips/.[^"]*)"
+	homepage http://www.asifcomic.com/main.html
+	baseurl $homepage
+	days Tu Th
+end

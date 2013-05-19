@@ -1,0 +1,7 @@
+strip extralife
+	desc Extra Life
+	type search
+	searchpattern (strips/\d+-\d+-\d+[^\"]+)
+	homepage http://www.myextralife.com/
+	baseurl $homepage
+end

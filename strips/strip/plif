@@ -1,0 +1,6 @@
+strip plif
+	desc Parking Lot is Full
+	type generate
+	homepage http://www.plif.com
+	imageurl http://www.plif.com/thisweek.gif
+end

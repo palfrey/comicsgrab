@@ -1,0 +1,6 @@
+strip whenigrowup
+	desc When I Grow Up
+	type generate
+	homepage http://www.whenigrowup.net/
+	imageurl http://www.whenigrowup.net/comics/wigu%Y%m%d.png
+end

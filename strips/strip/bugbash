@@ -1,0 +1,7 @@
+strip bugbash
+	desc Bug Bash
+	type search
+	searchpattern (http://www.bugbash.net/strips/bug-bash\d+\.gif)
+	homepage http://www.bugbash.net
+	days Mon
+end

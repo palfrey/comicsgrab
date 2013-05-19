@@ -1,0 +1,10 @@
+strip menage
+	desc Menage
+	type search
+	searchpattern (http://zii.[^/]+/comics/mat\d+.*?(?:png|jpg))
+	homepage http://www.ma3comic.com
+	noperl True
+	firstpage http://www.ma3comic.com/strips-ma3/room_for_two_more_(vol1)
+	nextpage <a\s+id=\"cndnext\"\s+href=\"([^\"]+)
+	namepattern (mat\d+)
+end

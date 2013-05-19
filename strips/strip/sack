@@ -1,0 +1,6 @@
+strip sack
+	desc Steve Sack
+	useclass comicspage-editorial-gen
+	$1 sack
+	$2 sak
+end

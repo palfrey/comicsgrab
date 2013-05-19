@@ -1,0 +1,16 @@
+strip namirdeiter
+	desc Namir Deiter
+	type search
+	homepage http://www.namirdeiter.com/
+	subbeg
+		searchpattern <img.+?src="(http://www.namirdeiter.com/comics/\d+.jpg)"
+	subend
+	subbeg
+		searchpattern <img.+?src="(http://www.jadephoenix.org/izzy/comics/\d+\..+?)"
+	subend
+	subbeg
+		baseurl $searchpage
+		searchpattern <img.+?src="(comics/\d+.jpg)"
+		searchpage http://www.kittycomics.com/
+	subend
+end

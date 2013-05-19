@@ -1,0 +1,6 @@
+strip glasbergen
+	desc Randy Glasbergen
+	type generate
+	homepage http://www.glasbergen.com
+	imageurl http://www.glasbergen.com/images/toon.gif
+end

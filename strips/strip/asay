@@ -1,0 +1,7 @@
+strip asay
+	desc Chuck Asay Cartoon
+	type search
+	searchpattern <img.+?border="0".+?src="(Asayimages/%Y/\w+\..+?)"
+	homepage http://www.cnsnews.com/cartoon/asay.asp
+	baseurl http://www.cnsnews.com/cartoon/
+end

@@ -1,0 +1,5 @@
+strip baldo
+	desc Baldo
+	useclass ucomics-gen
+	$1 ba
+end

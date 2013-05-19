@@ -1,0 +1,8 @@
+strip animetion
+	desc American Animétion
+	type search
+	searchpattern <img.+?src="(strips/aa\d+\.jpg)"
+	homepage http://home.myuw.net/durandal/aa/
+	baseurl $homepage
+	days Tu Th
+end

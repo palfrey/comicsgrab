@@ -1,0 +1,9 @@
+strip subnormality
+	desc Subnormality
+	type search
+	searchpattern src="(?!sphynxlogo)([^\"]+)"><br>
+	homepage http://www.viruscomix.com/subnormality.html
+	baseurl http://www.viruscomix.com/
+	days Tuesday
+	noperl True
+end

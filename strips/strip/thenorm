@@ -1,0 +1,6 @@
+strip thenorm
+	desc The Norm
+	type generate
+	homepage http://www.thenorm.com/
+	imageurl http://www.thenorm.com/arch/%y%m%d.gif
+end

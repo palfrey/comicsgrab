@@ -1,0 +1,4 @@
+strip charlie
+	desc Charlie
+	useclass unitedmedia-srch-creators
+end

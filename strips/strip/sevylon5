@@ -1,0 +1,4 @@
+strip sevylon5
+	desc Sevylon 5
+	useclass sev-comics
+end

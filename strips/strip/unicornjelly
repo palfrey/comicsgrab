@@ -1,0 +1,7 @@
+strip unicornjelly
+	desc Unicorn Jelly
+	type search
+	searchpattern <IMG.+?SRC="(images\/uni\d+\..+?)"
+	homepage http://unicornjelly.com/
+	baseurl $homepage
+end

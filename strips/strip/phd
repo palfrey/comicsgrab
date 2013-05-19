@@ -1,0 +1,13 @@
+strip phd
+	desc Piled Higher and Deeper
+	type search
+	searchpage http://www.phdcomics.com/comics.php
+	homepage http://www.phdcomics.com
+	days Mo Wed Fri
+	subbeg
+		searchpattern <img.+?src=(http://www.phdcomics.com/comics/archive/phd\d+s.gif)
+	subend
+	subbeg
+		searchpattern <img.+?src=(http://www.phdcomic.com/comics/archive/phd\d+s.gif)
+	subend
+end

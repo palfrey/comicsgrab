@@ -1,0 +1,7 @@
+strip foxtrot
+	desc FoxTrot
+	type search
+	searchpattern (http://www.foxtrot.com/comics/[^\"]+)
+	homepage http://www.foxtrot.com/
+	days Sunday
+end

@@ -1,0 +1,5 @@
+class ioncomix
+	type search
+	searchpattern <img.+?src='(/index.php\?do_command=show_strip\&strip_id=\d+\&auth=[^']+)'
+	baseurl $homepage
+end

@@ -1,0 +1,21 @@
+strip helpdesk
+	desc Help Desk
+	type search
+	homepage http://ubersoft.net
+	subbeg
+		searchpattern (http://ubersoft.net/files/comics/hd/hd\d+[a-z]?\.png)
+	subend
+	subbeg
+		searchpattern <img.+?SRC="(http://ubersoft.net/wp-content/uploads/\d+/\d+/hd\d+[a-z]?\.png)"
+	subend
+	subbeg
+		baseurl $homepage
+		searchpattern <img.+?SRC="(/comics/hd\d+[a-z]?\.png)"
+	subend
+	subbeg
+		searchpattern (http://ubersoft.net/comics/hd\d+[a-z]?\.png)
+	subend
+	subbeg
+		searchpattern <img.+?SRC="(http://ubersoft.net/comics/osw\d+[a-z]?\.png)"
+	subend
+end

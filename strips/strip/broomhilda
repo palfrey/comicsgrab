@@ -1,0 +1,6 @@
+strip broomhilda
+	desc Broom Hilda
+	useclass comicspage-strips-gen
+	$1 broomhilda
+	$2 bhl
+end

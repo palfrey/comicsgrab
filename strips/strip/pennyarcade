@@ -1,0 +1,15 @@
+strip pennyarcade
+	desc Penny Arcade
+	type search
+	searchpage http://www.penny-arcade.com/comic
+	homepage http://www.penny-arcade.com/
+	days Mo We Fr
+	subbeg
+		searchpattern <img.+?src="(http://art.penny-arcade.com/photos/[^\"]+)"
+	subend
+	subbeg
+		baseurl http://www.penny-arcade.com/
+		searchpattern <img.+?src="(?:\/)?(images/%Y/[^\"]+)"
+		index 1
+	subend
+end

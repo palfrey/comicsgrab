@@ -1,0 +1,7 @@
+strip apod
+	desc Astronomy Picture of the Day
+	type search
+	searchpattern <img.+?SRC="(image/\d{4}/.+?\..+?)"
+	homepage http://antwrp.gsfc.nasa.gov/apod/
+	baseurl $homepage
+end

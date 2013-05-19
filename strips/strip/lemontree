@@ -1,0 +1,7 @@
+strip lemontree
+	desc Under The Lemon Tree
+	type search
+	searchpattern SRC="(/comics/.+?(\d{8})\..+?)"
+	homepage http://utlt.comicgenesis.com
+	baseurl $homepage
+end

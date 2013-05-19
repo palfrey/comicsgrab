@@ -1,0 +1,8 @@
+strip fwf
+	desc Fur Will Fly
+	type search
+	searchpage http://www.jadephoenix.org/fwf/
+	searchpattern <img.+?src="(http://www.jadephoenix.org/fwf/comics/furwillfly\d+.(?:jpg|png|gif))"
+	homepage http://www.furwillfly.com/
+	days Mo Wed Fri
+end

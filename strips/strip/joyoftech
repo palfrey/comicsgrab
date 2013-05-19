@@ -1,0 +1,8 @@
+strip joyoftech
+	desc The Joy of Tech
+	type search
+	searchpattern <IMG.+?src="(joyimages/\d+[^\"]*)\"
+	index 1
+	homepage http://www.joyoftech.com/joyoftech/
+	baseurl http://www.joyoftech.com/joyoftech/
+end

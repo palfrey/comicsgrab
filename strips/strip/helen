@@ -1,0 +1,6 @@
+strip helen
+	desc Helen, Sweetheart of the Internet
+	useclass comicspage-strips-gen
+	$1 helen
+	$2 hln
+end

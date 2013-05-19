@@ -1,0 +1,6 @@
+strip weakendwarriors
+	desc Weak-end Warriors
+	type generate
+	homepage http://www.inktank.com/WW/
+	imageurl http://www.inktank.com/images/WW/cartoons/%m-%d-%y.gif
+end

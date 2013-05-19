@@ -1,0 +1,6 @@
+strip mrchuckshow
+	desc Mr. Chuck Show
+	type generate
+	homepage http://www.mrchuckshow.com/
+	imageurl http://www.mrchuckshow.com/strips/mcs%Y%m%db.png
+end

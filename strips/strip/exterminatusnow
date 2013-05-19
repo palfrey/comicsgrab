@@ -1,0 +1,7 @@
+strip exterminatusnow
+	desc Exterminatus Now
+	homepage http://exterminatusnow.comicgenesis.com
+	useclass keenspace
+	days Tues Fri
+	$1 
+end

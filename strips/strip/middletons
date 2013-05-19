@@ -1,0 +1,6 @@
+strip middletons
+	desc The Middletons
+	useclass comicspage-strips-gen
+	$1 middletons
+	$2 mid
+end

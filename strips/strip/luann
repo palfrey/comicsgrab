@@ -1,0 +1,4 @@
+strip luann
+	desc Luann
+	useclass unitedmedia-srch-comics-lag
+end

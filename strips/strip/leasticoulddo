@@ -1,0 +1,6 @@
+strip leasticoulddo
+	desc Least I Could Do
+	type generate
+	homepage http://www.leasticoulddo.com/
+	imageurl http://archive.licd.com/strips/comic.gif
+end

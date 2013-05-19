@@ -1,0 +1,4 @@
+strip peanuts
+	desc Peanuts
+	useclass unitedmedia-srch-comics
+end

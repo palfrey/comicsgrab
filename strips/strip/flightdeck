@@ -1,0 +1,4 @@
+strip flightdeck
+	desc Flight Deck
+	useclass unitedmedia-srch-creators
+end

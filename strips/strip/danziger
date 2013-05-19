@@ -1,0 +1,6 @@
+strip danziger
+	desc Jeff Danziger
+	useclass comicspage-editorial-gen
+	$1 danziger
+	$2 dan
+end

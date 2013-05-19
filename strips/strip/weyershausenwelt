@@ -1,0 +1,7 @@
+strip weyershausenwelt
+	desc Weyershausen - Wunderbare Welt
+	type search
+	searchpattern <img.+?src="(http://img.web.de/c/00.+?)"
+	homepage http://portale.web.de/Boulevard/Comics/Weyershausen/
+	artist Karsten Weyershausen -> www.weyershausen.de
+end

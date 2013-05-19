@@ -1,0 +1,6 @@
+strip stayskal
+	desc Wayne Stayskal
+	useclass comicspage-editorial-gen
+	$1 stayskal
+	$2 sty
+end

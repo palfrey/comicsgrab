@@ -1,0 +1,7 @@
+strip nipandtuck
+	desc Nip 'N Tuck
+	type search
+	searchpattern SRC="(/comics/nt(\d{8})\.gif)"
+	homepage http://nipandtuck.comicgenesis.com
+	baseurl $homepage
+end

@@ -1,0 +1,7 @@
+strip somethingpositive
+	desc Something Positive
+	type search
+	searchpattern (sp\d+20\d+[a-z]*.(?:gif|jpg|png))
+	homepage http://www.somethingpositive.net/
+	baseurl $homepage
+end

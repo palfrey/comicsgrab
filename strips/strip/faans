@@ -1,0 +1,7 @@
+strip faans
+	desc Fans!
+	type search
+	searchpattern <img.+?SRC="http://faans.com/(images/%Y/[^\"]*)"
+	homepage http://www.faans.com/
+	baseurl $homepage
+end

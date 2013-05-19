@@ -1,0 +1,13 @@
+strip krakow
+	desc Krakow
+	type search
+	homepage http://www.krakowstudios.com/
+	days Wed Fri
+	subbeg
+		searchpattern <img src="(http://www.krakowstudios.com/comicpro/strips/\d+-\d+.jpg)
+	subend
+	subbeg
+		baseurl $homepage
+		searchpattern <img src="(comics/(?:krakow)?\d+\.(?:jpg|gif))
+	subend
+end

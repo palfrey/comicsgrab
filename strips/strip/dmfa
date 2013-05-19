@@ -1,0 +1,8 @@
+strip dmfa
+	desc DMFA
+	type search
+	searchpattern <img src="(comics/Vol[^\"]*)"
+	homepage http://www.missmab.com/
+	baseurl $homepage
+	days Mon Wed Fri
+end

@@ -1,0 +1,6 @@
+strip jackiesfridge
+	desc Jackie's Fridge
+	type generate
+	homepage http://jackiesfridge.comicgenesis.com/
+	imageurl http://jackiesfridge.comicgenesis.com/comics/jf%Y%m%da.jpg
+end

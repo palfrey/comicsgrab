@@ -1,0 +1,8 @@
+strip wulff
+	desc Wulfmorgenthaler
+	type search
+	searchpattern (striphandler.ashx\?stripid=[a-f0-9\-]*)
+	index 1
+	homepage http://www.wulffmorgenthaler.com/
+	baseurl $homepage
+end

@@ -1,0 +1,7 @@
+strip nekobox
+	desc Nekobox
+	type generate
+	homepage http://www.nekobox.org
+	imageurl http://www.nekobox.org/comic/%Y-%m-%d.jpg
+	artist Jorge "Vaz" Rivas and David "vanishing" Trischuk
+end

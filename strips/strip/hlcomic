@@ -1,0 +1,7 @@
+strip hlcomic
+	desc Concerned: The Half-Life and Death of Gordon Frohman
+	type search
+	searchpattern (comics/concerned\d+\.jpg)
+	homepage http://www.hlcomic.com/
+	baseurl $homepage
+end

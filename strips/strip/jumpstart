@@ -1,0 +1,4 @@
+strip jumpstart
+	desc Jump Start
+	useclass unitedmedia-srch-comics
+end

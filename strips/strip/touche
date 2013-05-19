@@ -1,0 +1,9 @@
+strip touche
+	desc Touche
+	type search
+	searchpage http://www.drive-in-cartoons.de/touche/hauptteil.php
+	searchpattern <img.+?src='(.+?)'
+	homepage http://www.drive-in-cartoons.de/touche/
+	baseurl http://www.drive-in-cartoons.de/touche/
+	artist Tom
+end

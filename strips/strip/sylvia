@@ -1,0 +1,6 @@
+strip sylvia
+	desc Sylvia
+	useclass comicspage-strips-gen
+	$1 sylvia
+	$2 syl
+end

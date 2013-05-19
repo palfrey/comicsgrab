@@ -1,0 +1,4 @@
+strip sevwars
+	desc Sev Wars
+	useclass sev-comics
+end

@@ -1,0 +1,7 @@
+strip sexandviolence
+	desc Sex and Violence
+	type search
+	searchpattern <IMG.+?SRC="(/comics/.+?\..+?)"
+	homepage http://www.mrbang.net
+	baseurl http://www.mrbang.net
+end

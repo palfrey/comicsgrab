@@ -1,0 +1,6 @@
+strip handelsman
+	desc Walt Handelsman
+	useclass comicspage-editorial-gen
+	$1 handelsman
+	$2 han
+end

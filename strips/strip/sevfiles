@@ -1,0 +1,4 @@
+strip sevfiles
+	desc The Sev Files
+	useclass sev-comics
+end

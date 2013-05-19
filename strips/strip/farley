@@ -1,0 +1,6 @@
+strip farley
+	desc Farley
+	useclass sfgate-srch
+	$1 $name
+	$2 farley
+end

@@ -1,0 +1,7 @@
+strip coolcat
+	desc Cool Cat Studio
+	type search
+	searchpattern <IMG.+?SRC="(/comics/ccs\d+\..+?)"
+	homepage http://www.coolcatstudio.com/
+	baseurl http://www.coolcatstudio.com/
+end

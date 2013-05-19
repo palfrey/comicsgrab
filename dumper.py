@@ -5,7 +5,10 @@ from google.protobuf.internal.containers import *
 from database import Sqlite as Database
 from optparse import OptionParser
 
-def print_pb_indent(pb,indent="\t"):
+from os.path import join, dirname, exists
+from os import mkdir
+
+def print_pb_indent(fp, pb,indent="\t"):
 	if opts.user:
 		fields = pb.DESCRIPTOR.fields
 	else:
@@ -24,9 +27,9 @@ def print_pb_indent(pb,indent="\t"):
 				use = "subbeg"
 				end = "subend"
 			for v in val:
-				print "%s%s"%(indent,use)
-				print_pb_indent(v,indent+"\t")
-				print "%s%s"%(indent,end)
+				print >> fp, "%s%s"%(indent,use)
+				print_pb_indent(fp, v,indent+"\t")
+				print >> fp, "%s%s"%(indent,end)
 			continue
 		elif fd.enum_type!=None:
 			val = fd.enum_type.values_by_number[val].name
@@ -44,12 +47,16 @@ def print_pb_indent(pb,indent="\t"):
 			name = "$%s"%fd.name[len("_var_"):]
 		else:
 			name = fd.name
-		print "%s%s %s"%(indent,name,str(val))
+		print >>fp, "%s%s %s"%(indent,name,str(val))
 
-def print_pb(kind,pb):
-	print "%s %s"%(kind,pb.name)
-	print_pb_indent(pb)
-	print "end\n"
+def print_pb(folder, pb):
+	path = join(folder, pb.name)
+	if not exists(folder):
+		mkdir(folder)
+	with open(path, "wb") as fp:
+		print >> fp, "%s %s"%(pb.__class__.__name__.lower(),pb.name)
+		print_pb_indent(fp, pb)
+		print >> fp, "end"
 
 parser = OptionParser()
 parser.add_option("-u","--user",dest="user",default=False,action="store_true",help="Dump user database")
@@ -57,8 +64,10 @@ parser.add_option("-d","--db",dest="db",default="comics.db",help="Set database t
 parser.add_option("-m","--module",dest="db_module",default="Sqlite",help="Specify database module")
 (opts,args) = parser.parse_args()
 
-if len(args) != 0:
-	parser.error("dumper doesn't take any non-option arguments!")
+if len(args) != 1:
+	parser.error("Need folder")
+
+folder = args[0]
 
 globals()['Database'] = getattr(__import__('database',globals(),locals(),[opts.db_module],-1),opts.db_module)
 
@@ -67,21 +76,14 @@ if opts.db_module == "Sqlite":
 else:
 	db = Database()
 
-print """# Comics Grabber by Tom Parker <palfrey@tevp.net>
-# http://tevp.net
-#
-# Comics definition file (partially derived from the strips.def at
-# http://dailystrips.sf.net)
-#
-# Released under the GPL Version 2 (http://www.gnu.org/copyleft/gpl.html)
-"""
-
 if opts.user:
 	for user in db.list_users():
 		print_pb("user",db.get_user(user))
 else:
+	if not exists(folder):
+		mkdir(folder)
 	for cl in db.list_classes():
-		print_pb("class",db.get_class(cl))
+		print_pb(join(folder, "class"),db.get_class(cl))
 	for s in db.list_strips():
-		print_pb("strip",db.get_strip(s))
+		print_pb(join(folder, "strip"),db.get_strip(s))
 

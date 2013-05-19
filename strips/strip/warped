@@ -1,0 +1,4 @@
+strip warped
+	desc Warped
+	useclass unitedmedia-srch-comics
+end

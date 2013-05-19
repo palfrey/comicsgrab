@@ -1,0 +1,6 @@
+strip conrad
+	desc Paul Conrad
+	useclass comicspage-editorial-gen
+	$1 conrad
+	$2 con
+end

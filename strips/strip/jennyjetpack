@@ -1,0 +1,5 @@
+strip jennyjetpack
+	desc Jenny Jetpack
+	useclass comics-sherpa-ucomics
+	$1 csymr
+end

@@ -1,0 +1,4 @@
+strip prickly_city
+	desc Prickly City
+	useclass unitedmedia-srch-comics
+end

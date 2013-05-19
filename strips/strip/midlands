@@ -1,0 +1,8 @@
+strip midlands
+	desc Midlands
+	type search
+	searchpattern <img.+?src="(images/comics/midlands\d+\.(?:jpg|gif))"
+	homepage http://themidlands.net/
+	baseurl $homepage
+	days Wed Sat
+end

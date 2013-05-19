@@ -1,0 +1,7 @@
+strip makeshift
+	desc The Makeshift Miracle
+	type search
+	searchpattern <img.+?src="(comics/MM\d+.jpg)"
+	homepage http://www.makeshiftmiracle.com/
+	baseurl $homepage
+end

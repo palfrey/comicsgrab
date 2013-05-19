@@ -1,0 +1,8 @@
+strip dilbert
+	desc Dilbert
+	type search
+	searchpage http://www.dilbert.com/fast/
+	searchpattern \"(/dyn/str_strip/.*?.gif)\"
+	homepage http://www.dilbert.com/
+	baseurl $homepage
+end

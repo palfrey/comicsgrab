@@ -1,0 +1,5 @@
+strip mallardfillmore
+	desc Mallard Fillmore
+	useclass sfgate-gen
+	$1 Mallard_Fillmore
+end

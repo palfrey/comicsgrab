@@ -1,0 +1,5 @@
+strip curtis
+	desc Curtis
+	useclass sfgate-gen
+	$1 $name
+end

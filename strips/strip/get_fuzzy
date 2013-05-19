@@ -1,0 +1,4 @@
+strip get_fuzzy
+	desc Get Fuzzy
+	useclass unitedmedia-srch-comics
+end

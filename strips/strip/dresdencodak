@@ -1,0 +1,7 @@
+strip dresdencodak
+	desc Dresden Codak
+	type search
+	searchpattern <div class=\"comicdate\">.*?</div><h2>.*?(http://dresdencodak.com/[^\"]+)
+	homepage http://dresdencodak.com/
+	baseurl $homepage
+end

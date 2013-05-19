@@ -1,0 +1,19 @@
+strip fragilegravity
+	desc Fragile Gravity
+	type search
+	homepage http://unseenllc.com/
+	days Mo Wed Fri
+	subbeg
+		baseurl $homepage
+		searchpattern <img SRC="(strips/\d+\.gif)"
+	subend
+	subbeg
+		baseurl $homepage
+		searchpattern <IMG SRC=(strips/manual/\d+\.gif)
+	subend
+	subbeg
+		baseurl http://www.drunkduck.com/Fragile_Gravity/
+		searchpattern <img src='(\d{10}.+?\.gif)
+		searchpage http://www.drunkduck.com/Fragile_Gravity/
+	subend
+end

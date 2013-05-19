@@ -1,0 +1,7 @@
+strip soar
+	desc Soap On A Rope
+	homepage http://www.soaprope.com
+	useclass keenspace
+	days Mo-Fri
+	$1 soar
+end

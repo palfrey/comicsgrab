@@ -1,0 +1,7 @@
+strip hots
+	desc Home on the Strange
+	type search
+	searchpattern (http://www.homeonthestrange.com/comics/\d+/\d+-\d+-\d+.png)
+	homepage http://www.homeonthestrange.com/
+	days Mo Wed Fri
+end

@@ -1,0 +1,14 @@
+strip orderofthestick
+	desc Order of the Stick
+	type search
+	searchpage http://www.giantitp.com/$infoval
+	searchpattern (/comics/images/[a-zA-Z\d]+.gif)
+	homepage http://www.giantitp.com/comics/oots.html
+	baseurl http://www.giantitp.com/
+	infopage http://www.giantitp.com/comics/oots.html
+	infoval (comics/oots\d+.html)" class="SideBar"
+	noperl True
+	firstpage http://www.giantitp.com/comics/oots0001.html
+	nextpage <A href="(/comics/oots\d+.html)"><IMG src="/Images/redesign/ComicNav_Next.gif" alt="Next Comic"
+	namepattern /comics/images/([a-zA-Z\d]+).gif
+end

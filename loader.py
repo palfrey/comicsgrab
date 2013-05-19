@@ -2,11 +2,12 @@ from google.protobuf.internal.containers import BaseContainer
 from strips_pb2 import Class,User,Strip,Subsection,_TYPE
 from re import split
 
-def load_data(db, user, deffile):
-	if user:
-		db.clear_users()
-	else:
-		db.clear_strips()
+def load_data(db, user, deffile, clear = True):
+	if clear:
+		if user:
+			db.clear_users()
+		else:
+			db.clear_strips()
 
 	infile = open(deffile)
 	storage = []
@@ -33,6 +34,8 @@ def load_data(db, user, deffile):
 				storage[-1].name = data[1]
 			elif data[0] == 'end':
 				assert len(storage) == 1,storage
+				if db.has_section(storage[0]):
+					db.delete_section(storage[0])
 				db.add_section(storage[0])
 				storage = []
 			else:
@@ -81,6 +84,7 @@ if __name__ == "__main__":
 	parser.add_option("-d","--db",dest="database",default="comics.db",help="Set database to use")
 	parser.add_option("-u","--user",dest="user",default=False,action="store_true",help="Load user database")
 	parser.add_option("-m","--module",dest="db_module",default="Sqlite",help="Specify database module")
+	parser.add_option("--no-clear", dest="clear", default = True, action="store_false")
 	(opts,args) = parser.parse_args()
 
 	if len(args)!=1:
@@ -92,4 +96,4 @@ if __name__ == "__main__":
 		db = Database(opts.database)
 	else:
 		db = Database()
-	load_data(db, opts.user, args[0])
+	load_data(db, opts.user, args[0], clear = opts.clear)

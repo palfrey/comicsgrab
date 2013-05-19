@@ -1,0 +1,5 @@
+strip sixchix
+	desc Six Chix
+	useclass sfgate-gen
+	$1 6Chix
+end

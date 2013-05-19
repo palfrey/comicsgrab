@@ -1,0 +1,5 @@
+strip overboard
+	desc Overboard
+	useclass ucomics-gen
+	$1 ob
+end

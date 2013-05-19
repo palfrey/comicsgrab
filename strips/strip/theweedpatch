@@ -1,0 +1,6 @@
+strip theweedpatch
+	desc The WeedPatch
+	type generate
+	homepage http://www.jpjennings.com/toons/
+	imageurl http://www.jpjennings.com/toons/%m%d%Y.gif
+end

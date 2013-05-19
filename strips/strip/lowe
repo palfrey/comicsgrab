@@ -1,0 +1,6 @@
+strip lowe
+	desc Chan Lowe
+	useclass comicspage-editorial-gen
+	$1 lowe
+	$2 low
+end

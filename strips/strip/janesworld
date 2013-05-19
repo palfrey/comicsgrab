@@ -1,0 +1,4 @@
+strip janesworld
+	desc Jane's World
+	useclass unitedmedia-srch-comics
+end

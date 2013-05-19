@@ -1,0 +1,4 @@
+strip othercoast
+	desc The Other Coast
+	useclass unitedmedia-srch-creators
+end

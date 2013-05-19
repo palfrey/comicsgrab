@@ -1,0 +1,7 @@
+strip offthemark
+	desc Off the Mark
+	type search
+	searchpage $homepage/daily.asp
+	searchpattern <img.+?src="(http://www.offthemark.com/rotate/\d+.gif)"
+	homepage http://www.offthemark.com/
+end

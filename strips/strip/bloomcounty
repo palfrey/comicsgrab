@@ -1,0 +1,4 @@
+strip bloomcounty
+	desc Bloom County
+	useclass ucomics-srch
+end

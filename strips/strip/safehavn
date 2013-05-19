@@ -1,0 +1,5 @@
+strip safehavn
+	desc Safe Havens
+	useclass sfgate-gen
+	$1 Safe_Havens
+end

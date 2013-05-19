@@ -1,0 +1,6 @@
+strip computoon
+	desc Compu-toon
+	useclass comicspage-panels-gen
+	$1 computoon
+	$2 cpt
+end

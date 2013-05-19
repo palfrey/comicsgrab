@@ -1,0 +1,5 @@
+strip stevebenson
+	desc Steve Benson
+	useclass unitedmedia-srch-editoons
+	$1 benson
+end

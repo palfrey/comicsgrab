@@ -1,0 +1,5 @@
+strip marvin
+	desc Marvin
+	useclass washpost-king
+	$1 $name
+end

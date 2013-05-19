@@ -1,0 +1,6 @@
+strip rudypark
+	desc Rudy Park
+	type generate
+	homepage http://www.rudypark.com/
+	imageurl http://www.rudypark.com/comics/rudy%Y%m%d.gif
+end

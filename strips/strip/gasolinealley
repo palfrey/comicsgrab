@@ -1,0 +1,6 @@
+strip gasolinealley
+	desc Gasoline Alley
+	useclass comicspage-strips-gen
+	$1 gasolinealley
+	$2 gas
+end

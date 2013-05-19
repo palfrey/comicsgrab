@@ -1,0 +1,6 @@
+strip jones
+	desc Taylor Jones
+	useclass comicspage-editorial-gen
+	$1 jones
+	$2 jon
+end

@@ -1,0 +1,5 @@
+strip billschorr
+	desc Bill Schorr
+	useclass unitedmedia-srch-editoons
+	$1 schorr
+end

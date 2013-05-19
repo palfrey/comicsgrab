@@ -1,0 +1,6 @@
+strip bottomliners
+	desc Bottom Liners
+	useclass comicspage-panels-gen
+	$1 bottomliners
+	$2 bls
+end

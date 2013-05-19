@@ -1,0 +1,7 @@
+strip houndshome
+	desc Hound's Home
+	type search
+	searchpattern <IMG.+?SRC="/(comics/hh.+?)"
+	homepage http://www.houndshome.com/
+	baseurl $homepage
+end

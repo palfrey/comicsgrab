@@ -1,0 +1,7 @@
+strip coffeeachievers
+	desc The Coffee Achievers
+	type search
+	searchpattern (comics/\d+\.(?:gif|jpg|png))
+	homepage http://www.coffeeachievers.net/
+	baseurl $homepage
+end

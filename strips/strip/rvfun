@@ -1,0 +1,6 @@
+strip rvfun
+	desc Reverend Fun
+	type generate
+	homepage http://rev-fun.gospelcom.net/
+	imageurl http://rev-fun.gospelcom.net/add_toon_info.php?date=%Y%m%d
+end

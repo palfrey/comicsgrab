@@ -1,0 +1,6 @@
+strip wrightd
+	desc Dick Wright
+	useclass comicspage-editorial-gen
+	$1 wrightd
+	$2 dwr
+end

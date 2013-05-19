@@ -1,0 +1,6 @@
+strip madu
+	desc Mad About U
+	homepage http://madaboutu.keenspot.com
+	useclass keenspace
+	$1 
+end

@@ -1,0 +1,5 @@
+strip adamathome
+	desc Adam@home
+	useclass ucomics-gen
+	$1 ad
+end

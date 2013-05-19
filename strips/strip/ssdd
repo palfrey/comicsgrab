@@ -1,0 +1,15 @@
+strip ssdd
+	desc S.S.D.D.
+	type search
+	homepage http://www.poisonedminds.com/
+	baseurl $homepage
+	subbeg
+		searchpattern <img.+?src="(/comics/pm\d{8}.(?:png|jpg|gif))
+	subend
+	subbeg
+		searchpattern <img.+?src="(/comics/ssdd\d{8}.(?:png|jpg|gif))
+	subend
+	subbeg
+		searchpattern <img.+?src="(/comics/Filler\d{8}.(?:png|jpg|gif))
+	subend
+end

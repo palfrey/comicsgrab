@@ -1,0 +1,5 @@
+strip tomthedancingbug
+	desc Tom the Dancing Bug
+	useclass ucomics-srch
+	$1 td
+end

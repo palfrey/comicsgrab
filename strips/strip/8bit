@@ -1,0 +1,7 @@
+strip 8bit
+	desc 8-Bit Theater
+	type search
+	searchpattern <a.+?href="(\d+)\.htm">Newest Comic</a>
+	homepage http://www.nuklearpower.com/comic/
+	imageurl http://www.nuklearpower.com/comic/ep$match.gif
+end

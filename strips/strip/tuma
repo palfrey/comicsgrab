@@ -1,0 +1,8 @@
+strip tuma
+	desc Kevin Tuma Cartoon
+	type search
+	searchpage http://www.cnsnews.com/cartoon/tuma.asp
+	searchpattern <img.+?border="0".+?src="(Tumaimages/%Y/\w+\..+?)"
+	homepage http://www.cnsnews.com/cartoon/Tuma.asp
+	baseurl http://www.cnsnews.com/cartoon/
+end

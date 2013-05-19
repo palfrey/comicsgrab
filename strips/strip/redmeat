@@ -1,0 +1,6 @@
+strip redmeat
+	desc Redmeat
+	type generate
+	homepage http://www.redmeat.com/redmeat/current/
+	imageurl http://www.redmeat.com/redmeat/current/index-1.gif
+end

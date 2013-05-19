@@ -1,0 +1,7 @@
+strip spareparts
+	desc Spare Parts
+	type search
+	searchpattern (http://www.sparepartscomics.com/comics/\d+[^\"\'> ]+)
+	homepage http://www.sparepartscomics.com/
+	noperl True
+end

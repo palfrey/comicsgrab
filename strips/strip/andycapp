@@ -1,0 +1,5 @@
+strip andycapp
+	desc Andy Capp
+	useclass washpost-creators
+	$1 cap
+end

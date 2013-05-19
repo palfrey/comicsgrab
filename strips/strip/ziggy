@@ -1,0 +1,5 @@
+strip ziggy
+	desc Ziggy
+	useclass ucomics-gen
+	$1 zi
+end

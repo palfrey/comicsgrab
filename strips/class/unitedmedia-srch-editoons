@@ -1,0 +1,6 @@
+class unitedmedia-srch-editoons
+	type search
+	searchpattern <img src="(/editoons/$1/archive/images/$1\d+\..+?)"
+	homepage http://www.unitedmedia.com/editoons/$1/index.html
+	baseurl http://www.unitedmedia.com
+end

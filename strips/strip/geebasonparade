@@ -1,0 +1,6 @@
+strip geebasonparade
+	desc Geebas on Parade
+	homepage http://geebasonparade.keenspot.com
+	useclass keenspace
+	$1 
+end

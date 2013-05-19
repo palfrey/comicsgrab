@@ -1,0 +1,6 @@
+strip loveis
+	desc Love Is...
+	useclass comicspage-panels-gen
+	$1 loveis
+	$2 lis
+end

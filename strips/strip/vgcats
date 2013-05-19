@@ -1,0 +1,8 @@
+strip vgcats
+	desc VGCats
+	type search
+	searchpattern <img[^s]+?src=[\n\r]*"(images/[^\"]+)"
+	homepage http://www.vgcats.com/comics/
+	baseurl $homepage
+	days Mon
+end

@@ -1,0 +1,6 @@
+strip reslife
+	desc Residence Life
+	homepage http://www.reslifecomics.com
+	useclass keenspace
+	$1 
+end

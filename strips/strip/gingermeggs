@@ -1,0 +1,4 @@
+strip gingermeggs
+	desc Ginger Meggs
+	useclass unitedmedia-srch-comics
+end

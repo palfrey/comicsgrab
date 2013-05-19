@@ -1,0 +1,5 @@
+strip misterboffo
+	desc Mister Boffo
+	useclass ucomics-gen
+	$1 mb
+end
