@@ -2,10 +2,10 @@ strip gg101
 	desc Girl Genius: 101
 	type search
 	searchpattern (http://www.girlgeniusonline.com/ggmain/strips/gg[a-z]+[a-z\d]+\.jpg)
-	firstpage http://www.girlgeniusonline.com/comic.php?date=20021104
-	namepattern ggmain(\d{8}[a-z]*).jpg
-	nextpage <a href='(http://www.girlgeniusonline.com/comic.php\?date=\d{8})'><img border=0 alt='The Next Comic'
 	homepage http://www.girlgeniusonline.com/comic.php
 	days Mo Wed Fri
 	noperl True
+	firstpage http://www.girlgeniusonline.com/comic.php?date=20021104
+	nextpage <a href='(http://www.girlgeniusonline.com/comic.php\?date=\d{8})'><img border=0 alt='The Next Comic'
+	namepattern ggmain(\d{8}[a-z]*).jpg
 end
