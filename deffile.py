@@ -60,6 +60,9 @@ class ComicsDef:
 
 	def store_err(self,strip,level,msg):
 		print msg
+		error_path = os.path.join(self.directory, "%s-error"%strip)
+		with open(error_path, "a") as error_file:
+			error_file.write("%d: %s"%(level, msg))
 		msg = strip+" : "+str(msg)
 		self.errors.append((level,msg))
 
@@ -97,6 +100,7 @@ class ComicsDef:
 		search = gen_search(g,self.db,now,self.cache)
 		if not os.path.exists(directory):
 			os.makedirs(directory)
+		self.directory = directory
 
 		current = g.firstpage
 
@@ -201,6 +205,7 @@ class ComicsDef:
 
 	def update(self,directory,strips=None,user=None,now=DateManip(), all_users=False):
 		self.now = now
+		self.directory = os.path.join(directory,self.now.strftime("%Y-%m-%d"+os.sep))
 		self.errors = []
 		c = CalcWeek(self.now)
 		print self.now.strftime("%Y/%m/%d")
