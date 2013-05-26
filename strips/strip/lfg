@@ -4,14 +4,14 @@ strip lfg
 	homepage http://lfgcomic.com/
 	days mon thu
 	subbeg
-		searchpattern src="(http://www.lfgcomic.com/wp-content/uploads/\d+/\d+/.+?\.gif)" class="attachment-post-thumbnail wp-post-image"
+		searchpattern src="(http://www.lfgcomic.com/wp-content/uploads/\d+/\d+/.+?\.(?:gif|jpg))" class="attachment-post-thumbnail wp-post-image"
 	subend
 	subbeg
 		baseurl $homepage
 		searchpattern (comics/lfg\d+.gif)
 	subend
 	noperl True
-	firstpage http://www.lfgcomic.com/page/402/
+	firstpage http://www.lfgcomic.com/page/1
 	nextpage <a href="(http://www.lfgcomic.com/page/\d+[^"]*?/)" id="navtop-next" title="Next Page">Next</a>
-	namepattern src="http://www.lfgcomic.com/wp-content/uploads/\d+/\d+/(?:.+?-)?(\d+).gif" class="attachment-post-thumbnail wp-post-image"
+	namepage page/(\d+)[^"]*?
 end
