@@ -18,6 +18,7 @@ import database
 import settings
 from time import sleep
 from glob import glob
+import urlgrab
 
 class ComicsDef:
 	def __init__(self,deffile,cachedir,debug=0,proxy=None, db=None, module="Sqlite", archive = False):
@@ -60,9 +61,12 @@ class ComicsDef:
 
 	def store_err(self,strip,level,msg):
 		print msg
-		error_path = os.path.join(self.directory, "%s-error"%strip)
-		with open(error_path, "a") as error_file:
-			error_file.write("%d: %s"%(level, msg))
+		if level > 1:
+			if not os.path.exists(self.directory):
+				os.makedirs(self.directory)
+			error_path = os.path.join(self.directory, "%s-error"%strip)
+			with open(error_path, "a") as error_file:
+				error_file.write("%d: %s"%(level, msg))
 		msg = strip+" : "+str(msg)
 		self.errors.append((level,msg))
 
@@ -70,6 +74,9 @@ class ComicsDef:
 		try:
 			return self.cache.get_mult(url,ref,count=2)
 		except urlcache.CacheError,err:
+			self.store_err(strip,3,err)
+			return None
+		except urlgrab.URLTimeoutError, err:
 			self.store_err(strip,3,err)
 			return None
 

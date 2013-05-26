@@ -61,6 +61,9 @@ def comicsapp(environ, start_response):
 				if items != []:
 					print >> ret, "<h3><a href=\"%s\">%s</a></h3>"%(st.homepage,st.desc)
 					for s in sorted(items):
+						if s.endswith("error"):
+							print >> ret, open(s).read()
+							continue
 						if Image and st.zoom != 1.0:
 							dimensions = [x*st.zoom for x in Image.open(s).size]
 							print >> ret,"<img src=\"%s\" width=\"%d\" height=\"%d\"/><br />\n"%(s,dimensions[0],dimensions[1])
