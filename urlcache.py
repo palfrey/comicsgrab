@@ -114,7 +114,7 @@ class URLCache:
 			try:
 				ut = URLTimeout() 
 				ut.setTimeout(120)
-				data = ut.get(url,ref=ref,proxy=self.proxy)
+				data = ut.get(url,ref=ref,proxy=self.proxy, headers = {"User-Agent":"Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1229.94 Safari/537.4"})
 			except urllib2.HTTPError,err:
 				if err.code==404:
 					return None
