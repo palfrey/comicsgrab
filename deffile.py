@@ -19,6 +19,7 @@ import settings
 from time import sleep
 from glob import glob
 import urlgrab
+from codecs import open
 
 class ComicsDef:
 	def __init__(self,deffile,cachedir,debug=0,proxy=None, db=None, module="Sqlite", archive = False):
@@ -158,7 +159,7 @@ class ComicsDef:
 							np = list(set(re.findall(data["namepattern"], content, re.IGNORECASE | re.DOTALL | re.MULTILINE)))
 						else:
 							raise Exception, data
-						file("dump","wb").write(content)
+						open("dump","wb", "utf-8").write(content)
 					
 						assert len(np) >=1, (data["namepattern"], np)
 						names = np
