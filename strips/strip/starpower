@@ -1,0 +1,6 @@
+strip starpower
+	homepage http://www.starpowercomic.com/
+	type search
+	searchpattern (http://www.starpowercomic.com/comics/[\d-]+.jpg)
+	days Mo Wed Fri
+end

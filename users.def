@@ -13,7 +13,8 @@ user extras
 end
 
 user palfrey
-	include ctrlaltdel dilbert dominicdeegan ffn foxtrot headtrip nemi phd precocious qc schlockmercenary skinhorse somethingpositive subnormality twolumps uh2 userfriendly xkcd
+	include ctrlaltdel dilbert ffn foxtrot phd precocious qc schlockmercenary skinhorse somethingpositive subnormality twolumps uh2 xkcd
+	include gg101 orderofthestick scenes-from-a-multiverse starpower
 	password 
 	enabled True
 end
