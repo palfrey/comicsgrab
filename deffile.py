@@ -304,7 +304,7 @@ class ComicsDef:
 								print "found",folder
 							found_last = True
 							
-			if len(found)==0:
+			if len([x for x in found if not x.endswith("-error")]) == 0:
 				get = []
 				tried = 0
 				for s in get_searches(g,search):
