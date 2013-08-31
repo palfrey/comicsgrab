@@ -87,8 +87,8 @@ if __name__ == "__main__":
 	parser.add_option("--no-clear", dest="clear", default = True, action="store_false")
 	(opts,args) = parser.parse_args()
 
-	if len(args)!=1:
-		parser.error("Need a definitions file!")
+	if len(args) == 0:
+		parser.error("Need definitions file(s)!")
 
 	globals()['Database'] = getattr(__import__('database',globals(),locals(),[opts.db_module]),opts.db_module)
 
@@ -96,4 +96,8 @@ if __name__ == "__main__":
 		db = Database(opts.database)
 	else:
 		db = Database()
-	load_data(db, opts.user, args[0], clear = opts.clear)
+	
+	clear = opts.clear
+	for a in args:
+		load_data(db, opts.user, a, clear = clear)
+		clear = False
