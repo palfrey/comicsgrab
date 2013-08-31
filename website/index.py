@@ -60,9 +60,12 @@ def comicsapp(environ, start_response):
 				items = glob(join(todaypath,"%s-*"%strip))
 				if items != []:
 					print >> ret, "<h3><a href=\"%s\">%s</a></h3>"%(st.homepage,st.desc)
+
+					onlyerror = len([x for x in items if not x.endswith("error")]) == 0
 					for s in sorted(items):
 						if s.endswith("error"):
-							print >> ret, open(s).read()
+							if onlyerror:
+								print >> ret, open(s).read()
 							continue
 						if Image and st.zoom != 1.0:
 							dimensions = [x*st.zoom for x in Image.open(s).size]
