@@ -7,14 +7,14 @@
 # Released under the GPL Version 2 (http://www.gnu.org/copyleft/gpl.html)
 
 user extras
-	include techfox ableandbaker alp applegeeks betterdays countyoursheep crapidrew courtingdisaster dandy devilspanties dmfa dorktower dresdencodak evilinc exterminatusnow extralife flem fragilegravity freefall fwf garfield geebasonparade gg101 ghastly goats goobs gpf gws hatesong helpdesk kevinandkell leasticoulddo lfg luann megatokyo midlands namirdeiter nn2s nodwick nonsequitur nukees octopuspie okcancel orderofthestick pennyarcade pvp reallife sinfest soar somethinghappens spareparts ssdd starslipcrisis treadingground turnsignals  underpower unshelved vgcats whiteboard wotch wulff yht zebragirl
+	include alp applegeeks betterdays countyoursheep crapidrew dandy devilspanties dmfa dorktower dresdencodak evilinc exterminatusnow extralife fragilegravity freefall fwf garfield geebasonparade  ghastly goats goobs gpf gws helpdesk kevinandkell leasticoulddo lfg luann megatokyo namirdeiter nodwick nonsequitur nukees octopuspie okcancel pennyarcade pvp reallife sinfest somethinghappens spareparts ssdd starslipcrisis treadingground turnsignals  underpower unshelved vgcats whiteboard wotch wulff zebragirl
 	password 
 	enabled True
 end
 
 user palfrey
 	include ctrlaltdel dilbert ffn foxtrot phd precocious qc schlockmercenary skinhorse somethingpositive subnormality twolumps uh2 xkcd
-	include gg101 orderofthestick scenes-from-a-multiverse starpower
+	include gg101 orderofthestick scenes-from-a-multiverse starpower sfp
 	password 
 	enabled True
 end
