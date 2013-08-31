@@ -123,8 +123,9 @@ class ComicsDef:
 				if self.debug>=4:
 					print "data",data
 				searchpage = data["searchpage"]
+				assert len(searchpage)>0
 				while True:
-					print "Getting (searchpage)", searchpage
+					print "Getting (searchpage) '%s'"% searchpage
 					page = self.get_url(g.name,searchpage,ref=searchpage)
 					if page==None:# and page.status != urlcache.URLCache.STAT_UNCHANGED:
 						print "Got no page at all!"
@@ -318,6 +319,7 @@ class ComicsDef:
 						if self.debug>=4:
 							print "data",data
 						searchpage = data["searchpage"]
+						assert searchpage != ""
 						print "Getting (searchpage)",searchpage
 						page = self.get_url(g.name,searchpage,ref=searchpage)
 						if page!=None:# and page.status != urlcache.URLCache.STAT_UNCHANGED:
