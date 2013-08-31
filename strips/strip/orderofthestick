@@ -7,7 +7,6 @@ strip orderofthestick
 	baseurl http://www.giantitp.com/
 	infopage http://www.giantitp.com/comics/oots.html
 	infoval (comics/oots\d+.html)" class="SideBar"
-	noperl True
 	firstpage http://www.giantitp.com/comics/oots0001.html
 	nextpage <A href="(/comics/oots\d+.html)"><IMG src="/Images/redesign/ComicNav_Next.gif" alt="Next Comic"
 	namepage (oots\d+)
