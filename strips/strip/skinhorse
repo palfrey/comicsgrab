@@ -1,6 +1,6 @@
 strip skinhorse
 	desc Skin Horse
 	type search
-	searchpattern (http://skin-horse.com/comics/[^\"]*?.(?:jpg|gif|png))"
+	searchpattern <img src="(http://skin-horse.com/wp-content/uploads/[^\"]+)
 	homepage http://skin-horse.com/
 end
