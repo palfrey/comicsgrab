@@ -409,7 +409,12 @@ class ComicsDef:
 				print "We found",found
 				if not oldstuff:
 					htmlout.write("<h3><a href=\""+g.homepage+"\">"+g.desc+"</a></h3>\n")
+					onlyerror = len([x for x in found if not x.endswith("error")]) == 0
 					for f in found:
+						if f.endswith("error"):
+							if onlyerror:
+								htmlout.write(open(s).read())
+							continue						
 						if Image:
 							dimensions = [x*g.zoom for x in Image.open(os.path.join(directory,f)).size]
 							htmlout.write("<img src=\"%s\" width=\"%d\" height=\"%d\"/><br />\n"%(f.replace(os.sep,"/"),dimensions[0],dimensions[1]))
