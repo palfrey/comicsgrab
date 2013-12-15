@@ -67,7 +67,8 @@ def gen_search(strip,db,now,cache, search = None):
 			check = re.search(val,data).groups()[0]
 			strip.infoval = check
 		except CacheError,e:
-			print "error while getting infoval",str(e)
+			print "error while getting infoval '%s'"%page, str(e)
+			raise
 				
 class search:
 	def __init__(self,parent):
