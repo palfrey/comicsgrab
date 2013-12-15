@@ -1,7 +1,7 @@
 strip sfp
 	desc Strong Female Protagonist
 	type search
-	searchpattern (http://strongfemaleprotagonist.com/wp-content/uploads/\d+/\d+/SFP.+?\.jpg)
+	searchpattern (http://strongfemaleprotagonist.com/wp-content/uploads/\d+/\d+/SFP.+?\.(?:jpg|png))
 	homepage http://strongfemaleprotagonist.com/
 	noperl True
 	days Tues Thu
