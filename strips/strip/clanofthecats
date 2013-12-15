@@ -1,0 +1,6 @@
+strip clanofthecats
+	desc Clan of the cats
+	type generate
+	homepage http://www.clanofthecats.com/
+	imageurl http://www.clanofthecats.com/comics/%Y%m%da.gif
+end

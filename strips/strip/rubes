@@ -1,0 +1,4 @@
+strip rubes
+	desc Rubes
+	useclass unitedmedia-srch-creators
+end

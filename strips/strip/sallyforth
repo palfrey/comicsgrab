@@ -1,0 +1,5 @@
+strip sallyforth
+	desc Sally Forth
+	useclass sfgate-gen
+	$1 Sally_Forth
+end

@@ -1,0 +1,5 @@
+strip blondie
+	desc Blondie
+	useclass sfgate-gen
+	$1 $name
+end

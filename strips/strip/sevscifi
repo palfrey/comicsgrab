@@ -1,0 +1,6 @@
+strip sevscifi
+	desc Sev Sci-Fi TV
+	type generate
+	homepage http://www.sev.com.au/toonzone/
+	imageurl http://www.sev.com.au/toonzone/scifitv.jpg
+end

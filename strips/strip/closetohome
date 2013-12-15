@@ -1,0 +1,5 @@
+strip closetohome
+	desc Close to Home
+	useclass ucomics-gen
+	$1 cl
+end

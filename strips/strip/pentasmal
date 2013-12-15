@@ -1,0 +1,6 @@
+strip pentasmal
+	desc Pentasmal
+	type generate
+	homepage http://www.pentasmal.com/
+	imageurl http://www.pentasmal.com/comics/%Y%m%d.png
+end

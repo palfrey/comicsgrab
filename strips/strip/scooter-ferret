@@ -1,0 +1,7 @@
+strip scooter-ferret
+	desc Scooter & Ferret
+	type search
+	searchpattern (comic_strip/scooter_ferret_\d+_\d+_\d+[^\"]*)
+	homepage http://www.scooterandferret.com/
+	baseurl $homepage
+end

@@ -1,0 +1,12 @@
+strip walky
+	desc It's Walky
+	type search
+	homepage http://www.itswalky.com
+	baseurl $homepage
+	subbeg
+		searchpattern <img.+?SRC="(/comics/.+?)"
+	subend
+	subbeg
+		searchpattern document.write\('<img.+?SRC="(/comics/.+?)"
+	subend
+end

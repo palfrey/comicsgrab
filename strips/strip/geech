@@ -1,0 +1,4 @@
+strip geech
+	desc Geech
+	useclass unitedmedia-srch-comics
+end

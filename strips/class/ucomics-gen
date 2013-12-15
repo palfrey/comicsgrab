@@ -1,0 +1,5 @@
+class ucomics-gen
+	type generate
+	homepage http://www.ucomics.com/$strip/
+	imageurl http://images.ucomics.com/comics/$1/%Y/$1%y%m%d.gif
+end

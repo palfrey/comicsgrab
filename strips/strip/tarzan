@@ -1,0 +1,4 @@
+strip tarzan
+	desc Tarzan
+	useclass unitedmedia-srch-comics
+end

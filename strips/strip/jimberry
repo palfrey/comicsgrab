@@ -1,0 +1,5 @@
+strip jimberry
+	desc Jim Berry
+	useclass unitedmedia-srch-editoons
+	$1 berry
+end

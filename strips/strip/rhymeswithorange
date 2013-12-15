@@ -1,0 +1,5 @@
+strip rhymeswithorange
+	desc Rhymes with Orange
+	useclass sfgate-gen
+	$1 Rhymes_with_Orange
+end

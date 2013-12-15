@@ -1,0 +1,16 @@
+strip techfox
+	desc 20th Century Fox
+	type search
+	homepage http://techfox.comicgenesis.com
+	days Mo Wed Fri
+	subbeg
+		baseurl $searchpage
+		searchpattern <(?:IMG|img)[^S]*src="(/images/tf[^\"]*)"
+		searchpage http://techfox.comicgenesis.com
+	subend
+	subbeg
+		baseurl $searchpage
+		searchpattern <(?:IMG|img)[^S]*src="(comics/tf[^\"]*)"
+		searchpage http://www.hirezfox.com/21cf/
+	subend
+end

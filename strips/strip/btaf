@@ -1,0 +1,7 @@
+strip btaf
+	desc Bob, The Angry Flower
+	type search
+	searchpattern <a.+?href="bobsqu.gif">.*?<a href="([^"]*\.gif)"
+	homepage http://angryflower.com/
+	baseurl http://angryflower.com/
+end

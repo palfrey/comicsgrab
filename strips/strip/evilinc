@@ -1,0 +1,6 @@
+strip evilinc
+	desc Evil Inc
+	homepage http://www.evil-comic.com
+	useclass keenspace
+	$1 e
+end

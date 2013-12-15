@@ -1,0 +1,6 @@
+strip bound
+	desc Bound and Gagged
+	useclass comicspage-strips-gen
+	$1 bound
+	$2 bgg
+end

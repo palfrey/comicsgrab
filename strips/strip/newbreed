@@ -1,0 +1,5 @@
+strip newbreed
+	desc New Breed
+	useclass sfgate-gen
+	$1 New_Breed
+end

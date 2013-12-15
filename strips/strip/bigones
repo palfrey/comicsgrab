@@ -1,0 +1,6 @@
+strip bigones
+	desc Big Ones
+	type generate
+	homepage http://otakufeh.comicgenesis.com/
+	imageurl $homepage/comics/big%Y%m%d.gif
+end

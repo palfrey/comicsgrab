@@ -1,0 +1,7 @@
+strip rpgworld
+	desc RPG World
+	type search
+	searchpattern <IMG.+?SRC="(/comics/.+?\..+?)"
+	homepage http://www.rpgworldcomic.com/
+	baseurl $homepage
+end

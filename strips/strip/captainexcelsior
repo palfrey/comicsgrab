@@ -1,0 +1,7 @@
+strip captainexcelsior
+	desc Captain Excelsior
+	type search
+	searchpattern (comics/\d+ce.jpg)
+	homepage http://www.captainexcelsior.com/
+	baseurl $homepage
+end

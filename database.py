@@ -39,6 +39,22 @@ class Database:
 	def clear_users(self):
 		self._clear_tables(("users",))
 
+	def has_section(self, s):
+		if isinstance(s, Strip):
+			ret = self._cur.execute("select 1 from "+self.prefix+"strips where name = '%s'"%s.name)
+			return len(ret.fetchall()) == 1
+		elif isinstance(s, Class):
+			ret = self._cur.execute("select 1 from "+self.prefix+"classes where name = '%s'"%s.name)
+			return len(ret.fetchall()) == 1
+		else:
+			raise Exception,(s,type(s))
+
+	def delete_section(self, s):
+		if isinstance(s, Strip):
+			self._cur.execute("delete from "+self.prefix+"strips where name = '%s'"%s.name)
+		else:
+			raise Exception,(s,type(s))
+
 	def add_section(self, s):
 		if isinstance(s,Strip):
 			self._cur.execute("insert into "+self.prefix+"strips values ("+self.replace_str+","+self.replace_str+","+self.replace_str+","+self.replace_str+")",(s.name,s.desc,s.homepage,self.binary(s.SerializeToString())))

@@ -1,0 +1,7 @@
+strip headtrip
+	desc Head Trip
+	homepage http://cdn.headtrip.keenspot.com
+	useclass keenspace
+	days Mon Wed Fri
+	$1 
+end

@@ -1,0 +1,5 @@
+strip theduplex
+	desc The Duplex
+	useclass ucomics-gen
+	$1 dp
+end

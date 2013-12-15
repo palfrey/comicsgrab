@@ -1,0 +1,5 @@
+strip zits
+	desc Zits
+	useclass sfgate-gen
+	$1 $name
+end

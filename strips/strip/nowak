@@ -1,0 +1,7 @@
+strip nowak
+	desc Paul Nowak Cartoon
+	type search
+	searchpattern <img.+?border="0".+?src="(Nowakimages/%Y/\w+\..+?)"
+	homepage http://www.cnsnews.com/cartoon/nowak.asp
+	baseurl http://www.cnsnews.com/cartoon/
+end

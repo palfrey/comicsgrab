@@ -1,0 +1,5 @@
+strip nonsequitur
+	desc Non Sequitur
+	useclass ucomics-gen
+	$1 nq
+end

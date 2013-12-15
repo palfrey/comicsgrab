@@ -1,0 +1,5 @@
+strip mikesmith
+	desc Mike Smith
+	useclass unitedmedia-srch-editoons
+	$1 smith
+end

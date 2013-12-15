@@ -1,0 +1,8 @@
+strip starslipcrisis
+	desc Starslip Crisis
+	type search
+	searchpattern (comics/ssc\d+[^\"]+)"
+	homepage http://www.starslipcrisis.com/
+	baseurl $homepage
+	days Mo-Fri
+end

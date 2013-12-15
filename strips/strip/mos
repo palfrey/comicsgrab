@@ -1,0 +1,8 @@
+strip mos
+	desc A Miracle Of Science
+	type search
+	searchpattern (manga/mos\d+.jpg)
+	homepage http://www.project-apollo.net/mos/
+	baseurl $homepage
+	days Mon Thu
+end

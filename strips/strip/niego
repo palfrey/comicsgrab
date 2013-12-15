@@ -1,0 +1,7 @@
+strip niego
+	desc Niego
+	type search
+	searchpattern (http://www.niego.org/comic/comic\d+.gif)
+	homepage http://www.niego.org/
+	days Mon Wed Fri
+end

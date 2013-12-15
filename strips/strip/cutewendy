@@ -1,0 +1,6 @@
+strip cutewendy
+	desc CuteWendy
+	type generate
+	homepage http://www.wendycomic.com/
+	imageurl http://www.wendycomic.com/comics/wendy%Y%m%d.gif
+end

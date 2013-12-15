@@ -1,0 +1,6 @@
+strip elflife
+	desc Elf Life
+	type generate
+	homepage http://www.elflife.com/
+	imageurl http://www.elflife.com/comics/%Y%m%dm.gif
+end

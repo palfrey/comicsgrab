@@ -1,0 +1,7 @@
+strip freckles
+	desc Freckles and His Friends
+	type search
+	searchpattern <IMG.+?SRC="(/comics/freckles/archive/images/freckles.+?\..+?)"
+	homepage http://www.unitedmedia.com/comics/freckles/index.html
+	baseurl http://www.unitedmedia.com
+end

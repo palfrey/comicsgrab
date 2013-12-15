@@ -1,0 +1,7 @@
+strip acidreflux
+	desc Acid Reflux
+	type search
+	searchpattern <img.+?src="(archive/c\d+\..+?)"
+	homepage http://www.acidrefluxcomic.com/
+	baseurl http://www.acidrefluxcomic.com/
+end

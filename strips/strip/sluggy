@@ -1,0 +1,6 @@
+strip sluggy
+	desc Sluggy Freelance
+	type search
+	searchpattern <img.+?src="(http://pics.sluggy.com/comics/.+?\.(?:gif|jpg))"
+	homepage http://www.sluggy.com/
+end

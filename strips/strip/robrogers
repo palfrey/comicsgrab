@@ -1,0 +1,5 @@
+strip robrogers
+	desc Rob Rogers
+	useclass unitedmedia-srch-editoons
+	$1 rogers
+end

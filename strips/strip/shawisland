@@ -1,0 +1,8 @@
+strip shawisland
+	desc Shaw Island
+	type search
+	searchpattern <img.+?src="(strips/shaw\d+\.(?:jpg|png))"
+	homepage http://www.shaw-island.com/
+	baseurl $homepage
+	days Mo-Fri
+end

@@ -1,0 +1,5 @@
+strip jeffstahler
+	desc Jeff Stahler
+	useclass unitedmedia-srch-editoons
+	$1 stahler
+end

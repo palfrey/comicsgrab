@@ -1,0 +1,6 @@
+strip wasserman
+	desc Dan Wasserman
+	useclass comicspage-editorial-gen
+	$1 wasserman
+	$2 was
+end

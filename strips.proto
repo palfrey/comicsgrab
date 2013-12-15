@@ -68,4 +68,5 @@ message Strip
 	optional string firstpage = 23;
 	optional string nextpage = 24;
 	optional string namepattern = 25;
+	optional string namepage = 26;
 }

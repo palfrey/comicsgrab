@@ -1,0 +1,5 @@
+strip crankshaft
+	desc Crankshaft
+	useclass ucomics-gen
+	$1 cs
+end

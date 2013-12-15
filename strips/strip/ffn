@@ -1,0 +1,6 @@
+strip ffn
+	desc Full Frontal Nerdity
+	type search
+	searchpattern <img src="(http://ffn.nodwick.com/ffnstrips/[^\"]*)
+	homepage http://ffn.nodwick.com/
+end

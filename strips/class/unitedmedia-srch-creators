@@ -1,0 +1,6 @@
+class unitedmedia-srch-creators
+	type search
+	searchpattern <img.+?src="?(/creators/$strip/archive/images/.+?\.(gif|jpg))"?
+	homepage http://www.unitedmedia.com/creators/$strip/index.html
+	baseurl http://www.unitedmedia.com
+end

@@ -1,0 +1,13 @@
+strip freefall
+	desc Freefall
+	type search
+	homepage http://freefall.purrsia.com
+	baseurl $homepage
+	days Mo Wed Fri
+	subbeg
+		searchpattern <img src="(/ff\d+/fv\d+.gif)"
+	subend
+	subbeg
+		searchpattern <img src="(/ff\d+/fc\d+.png)"
+	subend
+end

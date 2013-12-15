@@ -1,0 +1,6 @@
+strip davies
+	desc Matt Davies
+	useclass comicspage-editorial-gen
+	$1 davies
+	$2 dav
+end

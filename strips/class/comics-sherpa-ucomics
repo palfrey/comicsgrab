@@ -1,0 +1,5 @@
+class comics-sherpa-ucomics
+	type search
+	searchpattern <img.+?src="(http://images.ucomics.com/comics/$1/\d{4}/$1\d{6}.gif)
+	homepage http://www.comicssherpa.com/site/feature?uc_comic=$1
+end

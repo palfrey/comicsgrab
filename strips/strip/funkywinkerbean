@@ -1,0 +1,5 @@
+strip funkywinkerbean
+	desc Funky Winkerbean
+	useclass sfgate-gen
+	$1 Funky_Winkerbean
+end

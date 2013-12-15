@@ -1,0 +1,7 @@
+strip dandy
+	desc Dandy and Company
+	type search
+	searchpattern (http://www.dandyandcompany.com/(?:images|strips)/.*?(?:gif|jpg))
+	index 1
+	homepage http://www.dandyandcompany.com/
+end

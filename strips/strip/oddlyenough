@@ -1,0 +1,5 @@
+strip oddlyenough
+	desc Oddly Enough
+	useclass ucomics-gen
+	$1 oe
+end

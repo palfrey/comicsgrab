@@ -1,0 +1,4 @@
+strip betty
+	desc Betty
+	useclass unitedmedia-srch-comics
+end

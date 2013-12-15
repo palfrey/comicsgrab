@@ -1,0 +1,5 @@
+strip cathy
+	desc Cathy
+	useclass ucomics-gen
+	$1 ca
+end

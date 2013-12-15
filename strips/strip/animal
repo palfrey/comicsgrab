@@ -1,0 +1,6 @@
+strip animal
+	desc Animal Crackers
+	useclass comicspage-strips-gen
+	$1 animal
+	$2 ack
+end

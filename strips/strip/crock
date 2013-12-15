@@ -1,0 +1,5 @@
+strip crock
+	desc Crock
+	useclass sfgate-gen
+	$1 $name
+end

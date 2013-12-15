@@ -1,0 +1,6 @@
+strip fred
+	desc Fred Basset
+	useclass comicspage-strips-gen
+	$1 fred
+	$2 fbt
+end

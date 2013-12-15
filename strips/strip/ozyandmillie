@@ -1,0 +1,7 @@
+strip ozyandmillie
+	desc Ozy and Millie
+	type search
+	searchpattern (/comics/om\d+[^\"]+)
+	homepage http://www.ozyandmillie.org/
+	baseurl $homepage
+end

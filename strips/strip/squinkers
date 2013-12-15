@@ -1,0 +1,6 @@
+strip squinkers
+	desc Squinkers
+	type generate
+	homepage http://www.squinkers.com/
+	imageurl http://www.squinkers.com/sqkrs/Images/today.gif
+end

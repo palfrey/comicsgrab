@@ -1,0 +1,6 @@
+class washpost-king
+	type generate
+	homepage http://www.washingtonpost.com/wp-srv/style/comics/king.htm?$1
+	imageurl http://est.rbma.com/content/$1
+	prefetch $homepage
+end

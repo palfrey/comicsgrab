@@ -1,0 +1,7 @@
+strip spiderman
+	desc Spider Man
+	type search
+	searchpage http://www.kingfeatures.com/features/comics/spidermn/aboutMaina.php
+	searchpattern <img.+?src='(http://est.rbma.com/content/Spiderman\?date=\d{8})'
+	homepage http://www.kingfeatures.com/features/comics/spidermn/about.htm
+end

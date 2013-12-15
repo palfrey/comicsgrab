@@ -1,0 +1,5 @@
+strip reallifeadventures
+	desc Real Life Adventures
+	useclass ucomics-gen
+	$1 rl
+end

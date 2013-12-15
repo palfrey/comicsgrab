@@ -1,0 +1,4 @@
+strip pickles
+	desc Pickles
+	useclass unitedmedia-srch-comics
+end

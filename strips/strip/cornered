@@ -1,0 +1,5 @@
+strip cornered
+	desc Cornered
+	useclass ucomics-gen
+	$1 co
+end

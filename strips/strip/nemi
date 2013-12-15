@@ -1,0 +1,9 @@
+strip nemi
+	desc Nemi
+	type search
+	searchpattern (http://img.metro.co.uk//?i/pix/cartoons/nemi/[^\"]*)
+	index 1
+	homepage http://www.metro.co.uk/games/nemi
+	days Mon-Fri
+	zoom 1.5
+end

@@ -1,0 +1,13 @@
+strip 8oclock
+	desc 8 o'clock Classes
+	type search
+	homepage http://www.8oclockclasses.com/
+	baseurl $homepage
+	days Mo Wed Fri
+	subbeg
+		searchpattern <a id="imgComic" href="(/images/comics/large/[^\"]+?)"
+	subend
+	subbeg
+		searchpattern <img src="(/images/comics/.+?)"
+	subend
+end

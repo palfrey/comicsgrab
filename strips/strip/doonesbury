@@ -1,0 +1,5 @@
+strip doonesbury
+	desc Doonesbury
+	useclass ucomics-gen
+	$1 db
+end

@@ -1,0 +1,5 @@
+strip calvinandhobbes
+	desc Calvin and Hobbes
+	useclass ucomics-srch
+	$1 ch
+end

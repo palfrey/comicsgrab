@@ -1,0 +1,7 @@
+strip courtingdisaster
+	desc Courting Disaster
+	homepage http://www.courting-disaster.com/
+	useclass keenspace
+	days Fri
+	$1 cd
+end

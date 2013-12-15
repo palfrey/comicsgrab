@@ -1,0 +1,5 @@
+strip heartofthecity
+	desc Heart of the City
+	useclass ucomics-gen
+	$1 hc
+end

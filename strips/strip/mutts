@@ -1,0 +1,5 @@
+strip mutts
+	desc Mutts
+	useclass sfgate-gen
+	$1 $name
+end

@@ -1,0 +1,6 @@
+strip superosity
+	desc Superosity
+	type generate
+	homepage http://www.superosity.com/
+	imageurl http://www.superosity.com/comics/sup%Y%m%d.gif
+end

@@ -1,0 +1,8 @@
+strip pcnpixel
+	desc PC and Pixel
+	type search
+	searchpage http://www.pccomix.com/PCandPixel/pc_dailystrip/PCdaily.html
+	searchpattern <p><img SRC="(pc\w+.gif)".+?WIDTH=
+	homepage http://www.pccomix.com/PCandPixel/
+	baseurl http://www.pccomix.com/PCandPixel/pc_dailystrip/
+end

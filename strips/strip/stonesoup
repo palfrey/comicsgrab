@@ -1,0 +1,5 @@
+strip stonesoup
+	desc Stone Soup
+	useclass ucomics-gen
+	$1 ss
+end

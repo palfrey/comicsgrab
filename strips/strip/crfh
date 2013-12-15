@@ -1,0 +1,6 @@
+strip crfh
+	desc College Roomies from Hell
+	homepage http://www.crfh.net
+	useclass keenspace
+	$1 crfh
+end

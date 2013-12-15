@@ -1,0 +1,8 @@
+strip fatjesus
+	desc Fat Jesus
+	type search
+	searchpage http://fatjesus.comicgenesis.com
+	searchpattern <IMG.+?SRC="(/comics/fatjesus.+?)"
+	homepage http://www.fat-jesus.com
+	baseurl http://fatjesus.comicgenesis.com
+end

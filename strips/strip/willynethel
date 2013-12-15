@@ -1,0 +1,5 @@
+strip willynethel
+	desc Willy 'n' Ethel
+	useclass sfgate-gen
+	$1 Willy_n_Ethel
+end

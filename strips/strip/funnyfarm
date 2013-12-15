@@ -1,0 +1,7 @@
+strip funnyfarm
+	desc Funny Farm
+	type search
+	searchpattern <IMG.+?SRC="(/comics/.+?\..+?)"
+	homepage http://www.funnyfarmcomics.com
+	baseurl http://www.funnyfarmcomics.com
+end

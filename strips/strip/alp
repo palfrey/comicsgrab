@@ -1,0 +1,13 @@
+strip alp
+	desc Alien Loves Predator
+	type search
+	homepage http://alienlovespredator.com/index.php
+	days Mon Wed Fri
+	subbeg
+		searchpattern <img.+?src="(http://planetavp.com/alienlovespredator/strips/[^\"]*)
+	subend
+	subbeg
+		searchpattern (http://alienlovespredator.com/strips/[^\"]*)
+		index 1
+	subend
+end

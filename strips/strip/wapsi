@@ -1,0 +1,7 @@
+strip wapsi
+	desc Wapsi Square
+	homepage http://www.wapsisquare.com
+	useclass keenspace
+	days Mo-Fri
+	$1 
+end

@@ -1,0 +1,5 @@
+strip mrpotatohead
+	desc Mr. Potato Head
+	useclass ucomics-gen
+	$1 mrp
+end

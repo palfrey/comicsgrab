@@ -1,0 +1,6 @@
+strip octopuspie
+	desc Octopus Pie
+	type search
+	searchpattern (http://www.octopuspie.com/comics/[^'\"]+)
+	homepage http://www.octopuspie.com/
+end

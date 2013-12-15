@@ -1,0 +1,4 @@
+strip sheldon
+	desc Sheldon
+	useclass unitedmedia-srch-comics
+end

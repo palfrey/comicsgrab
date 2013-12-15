@@ -1,0 +1,6 @@
+strip ghastly
+	desc Ghastly's Ghastly comic
+	homepage http://www.ghastlycomic.com
+	useclass keenspace
+	$1 
+end

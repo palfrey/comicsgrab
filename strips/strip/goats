@@ -1,0 +1,7 @@
+strip goats
+	desc Goats
+	type search
+	searchpattern <IMG.+?SRC="(/comix/\d+/goats\d+.(?:gif|png|jpg))"
+	homepage http://www.goats.com/
+	baseurl http://www.goats.com/
+end

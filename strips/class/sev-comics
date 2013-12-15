@@ -1,0 +1,5 @@
+class sev-comics
+	type generate
+	homepage http://www.sev.com.au/toonzone/$strip.asp
+	imageurl http://www.sev.com.au/toonzone/$strip.jpg
+end

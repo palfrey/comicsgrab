@@ -1,0 +1,6 @@
+strip quigmans
+	desc The Quiqmans
+	useclass comicspage-panels-gen
+	$1 quigmans
+	$2 qgm
+end

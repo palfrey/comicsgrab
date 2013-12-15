@@ -1,0 +1,6 @@
+strip downtoearth
+	desc Down To Earth
+	type generate
+	homepage http://downtoearth.ncbuy.com
+	imageurl http://downtoearth.ncbuy.com/img/syndicate/nav1_dte_today.gif
+end

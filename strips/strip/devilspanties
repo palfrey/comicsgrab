@@ -1,0 +1,6 @@
+strip devilspanties
+	desc Devil's Panties, The
+	homepage http://devilspanties.keenspot.com
+	useclass keenspace
+	$1 
+end

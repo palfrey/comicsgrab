@@ -1,0 +1,8 @@
+strip nn2s
+	desc Nothing Nice To Say
+	type search
+	searchpattern (comics/\d+\.(?:gif|jpg|png))
+	homepage http://www.mitchclem.com/nothingnice/
+	baseurl $homepage
+	days Mon Wed Fri
+end

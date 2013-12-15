@@ -1,0 +1,7 @@
+strip commanderkitty
+	desc Commander Kitty
+	type search
+	searchpattern <img.+?src="(http://commanderkitty.com/comics/ck.+?\.jpg)
+	homepage http://www.commanderkitty.com/
+	days Mon Fri
+end

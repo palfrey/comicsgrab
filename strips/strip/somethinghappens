@@ -1,0 +1,6 @@
+strip somethinghappens
+	desc Something Happens
+	homepage http://www.somethinghappens.net/
+	useclass keenspace
+	$1 sh
+end

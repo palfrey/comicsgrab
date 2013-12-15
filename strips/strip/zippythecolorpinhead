@@ -1,0 +1,6 @@
+strip zippythecolorpinhead
+	desc Zippy the Pinhead (in color)
+	useclass sfgate-gen-zippycolor
+	$1 Zippy_the_Color_Pinhead
+	$2 Zippy_the_Pinhead
+end

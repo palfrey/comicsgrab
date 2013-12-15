@@ -1,0 +1,7 @@
+strip harmbengen
+	desc Harm Bengen's Alltagsskizzen
+	type search
+	searchpattern <img.+?src="(http://img.web.de/c/00.+?)"
+	homepage http://portale.web.de/Boulevard/Comics/Bengen/
+	artist Harm Bergen -> www.harmbengen.de
+end

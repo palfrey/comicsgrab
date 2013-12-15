@@ -1,0 +1,6 @@
+strip dieselsweeties
+	desc Diesel Sweeties
+	type search
+	searchpattern <img.+?src="(http://images.clango.org/strips/sw\d+\..+?)"
+	homepage http://www.dieselsweeties.com/
+end

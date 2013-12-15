@@ -1,0 +1,4 @@
+strip workingdaze
+	desc Working Daze
+	useclass unitedmedia-srch-comics
+end

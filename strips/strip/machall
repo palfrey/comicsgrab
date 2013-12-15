@@ -1,0 +1,6 @@
+strip machall
+	desc Mac Hall
+	homepage http://www.machall.com
+	useclass ioncomix
+	days Mo Wed Fri
+end

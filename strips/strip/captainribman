@@ -1,0 +1,8 @@
+strip captainribman
+	desc Captain RibMan
+	type search
+	searchpage http://www.supercomics.com/strips/new.html
+	searchpattern <img.+?src="(.+?)".+?ALT="Captain RibMan"
+	homepage http://www.comicspage.com/ribman/index.html
+	baseurl http://www.supercomics.com/strips/
+end

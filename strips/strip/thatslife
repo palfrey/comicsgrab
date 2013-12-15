@@ -1,0 +1,4 @@
+strip thatslife
+	desc That's Life
+	useclass unitedmedia-srch-wash
+end

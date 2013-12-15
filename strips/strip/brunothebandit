@@ -1,0 +1,6 @@
+strip brunothebandit
+	desc Bruno the Bandit
+	type generate
+	homepage http://www.brunothebandit.com
+	imageurl http://www.brunothebandit.com/comics/%Y%m%da.gif
+end

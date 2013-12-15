@@ -1,0 +1,7 @@
+strip sexylosers
+	desc Sexy Losers
+	type search
+	searchpattern <IMG.+?SRC.*?=.*?"(http://sexylosers\.(keenspace\.)?com/)?(images/sl\d+\.jpg)"
+	homepage http://sexylosers.comicgenesis.com/
+	baseurl $homepage
+end

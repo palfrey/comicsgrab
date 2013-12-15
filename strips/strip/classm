@@ -1,0 +1,7 @@
+strip classm
+	desc The Class Menagerie
+	type search
+	searchpattern document.write\('<IMG.+?SRC="(/comics/tcm[^\"]*?)"
+	homepage http://www.theclassm.com
+	baseurl $homepage
+end

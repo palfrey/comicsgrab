@@ -1,0 +1,4 @@
+strip askshagg
+	desc Ask Shagg
+	useclass unitedmedia-srch-creators
+end

@@ -1,0 +1,4 @@
+strip alleyoop
+	desc Alley Oop
+	useclass unitedmedia-srch-comics
+end

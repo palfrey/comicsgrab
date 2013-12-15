@@ -1,0 +1,5 @@
+strip wizardofid
+	desc Wizard of Id
+	useclass washpost-creators
+	$1 wiz
+end

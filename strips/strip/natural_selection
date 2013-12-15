@@ -1,0 +1,4 @@
+strip natural_selection
+	desc Natural Selection
+	useclass unitedmedia-srch-comics-lag
+end

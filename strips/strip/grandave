@@ -1,0 +1,4 @@
+strip grandave
+	desc Grand Avenue
+	useclass unitedmedia-srch-comics
+end

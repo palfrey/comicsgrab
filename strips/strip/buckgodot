@@ -1,0 +1,6 @@
+strip buckgodot
+	desc Buck Godot
+	type search
+	searchpattern (http://www.studiofoglio.com/buck/buckcomic/strips/buck\d+.jpg)
+	homepage http://www.airshipentertainment.com/buckcomic.php
+end

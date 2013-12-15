@@ -1,0 +1,6 @@
+class washpost-creators
+	type generate
+	homepage http://featurepage.creators.com/washpost.html?name=$1
+	imageurl http://www.creators.com/<code:use POSIX;my$o=0;while(strftime("\%"."w",localtime($time_today-86400*$o))!=0){$o++}my$d=strftime("\%"."m"."\%"."d",localtime($time_today-86400*$o));"$d">/$1/$1%m%dg.gif
+	prefetch $homepage
+end

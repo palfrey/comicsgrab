@@ -1,0 +1,4 @@
+strip mspeach
+	desc Ms. Peach
+	useclass unitedmedia-srch-creators
+end

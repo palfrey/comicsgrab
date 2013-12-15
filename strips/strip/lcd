@@ -1,0 +1,7 @@
+strip lcd
+	desc Lowest Common Denominator
+	type search
+	searchpattern <IMG.+?SRC="(/comics/lcd.+?\..+?)"
+	homepage http://lcd.comicgenesis.com
+	baseurl http://lcd.comicgenesis.com
+end

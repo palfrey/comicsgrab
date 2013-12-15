@@ -1,0 +1,12 @@
+strip schlockmercenary
+	desc Schlock Mercenary
+	homepage http://www.schlockmercenary.com
+	useclass keenspace
+	subbeg
+		searchpattern (?:src=\"([^\"]+))+
+		type search
+		noperl True
+		initialpattern (?s)<div id='comic'>\s*((?:<img\s*src="http://static.schlockmercenary.com/comics/schlock\d+(?:-[\da-f]+)?\.jpg\?\d+"[^>]+>\s*(?:<br />)?)+)
+	subend
+	$1 schlock
+end

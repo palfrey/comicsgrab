@@ -1,0 +1,6 @@
+class comicspage-strips-gen
+	type generate
+	homepage http://www.comicspage.com/$1/index.html
+	imageurl http://www.tmsfeatures.com/tmsfeatures/servlet/com.featureserv.util.Download?file=%Y%m%dcs$2-<code:"s" if %w==0><code:"a" if %w!=0>-p.jpg&code=cs$2
+	referer http://www.comicspage.com/$1/index.html
+end

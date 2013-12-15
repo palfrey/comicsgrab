@@ -1,0 +1,7 @@
+strip heysuburbia
+	desc Hey Suburbia
+	homepage http://rockyfoxtop.comicgenesis.com
+	useclass keenspace
+	days Wed
+	$1 
+end

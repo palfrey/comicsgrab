@@ -1,0 +1,4 @@
+strip usplay
+	desc The US of Play
+	useclass unitedmedia-srch-comics
+end

@@ -1,0 +1,10 @@
+strip gpf
+	desc General Protection Fault
+	homepage http://www.gpf-comics.com
+	useclass keenspace
+	subbeg
+		baseurl $homepage
+		searchpattern <(?:IMG|img).*?SRC="(/mischief/comics/$1[^\"]*)"
+	subend
+	$1 gpf
+end

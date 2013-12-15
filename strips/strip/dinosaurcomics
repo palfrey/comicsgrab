@@ -1,0 +1,7 @@
+strip dinosaurcomics
+	desc Dinosaur Comics
+	type search
+	searchpage http://www.qwantz.com/index.php
+	searchpattern <img.+?src="(http://www.qwantz.com/comics/comic2-\d+\.png)"
+	homepage http://www.qwantz.com/
+end

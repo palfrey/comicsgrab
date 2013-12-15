@@ -1,0 +1,8 @@
+strip bobbins
+	desc Bobbins
+	type search
+	searchpage http://bobbins.org/d/%Y%m%d.html
+	searchpattern <img.+?SRC="(/comics/%Y%m%d\..+?)"
+	homepage http://www.bobbins.org/
+	baseurl http://www.bobbins.org
+end

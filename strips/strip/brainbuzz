@@ -1,0 +1,6 @@
+strip brainbuzz
+	desc Brainbuzz
+	type generate
+	homepage http://cramsession.brainbuzz.com/lists/cartoon/
+	imageurl http://i.brainbuzz.com/CS/Lists/Cartoon/%y%m%d.gif
+end

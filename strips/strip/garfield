@@ -1,0 +1,5 @@
+strip garfield
+	desc Garfield
+	useclass ucomics-srch
+	$1 ga
+end

@@ -1,0 +1,5 @@
+strip drewlitton
+	desc Drew Litton
+	useclass unitedmedia-srch-editoons
+	$1 litton
+end

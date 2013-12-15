@@ -1,0 +1,5 @@
+strip boondocks
+	desc The Boondocks
+	useclass ucomics-gen
+	$1 bo
+end

@@ -1,0 +1,6 @@
+strip looseparts
+	desc Loose Parts
+	useclass comicspage-panels-gen
+	$1 looseparts
+	$2 lsp
+end

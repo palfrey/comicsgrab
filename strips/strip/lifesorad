@@ -1,0 +1,7 @@
+strip lifesorad
+	desc Life's So Rad
+	type search
+	searchpattern <IMG.+?SRC="/(comics/\d+.+?)"
+	homepage http://www.radcomics.com/
+	baseurl $homepage
+end

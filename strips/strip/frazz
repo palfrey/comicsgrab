@@ -1,0 +1,4 @@
+strip frazz
+	desc Frazz
+	useclass unitedmedia-srch-comics
+end

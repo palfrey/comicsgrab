@@ -1,0 +1,6 @@
+strip bohemials
+	desc Bohemials
+	homepage http://www.albionfuzz.com
+	useclass keenspace
+	$1 bh
+end

@@ -1,0 +1,6 @@
+strip nevernever
+	desc Never Never
+	homepage http://www.mopsy.com
+	useclass keenspace
+	$1 nn
+end

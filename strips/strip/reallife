@@ -1,0 +1,8 @@
+strip reallife
+	desc Real Life
+	type search
+	searchpattern (/comics/\d{4}/\d+_\d+\.(?:png|jpg|gif))
+	homepage http://www.reallifecomics.com/
+	baseurl $homepage
+	days Mo-Fri
+end

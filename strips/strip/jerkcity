@@ -1,0 +1,6 @@
+strip jerkcity
+	desc Jerkcity
+	type generate
+	homepage http://www.jerkcity.com/
+	imageurl http://www.jerkcity.com/today.gif
+end

@@ -1,0 +1,8 @@
+strip paste
+	desc Paste
+	type search
+	searchpattern <img src="(archive/images/[a-z\d]+\.gif)"
+	homepage http://paste.fissure.org/
+	baseurl $homepage
+	days Friday
+end

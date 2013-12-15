@@ -1,0 +1,4 @@
+strip ballardst
+	desc Ballard Street
+	useclass unitedmedia-srch-creators
+end

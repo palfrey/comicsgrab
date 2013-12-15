@@ -1,0 +1,14 @@
+class keenspace
+	type search
+	subbeg
+		baseurl $homepage
+		searchpattern document.write\('<(?:IMG|img)[^S]*SRC="(/comics/$1[^\"]*)"
+	subend
+	subbeg
+		searchpattern <(?:IMG|img).*?SRC="($homepage/comics/$1[^\"]*)"
+	subend
+	subbeg
+		baseurl $homepage
+		searchpattern <(?:IMG|img).*?SRC="(/?comics/$1[^\"]*)"
+	subend
+end

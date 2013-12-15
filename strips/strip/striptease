@@ -1,0 +1,7 @@
+strip striptease
+	desc Strip Tease Comic
+	type search
+	searchpattern <img.+?src="(/?strips\d+/\d+\..+?)"
+	homepage http://www.stripteasecomic.com/
+	baseurl $homepage
+end

@@ -1,0 +1,5 @@
+strip claybennett
+	desc Clay Bennett
+	useclass unitedmedia-srch-editoons
+	$1 bennett
+end

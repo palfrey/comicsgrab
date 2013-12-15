@@ -1,0 +1,7 @@
+strip lilabner
+	desc Li'l Abner
+	type search
+	searchpattern <img.+?src="(/comics/lilabner/archive/images/lilabner.+?\..+?)"
+	homepage http://www.unitedmedia.com/comics/lilabner/index.html
+	baseurl http://www.unitedmedia.com
+end

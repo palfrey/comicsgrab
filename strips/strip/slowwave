@@ -1,0 +1,6 @@
+strip slowwave
+	desc Slow Wave
+	type generate
+	homepage http://www.slowwave.com/
+	imageurl $homepage/img.cgi?thisweek.gif
+end

@@ -1,0 +1,7 @@
+strip theshadows
+	desc The Shadows
+	type search
+	searchpattern <IMG.+?SRC="(/shadcomics/shad.+?\..+?)"
+	homepage http://www.alicecomics.com/shadows.html
+	baseurl http://www.alicecomics.com/
+end

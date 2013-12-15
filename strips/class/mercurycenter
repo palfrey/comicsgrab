@@ -1,0 +1,5 @@
+class mercurycenter
+	type generate
+	homepage http://cgi.mercurycenter.com/cgi-bin/comics/show.cgi?ID=$1&DATE=TODAY
+	imageurl http://cgi.mercurycenter.com/premium/comics/%m_%d/$2.gif
+end

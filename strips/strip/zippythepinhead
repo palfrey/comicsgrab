@@ -1,0 +1,6 @@
+strip zippythepinhead
+	desc Zippy the Pinhead
+	useclass sfgate-gen
+	$1 Zippy_the_Pinhead
+	$2 zippy
+end

@@ -1,0 +1,7 @@
+strip roomies
+	desc Roomies
+	type search
+	searchpattern <img.+?src="(http://www.roomies-comic.com/comics/roomies-\d+.gif)"
+	homepage http://www.roomies-comic.com/cgi-bin/roomies.cgi
+	days Mo Wed Fri
+end

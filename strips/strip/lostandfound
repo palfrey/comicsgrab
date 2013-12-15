@@ -1,0 +1,12 @@
+strip lostandfound
+	desc Lost & Found Investigations
+	type search
+	homepage http://www.lostandfoundcomic.com
+	baseurl $homepage
+	subbeg
+		searchpattern <img.+?SRC="(/comics/.+?\..+?)"
+	subend
+	subbeg
+		searchpattern document.write\('<img.+?SRC="(/comics/.+?\..+?)"
+	subend
+end

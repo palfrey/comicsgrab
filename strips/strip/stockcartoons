@@ -1,0 +1,5 @@
+strip stockcartoons
+	desc StockcarToons
+	searchpage $homepage
+	useclass unitedmedia-srch-comics
+end

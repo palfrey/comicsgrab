@@ -1,0 +1,4 @@
+strip graffiti
+	desc Graffiti
+	useclass unitedmedia-srch-comics
+end

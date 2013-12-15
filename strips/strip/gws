@@ -1,0 +1,13 @@
+strip gws
+	desc Girls With Slingshots
+	type search
+	index 1
+	homepage http://www.daniellecorsetto.com/gws.html
+	baseurl http://www.daniellecorsetto.com/
+	subbeg
+		searchpattern (images/gws/GWS[^\"]*)
+	subend
+	subbeg
+		searchpattern (images/gws/guest[^\"]*)
+	subend
+end

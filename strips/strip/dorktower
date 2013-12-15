@@ -1,0 +1,8 @@
+strip dorktower
+	desc Dork Tower
+	type search
+	searchpattern <img.+?src="(/?images/comics/.+?\..+?)"
+	homepage http://archive.gamespy.com/comics/dorktower/
+	baseurl $homepage
+	days Tu Th Sa
+end

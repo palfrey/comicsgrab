@@ -1,0 +1,7 @@
+class ucomics-srch
+	type search
+	searchpage http://www.gocomics.com/$strip/%Y/%m/%d/
+	searchpattern <img.+?src="(http://imgsrv.gocomics.com/dim/\?fh=[^\"]*)"
+	index 1
+	homepage http://www.gocomics.com/$strip/
+end

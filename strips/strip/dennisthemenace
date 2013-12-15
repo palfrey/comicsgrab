@@ -1,0 +1,5 @@
+strip dennisthemenace
+	desc Dennis the Menace
+	useclass sfgate-gen
+	$1 Dennis_The_Menace
+end

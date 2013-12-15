@@ -1,0 +1,7 @@
+strip perscheid
+	desc Perscheids Abgruende
+	type search
+	searchpattern <img.+?src="(http://img.web.de/c/00.+?)"
+	homepage http://portale.web.de/Boulevard/Comics/Perscheid/
+	artist Martin Perscheid -> www.martin-perscheid.de
+end

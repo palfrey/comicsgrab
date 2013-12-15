@@ -1,0 +1,5 @@
+strip henrypayne
+	desc Henry Payne
+	useclass unitedmedia-srch-editoons
+	$1 payne
+end

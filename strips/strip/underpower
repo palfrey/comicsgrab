@@ -1,0 +1,8 @@
+strip underpower
+	desc Under Power
+	type search
+	searchpattern <img src="(comics/\d+.jpg)"
+	homepage http://underpower.non-essential.com/
+	baseurl $homepage
+	artist Jorge "Vaz" Rivas and David "vanishing" Trischuk
+end

@@ -1,0 +1,6 @@
+strip yehudamoon
+	desc Yehuda Moon
+	type generate
+	homepage http://www.yehudamoon.com/
+	imageurl http://www.yehudamoon.com/images/strips/%Y-%m-%d.gif
+end

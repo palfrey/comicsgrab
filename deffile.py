@@ -18,6 +18,8 @@ import database
 import settings
 from time import sleep
 from glob import glob
+import urlgrab
+from codecs import open
 
 class ComicsDef:
 	def __init__(self,deffile,cachedir,debug=0,proxy=None, db=None, module="Sqlite", archive = False):
@@ -60,6 +62,12 @@ class ComicsDef:
 
 	def store_err(self,strip,level,msg):
 		print msg
+		if level > 1:
+			if not os.path.exists(self.directory):
+				os.makedirs(self.directory)
+			error_path = os.path.join(self.directory, "%s-error"%strip)
+			with open(error_path, "a") as error_file:
+				error_file.write("%d: %s"%(level, msg))
 		msg = strip+" : "+str(msg)
 		self.errors.append((level,msg))
 
@@ -67,6 +75,9 @@ class ComicsDef:
 		try:
 			return self.cache.get_mult(url,ref,count=2)
 		except urlcache.CacheError,err:
+			self.store_err(strip,3,err)
+			return None
+		except urlgrab.URLTimeoutError, err:
 			self.store_err(strip,3,err)
 			return None
 
@@ -97,6 +108,7 @@ class ComicsDef:
 		search = gen_search(g,self.db,now,self.cache)
 		if not os.path.exists(directory):
 			os.makedirs(directory)
+		self.directory = directory
 
 		current = g.firstpage
 
@@ -110,9 +122,10 @@ class ComicsDef:
 			else: # type == "search"
 				if self.debug>=4:
 					print "data",data
-				(pattern,baseurl,searchpage,initialpattern,namepattern, nextpattern) = data
+				searchpage = data["searchpage"]
+				assert len(searchpage)>0
 				while True:
-					print "Getting (searchpage)",searchpage
+					print "Getting (searchpage) '%s'"% searchpage
 					page = self.get_url(g.name,searchpage,ref=searchpage)
 					if page==None:# and page.status != urlcache.URLCache.STAT_UNCHANGED:
 						print "Got no page at all!"
@@ -120,15 +133,15 @@ class ComicsDef:
 						sleep(5)
 					else:
 						content = page.content
-						if initialpattern != "":
-							print "Initially searching for",initialpattern
-							iretr = re.findall("(?i)"+initialpattern,content)
+						if data["initialpattern"] != "":
+							print "Initially searching for",data["initialpattern"]
+							iretr = re.findall("(?i)"+data["initialpattern"],content)
 							assert len(iretr) == 1 # other patterns not supported yet
 							content = iretr[0]
 							
-						print "Searching for",pattern
-						assert pattern!=""
-						retr = re.findall("(?i)"+pattern,content)
+						print "Searching for", data["searchpattern"]
+						assert data["searchpattern"]!=""
+						retr = re.findall("(?i)"+data["searchpattern"],content)
 						if self.debug>=4:
 							print page.content
 
@@ -140,46 +153,68 @@ class ComicsDef:
 									dups.add(item)
 									keep.append(item)
 						retr = keep
-
-						np = list(set(re.findall(namepattern, content, re.IGNORECASE | re.DOTALL | re.MULTILINE)))
-						file("dump","wb").write(content)
+						
+						if data["namepage"] != "":
+							np = list(set(re.findall(data["namepage"], searchpage, re.IGNORECASE | re.DOTALL | re.MULTILINE)))
+						elif data["namepattern"] != "":
+							np = list(set(re.findall(data["namepattern"], content, re.IGNORECASE | re.DOTALL | re.MULTILINE)))
+						else:
+							raise Exception, data
+						open("dump","wb", "utf-8").write(content)
 					
-						assert len(np) == 1, (namepattern, np)
-						print "name", np[0]
+						assert len(np) >=1, (data["namepattern"], np)
+						names = np
 
-						shortpath = os.path.join(directory, np[0])
-						if len(glob(shortpath + "*")) == 0:
+						for idx, name in enumerate(names):
+							try:
+								val = int(name)
+								names[idx] = "%05d" % val
+							except ValueError: # not a number
+								pass
+
+						print "names", names
+
+						shortpaths = [os.path.join(directory, x) for x in names]
+						missing = False
+						for shortpath in shortpaths:
+							if len(glob(shortpath + "*")) == 0:
+								missing = True
+								break
+						if missing:
 							while True:
 								get = []
 
 								for x in range(len(retr)):
 									if not s.look.HasField("index") or s.look.index == x+1:
 										r = retr[x]
-										
-										img = urlparse.urljoin(baseurl,r)
+										img = urlparse.urljoin(data["baseurl"],r)
 										self.cache.remove(img, searchpage)
 										print "Getting (image from search)", img
 										get.append(self.get_url(g.name,img,ref=searchpage))
-								assert len(get) == 1 # FIXME: handle >1
-								u = get[0]
-								if u != None:
+
+								get = [u for u in get if u != None]
+								assert len(get) == len(names), (get, names)
+								if len(get) > 0:
 									break
 								sleep(5)
 
-							ext = self.makeext(u, g)
-							comicpath = shortpath + "." + ext
-							print comicpath
-							if not os.path.exists(comicpath):
-								file(comicpath, "wb").write(u.content)
+							exts = [self.makeext(u,g) for u in get]
+							comicpaths = ["%s.%s"%(x,y) for (x,y) in zip(shortpaths, exts)]
+							for (comicpath, u) in zip(comicpaths, get):
+								print comicpath
+								if not os.path.exists(comicpath):
+									file(comicpath, "wb").write(u.content)
 
-						nextpage = re.findall(nextpattern, content, re.IGNORECASE | re.DOTALL | re.MULTILINE)
-						assert len(nextpage) == 1, nextpage
-						searchpage = nextpage[0]
+						assert len(data["nextpattern"]) >0
+						nextpage = list(set(re.findall(data["nextpattern"], content, re.IGNORECASE | re.DOTALL | re.MULTILINE)))
+						assert len(nextpage) == 1, (nextpage, data["nextpattern"])
+						searchpage = urlparse.urljoin(data["baseurl"], nextpage[0])
 
 						#tried += 1
 
 	def update(self,directory,strips=None,user=None,now=DateManip(), all_users=False):
 		self.now = now
+		self.directory = os.path.join(directory,self.now.strftime("%Y-%m-%d"+os.sep))
 		self.errors = []
 		c = CalcWeek(self.now)
 		print self.now.strftime("%Y/%m/%d")
@@ -270,7 +305,7 @@ class ComicsDef:
 								print "found",folder
 							found_last = True
 							
-			if len(found)==0:
+			if len([x for x in found if not x.endswith("-error")]) == 0:
 				get = []
 				tried = 0
 				for s in get_searches(g,search):
@@ -283,20 +318,21 @@ class ComicsDef:
 					else: # type == "search"
 						if self.debug>=4:
 							print "data",data
-						(pattern,baseurl,searchpage, initialpattern) = data
+						searchpage = data["searchpage"]
+						assert searchpage != ""
 						print "Getting (searchpage)",searchpage
 						page = self.get_url(g.name,searchpage,ref=searchpage)
 						if page!=None:# and page.status != urlcache.URLCache.STAT_UNCHANGED:
 							content = page.content
-							if initialpattern != "":
-								print "Initially searching for",initialpattern
-								iretr = re.findall("(?i)"+initialpattern,content)
+							if data["initialpattern"] != "":
+								print "Initially searching for",data["initialpattern"]
+								iretr = re.findall("(?i)"+data["initialpattern"],content)
 								assert len(iretr) == 1 # other patterns not supported yet
 								content = iretr[0]
 								
-							print "Searching for",pattern
-							assert pattern!=""
-							retr = re.findall("(?i)"+pattern,content)
+							print "Searching for",data["searchpattern"]
+							assert data["searchpattern"]!=""
+							retr = re.findall("(?i)"+data["searchpattern"],content)
 							if self.debug>=4:
 								print page.content
 
@@ -313,8 +349,8 @@ class ComicsDef:
 								if not s.look.HasField("index") or s.look.index == x+1:
 									r = retr[x]
 									
-									print "Getting (image from search)",urlparse.urljoin(baseurl,r)
-									get.append(self.get_url(g.name,urlparse.urljoin(baseurl,r),ref=searchpage))
+									print "Getting (image from search)",urlparse.urljoin(data["baseurl"],r)
+									get.append(self.get_url(g.name,urlparse.urljoin(data["baseurl"],r),ref=searchpage))
 							tried += 1
 						else:
 							print "Got no page at all!"

@@ -1,0 +1,7 @@
+strip xkcd
+	desc xkcd
+	type search
+	searchpattern (http://imgs.xkcd.com/comics/[^\"]+)
+	index 1
+	homepage http://xkcd.com/
+end

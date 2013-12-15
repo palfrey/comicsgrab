@@ -1,0 +1,6 @@
+strip brenda
+	desc Brenda Starr
+	useclass comicspage-strips-gen
+	$1 brenda
+	$2 bsr
+end

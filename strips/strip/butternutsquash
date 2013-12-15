@@ -1,0 +1,8 @@
+strip butternutsquash
+	desc butternutsquash
+	type search
+	searchpage $homepage
+	searchpattern (http://www.butternutsquash.net/comics/\d+-\d+-\d+[^\"]+)
+	homepage http://www.butternutsquash.net/
+	days Thursday
+end

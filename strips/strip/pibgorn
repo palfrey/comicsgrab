@@ -1,0 +1,4 @@
+strip pibgorn
+	desc Pibgorn
+	useclass unitedmedia-srch-comics
+end

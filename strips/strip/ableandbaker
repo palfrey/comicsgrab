@@ -1,0 +1,8 @@
+strip ableandbaker
+	desc Able and Baker
+	type search
+	searchpattern (comics/able\d+.gif)
+	homepage http://www.jimburgessdesign.com/comics/
+	baseurl $homepage
+	days Mon-Fri
+end

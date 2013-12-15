@@ -1,0 +1,6 @@
+strip bruno
+	desc The Bruno Daily Times
+	type generate
+	homepage http://www.brunostrip.com/bruno.html
+	imageurl http://www.brunostrip.com/%Ypics/%Y%m%d.gif
+end

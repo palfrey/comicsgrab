@@ -1,0 +1,6 @@
+strip fuzzylogic
+	desc Fuzzy Logic
+	type generate
+	homepage http://www.bbspot.com/comics/fuzzy_logic/index.html
+	imageurl http://www.bbspot.com/Images/comics/fuzzy_logic/%Y/%Y%m%d.jpg
+end

@@ -1,0 +1,4 @@
+strip speedbump
+	desc Speed Bump
+	useclass ucomics-srch
+end

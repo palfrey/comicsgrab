@@ -1,0 +1,4 @@
+strip pearls
+	desc Pearls Before Swine
+	useclass unitedmedia-srch-comics
+end

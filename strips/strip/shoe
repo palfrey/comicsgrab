@@ -1,0 +1,6 @@
+strip shoe
+	desc Shoe
+	useclass comicspage-strips-gen
+	$1 shoe
+	$2 sho
+end

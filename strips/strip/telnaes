@@ -1,0 +1,6 @@
+strip telnaes
+	desc Ann Telnaes
+	useclass comicspage-editorial-gen
+	$1 telnaes
+	$2 tel
+end

@@ -1,0 +1,5 @@
+strip thephantom
+	desc The Phantom
+	useclass sfgate-gen
+	$1 Phantom
+end

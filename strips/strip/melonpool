@@ -1,0 +1,6 @@
+strip melonpool
+	desc Melonpool
+	type generate
+	homepage http://www.melonpool.com/
+	imageurl http://www.melonpool.com/comics/MM%Y%m%d.gif
+end

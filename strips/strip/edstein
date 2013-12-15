@@ -1,0 +1,5 @@
+strip edstein
+	desc Ed Stein
+	useclass unitedmedia-srch-editoons
+	$1 stein
+end

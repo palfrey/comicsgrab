@@ -1,0 +1,14 @@
+strip okcancel
+	desc Ok/Cancel
+	type search
+	homepage http://www.ok-cancel.com/
+	days Fri
+	subbeg
+		baseurl $homepage
+		searchpattern <img src="((?:/)?strips/OKCancel\d+.gif)"
+	subend
+	subbeg
+		baseurl http://www.ok-cancel.com/strips/
+		searchpattern ((?:OKC|okc)ancel\d+.gif)
+	subend
+end

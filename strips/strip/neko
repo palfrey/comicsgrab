@@ -1,0 +1,7 @@
+strip neko
+	desc Neko the Kitty
+	type search
+	searchpattern <IMG.+?SRC="(/comics/\d+.gif)"
+	homepage http://nekothekitty.comicgenesis.com
+	baseurl $homepage
+end

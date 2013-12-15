@@ -1,0 +1,6 @@
+strip lewis
+	desc Lewis
+	useclass comicspage-strips-gen
+	$1 lewis
+	$2 lew
+end

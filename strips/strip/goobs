@@ -1,0 +1,8 @@
+strip goobs
+	desc Goobs
+	type search
+	searchpattern <img.+?src="(comics/comic\d+.(?:gif|jpg|png))"
+	homepage http://www.goobscomic.com/
+	baseurl $homepage
+	days Mon Thu
+end

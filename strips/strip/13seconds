@@ -1,0 +1,9 @@
+strip 13seconds
+	desc 13 Seconds
+	type search
+	searchpattern images/13s-[^\"]*
+	index 2
+	homepage http://13seconds.info/
+	baseurl $homepage
+	days Mon Thurs
+end

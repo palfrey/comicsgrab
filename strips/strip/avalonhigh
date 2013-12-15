@@ -1,0 +1,7 @@
+strip avalonhigh
+	desc Avalon High
+	type search
+	searchpattern <IMG.+?SRC="(/?comics/avalon\d{8}.*?\.gif)"
+	homepage http://www.avalonhigh.com/
+	baseurl $homepage
+end

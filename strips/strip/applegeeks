@@ -1,0 +1,7 @@
+strip applegeeks
+	desc Apple Geeks
+	type search
+	searchpattern <img.+?src="(/comics/issue[^\"]+\.jpg)"
+	homepage http://www.applegeeks.com
+	baseurl $homepage
+end

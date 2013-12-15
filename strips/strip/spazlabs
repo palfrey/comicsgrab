@@ -1,0 +1,6 @@
+strip spazlabs
+	desc Spaz Labs
+	type generate
+	homepage http://www.stonebrokestudios.com
+	imageurl http://www.stonebrokestudios.com/archives/spaz/%y%m%dspaz.gif
+end

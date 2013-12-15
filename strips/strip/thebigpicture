@@ -1,0 +1,5 @@
+strip thebigpicture
+	desc The Big Picture
+	useclass ucomics-gen
+	$1 bi
+end

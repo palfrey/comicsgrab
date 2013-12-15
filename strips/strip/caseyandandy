@@ -1,0 +1,7 @@
+strip caseyandandy
+	desc Casey and Andy
+	type search
+	searchpattern <img src = "(Strip\d+\.(?:gif|jpg|png))
+	homepage http://www.galactanet.com/comic/index.htm
+	baseurl http://www.galactanet.com/comic/
+end

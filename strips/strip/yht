@@ -1,0 +1,7 @@
+strip yht
+	desc You'll Have That
+	type search
+	searchpattern (/webComics/yht/strips/[^\"]*)
+	homepage http://www.vipercomics.com/webComics/yht/default.asp
+	baseurl http://www.vipercomics.com
+end

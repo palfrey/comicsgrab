@@ -1,0 +1,6 @@
+strip pluggers
+	desc Pluggers
+	useclass comicspage-panels-gen
+	$1 pluggers
+	$2 plg
+end

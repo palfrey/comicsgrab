@@ -1,0 +1,4 @@
+strip drabble
+	desc Drabble
+	useclass unitedmedia-srch-comics
+end

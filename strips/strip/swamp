@@ -1,0 +1,7 @@
+strip swamp
+	desc Swamp
+	type search
+	searchpage http://s1.emcs.com.au/SwampStrips/Strips/Strip.asp?Date=<code:strftime("%d-%b-%Y", @localtime_today)>
+	searchpattern <img.+?src="(http://s1.emcs.com.au/swampstrips/Strips_Images/\d+\..+?)"
+	homepage http://www.swamp.com.au
+end

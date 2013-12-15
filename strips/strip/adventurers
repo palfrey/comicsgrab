@@ -1,0 +1,6 @@
+strip adventurers
+	desc Adventurers!
+	type generate
+	homepage http://www.adventurers-comic.com/
+	imageurl http://www.adventurers-comic.com/comics/adventurers%Y%m%da.gif
+end

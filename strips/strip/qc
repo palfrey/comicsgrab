@@ -1,0 +1,7 @@
+strip qc
+	desc Questionable Content
+	type search
+	searchpattern comics/(?:\r\n)?(\d+\.(?:png|gif|jpg))
+	homepage http://www.questionablecontent.net/
+	baseurl http://www.questionablecontent.net/comics/
+end

@@ -1,0 +1,6 @@
+strip zapiro
+	desc Zapiro
+	type generate
+	homepage http://www.mg.co.za/mg/zapiro/
+	imageurl http://www.chico.mweb.co.za/images/zapiro/%y-<code:lc(strftime("\%b", @localtime_today))>%d.gif
+end

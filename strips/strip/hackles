@@ -1,0 +1,8 @@
+strip hackles
+	desc Hackles
+	type search
+	searchpattern <img.+?src="(strips/cartoon\d+\.(?:gif|jpg|png))"
+	homepage http://www.hackles.org/
+	baseurl $homepage
+	days Tu Th
+end

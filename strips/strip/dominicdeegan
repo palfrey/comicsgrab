@@ -1,0 +1,12 @@
+strip dominicdeegan
+	desc Dominic Deegan
+	type search
+	homepage http://www.dominic-deegan.com
+	subbeg
+		searchpattern (http://[a-z]+.dominic-deegan.com/comics/(?:deegan)?\d+\.(?:gif|jpg|png))
+	subend
+	subbeg
+		baseurl $homepage
+		searchpattern (comics/\d+.(?:gif|jpg|png))
+	subend
+end

@@ -1,0 +1,6 @@
+strip wright
+	desc Don Wright
+	useclass comicspage-editorial-gen
+	$1 wright
+	$2 wrt
+end

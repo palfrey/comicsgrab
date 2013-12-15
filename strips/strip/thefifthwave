@@ -1,0 +1,5 @@
+strip thefifthwave
+	desc The 5th Wave
+	useclass ucomics-srch
+	$1 fw
+end

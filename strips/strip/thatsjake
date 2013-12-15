@@ -1,0 +1,6 @@
+strip thatsjake
+	desc That's Jake
+	useclass comicspage-panels-gen
+	$1 thatsjake
+	$2 tjk
+end

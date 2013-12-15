@@ -1,0 +1,4 @@
+strip motley
+	desc Motley
+	useclass unitedmedia-srch-comics-lag
+end

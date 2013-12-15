@@ -1,0 +1,5 @@
+strip thefuscobrothers
+	desc The Fusco Brothers
+	useclass ucomics-gen
+	$1 fu
+end

@@ -1,0 +1,6 @@
+strip bfriends
+	desc Between Friends
+	useclass mercurycenter
+	$1 14
+	$2 bfriends
+end

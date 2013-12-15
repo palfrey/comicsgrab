@@ -1,0 +1,8 @@
+strip lang
+	desc Bob Lang Cartoon
+	type search
+	searchpage http://www.cnsnews.com/cartoon/Lang.asp
+	searchpattern <img.+?border="0".+?src="(Langimages/%Y/\w+\..+?)"
+	homepage http://www.cnsnews.com/cartoon/lang.asp
+	baseurl http://www.cnsnews.com/cartoon/
+end

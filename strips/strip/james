@@ -1,0 +1,5 @@
+strip james
+	desc James
+	useclass ucomics-gen
+	$1 jm
+end

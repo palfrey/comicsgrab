@@ -1,0 +1,6 @@
+strip innies
+	desc Innies and Outies
+	type generate
+	homepage http://www.inniesandoutties.com/
+	imageurl http://www.inniesandoutties.com/images/front.jpg
+end
