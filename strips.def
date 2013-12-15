@@ -2166,6 +2166,10 @@ strip orderofthestick
 	baseurl http://www.giantitp.com/
 	infopage http://www.giantitp.com/comics/oots.html
 	infoval (comics/oots\d+.html)" class="SideBar"
+	firstpage http://www.giantitp.com/comics/oots0001.html
+	nextpage <A href="(/comics/oots\d+.html)"><IMG src="/Images/redesign/ComicNav_Next.gif" alt="Next Comic"
+	namepattern /comics/images/([a-zA-Z\d]+).gif
+	noperl True
 end
 
 strip othercoast
@@ -2638,7 +2642,7 @@ strip sinfest
 	type search
 	searchpattern <(?:IMG|img).*?SRC="([^\"]*comikaze[^\"]*)"
 	homepage http://sinfest.net
-	firstpage http://www.sinfest.net/archive_page.php?comicID=1
+	firstpage http://www.sinfest.net/archive_page.php?comicID=4411
 	nextpage <a href=\"(http://sinfest.net/archive_page.php\?comicID=\d+)\"><img src=\"images/next_a.gif\"
 	namepattern <font fact=\"Fixedsys\">\s*?<br>(\d+-\d+-\d+)
 	noperl True
@@ -3278,7 +3282,7 @@ end
 strip menage
 	desc Menage
 	type search
-	searchpattern (http://zii.[^/]+/comics/mat\d+\.(?:png|jpg))
+	searchpattern (http://zii.[^/]+/comics/mat\d+.*?(?:png|jpg))
 	homepage http://www.ma3comic.com
 	firstpage http://www.ma3comic.com/strips-ma3/room_for_two_more_(vol1)
 	nextpage <a\s+id=\"cndnext\"\s+href=\"([^\"]+)
