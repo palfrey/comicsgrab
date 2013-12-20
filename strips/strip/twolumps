@@ -1,6 +1,6 @@
 strip twolumps
 	desc Two Lumps
-	homepage http://www.twolumps.net
+	homepage http://twolumps.net
 	useclass keenspace
 	$1 
 end
