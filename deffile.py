@@ -87,7 +87,7 @@ class ComicsDef:
 		else:
 			if u.mime[0]!="image" and u.mime[0] !="application":
 				self.store_err(g.name,2,"Getting for <a href=\""+g.homepage+"\">"+g.homepage+"</a> found us a %s/%s (non-image) while retrieving %s"%(u.mime[0],u.mime[1],u.url))
-				raise Exception
+				raise Exception, (u.mime, u.url)
 			if u.mime[1] in ('jpeg', 'jpg'):
 				ext = 'jpg'
 			elif u.mime[1]=='gif':
@@ -159,7 +159,7 @@ class ComicsDef:
 						elif data["namepattern"] != "":
 							np = list(set(re.findall(data["namepattern"], content, re.IGNORECASE | re.DOTALL | re.MULTILINE)))
 						else:
-							raise Exception, data
+							raise Exception, ("No namepage or namepattern", data)
 						open("dump","wb", "utf-8").write(content)
 					
 						assert len(np) >=1, (data["namepattern"], np)
