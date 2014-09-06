@@ -1,7 +1,9 @@
 strip foxtrot
 	desc FoxTrot
 	type search
-	searchpattern (http://www.foxtrot.com/comics/[^\"]+)
-	homepage http://www.foxtrot.com/
+	searchpattern (http://www.foxtrot.com/wp-content/uploads/\d+/\d+/ft\d+[^"]+.png)
+	infopage http://www.foxtrot.com/
+	infoval <figure>\n<a href="([^"]+)">
+	searchpage $infoval
 	days Sunday
 end
