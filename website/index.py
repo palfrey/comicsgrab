@@ -59,7 +59,12 @@ def comicsapp(environ, start_response):
 				st = db.get_strip(strip)
 				items = glob(join(todaypath,"%s-*"%strip))
 				if items != []:
-					print >> ret, "<h3><a href=\"%s\">%s</a></h3>"%(st.homepage,st.desc)
+					print >> ret, "<h3>"
+					if st.homepage != "":
+						print >> ret, "<a href=\"%s\">%s</a>"%(st.homepage,st.desc)
+					else:
+						print >> ret, st.desc
+					print >> ret, "</h3>"
 
 					onlyerror = len([x for x in items if not x.endswith("error")]) == 0
 					for s in sorted(items):
