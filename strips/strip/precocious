@@ -1,6 +1,6 @@
 strip precocious
 	desc Precocious
 	type search
-	searchpattern (/comics/\d+.jpg)
+	searchpattern (/comics/\d+[^"]+)
 	homepage http://www.precociouscomic.com/
 end
