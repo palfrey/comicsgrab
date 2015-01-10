@@ -2,6 +2,6 @@ strip starpower
 	desc Star Power
 	homepage http://www.starpowercomic.com/
 	type search
-	searchpattern (http://www.starpowercomic.com/comics/[\d\-a-z_]+.jpg)
+	searchpattern (http://www.starpowercomic.com/comics/[^\"]+)\"
 	days Mo Wed Fri
 end
