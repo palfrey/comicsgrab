@@ -63,12 +63,16 @@ def gen_search(strip,db,now,cache, search = None):
 		val = strip.infoval
 		#print page,val
 		try:
+			print "Getting (infopage)", page
 			data = cache.get_mult(page,None,count=2).content
-			check = re.search(val,data).groups()[0]
+			find = re.search(val, data)
+			if find == None:
+				raise CacheError, "Can't find %s"%val
+			check = find.groups()[0]
 			strip.infoval = check
 		except CacheError,e:
 			print "error while getting infoval '%s'"%page, str(e)
-			raise
+			#raise
 				
 class search:
 	def __init__(self,parent):
@@ -105,7 +109,10 @@ class search:
 				data["searchpage"] = self.look.firstpage
 				data["namepattern"] = self.look.namepattern
 				data["nextpattern"] = self.look.nextpage
-				data["namepage"] = self.look.namepage
+				if hasattr(self.look, "namepage"):
+					data["namepage"] = self.look.namepage
+				else:
+					data["namepage"] = ""
 			if data["searchpage"] == "":
 				data["searchpage"] = self.look.homepage
 			if data["baseurl"] == "":

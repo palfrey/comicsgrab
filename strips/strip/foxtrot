@@ -4,7 +4,7 @@ strip foxtrot
 	searchpattern (http://www.foxtrot.com/wp-content/uploads/\d+/\d+/ft\d+[^"]+)
 	homepage http://www.foxtrot.com/
 	infopage http://www.foxtrot.com/
-	infoval <figure>\n<a href="([^"]+)">
+	infoval <figure>\s+<a href="([^"]+)">
 	searchpage $infoval
 	days Sunday
 end

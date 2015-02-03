@@ -10,6 +10,6 @@ strip ctrlaltdel
 		searchpattern src="(/comics/[^\"]+)"
 	subend
 	subbeg
-		searchpattern (http://.*?(?:cdn|static|www).cad-comic.com/comics/[^\"]+)
+		searchpattern (http://.*?.cad-comic.com/comics/[^\"]+)
 	subend
 end

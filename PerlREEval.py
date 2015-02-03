@@ -39,7 +39,7 @@ class PerlREEval:
 	
 		local_vars = {}
 		funcs = {}
-		while ret.find("<code:")<>-1:
+		while ret.find("<code:")!=-1:
 			#print ret
 			sec = re.search("(.*?)(?<!\\\\)<code:(.*?)(?<!\\\\)>(.*)",ret)
 			if sec == None:
