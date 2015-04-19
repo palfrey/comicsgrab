@@ -69,5 +69,4 @@ message Strip
 	optional string nextpage = 24;
 	optional string namepattern = 25;
 	optional string namepage = 26;
-	optional bool noperl = 27 [default=false];
 }
