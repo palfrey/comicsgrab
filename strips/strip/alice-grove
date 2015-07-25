@@ -1,0 +1,8 @@
+strip alice-grove
+	desc Alice Grove
+	homepage http://www.alicegrove.com/
+	type search
+	searchpage http://www.alicegrove.com/rss
+	searchpattern (http://\d+.media.tumblr.com/[^\"]+)
+	index 1
+end
