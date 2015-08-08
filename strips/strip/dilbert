@@ -2,7 +2,7 @@ strip dilbert
 	desc Dilbert
 	type search
 	searchpage http://www.dilbert.com/
-	searchpattern <img alt="[^\"]+" class="img-responsive img-comic" height="\d+" src="(http://assets.amuniversal.com/[a-f0-9]+)"
+	searchpattern <img.*class="img-responsive img-comic".+height="\d+".+src="(http://assets.amuniversal.com/[a-f0-9]+)"
 	homepage http://www.dilbert.com/
 	baseurl $homepage
 	index 1
