@@ -39,11 +39,12 @@ class URLCache:
 	STAT_UNCHANGED = 3
 	STAT_FAILED = 4
 
-	def __init__(self,cache_dir,proxy=None,archive = False):
+	def __init__(self,cache_dir,proxy=None,archive = False, debug = False):
 		self.store = {}
 		self.cache = cache_dir
 		self.proxy = proxy
 		self.archive = archive
+		self.debug = debug
 		if not os.path.exists(self.cache):
 			os.makedirs(self.cache)
 
@@ -112,7 +113,7 @@ class URLCache:
 
 		if old.status == self.STAT_START:
 			try:
-				ut = URLTimeout() 
+				ut = URLTimeout(debug = self.debug)
 				ut.setTimeout(120)
 				data = ut.get(url,ref=ref,proxy=self.proxy, headers = {"User-Agent":"Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1229.94 Safari/537.4"})
 			except urllib2.HTTPError,err:

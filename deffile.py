@@ -30,7 +30,7 @@ class ComicsDef:
 		self.debug = debug
 		self.maxdays = 14
 		self.proxy = proxy
-		self.cache = urlcache.URLCache(cachedir,self.proxy, archive)
+		self.cache = urlcache.URLCache(cachedir,self.proxy, archive, debug = self.debug >= 3)
 
 	def get_strips(self,strips=None,user=None,now=DateManip(),all_users=False):
 		ret = []
