@@ -1,0 +1,6 @@
+strip upto4players
+	desc Up to 4 Players
+	type search
+	searchpattern (http://[^/]+/www.uptofourplayers.com/wp-content/uploads/strip_[^\"]+)
+	homepage http://www.uptofourplayers.com/
+end
