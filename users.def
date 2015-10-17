@@ -14,7 +14,7 @@ end
 
 user palfrey
 	include alice-grove ctrlaltdel dilbert ffn foxtrot phd precocious qc schlockmercenary skinhorse somethingpositive subnormality twolumps uh2 xkcd
-	include gg101 orderofthestick scenes-from-a-multiverse starpower sfp
+	include gg101 orderofthestick scenes-from-a-multiverse starpower sfp upto4players
 	password 
 	enabled True
 end
