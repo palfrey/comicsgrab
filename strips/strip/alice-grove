@@ -5,4 +5,5 @@ strip alice-grove
 	searchpage http://www.alicegrove.com/rss
 	searchpattern (http://\d+.media.tumblr.com/[^\"]+)
 	index 1
+	zoom 1.5
 end
