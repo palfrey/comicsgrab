@@ -400,7 +400,7 @@ class ComicsDef:
 						if not os.path.exists(folder):
 							os.mkdir(folder)
 						fname = folder+g.name+"-"+str(index)+"."+ext
-						outfile = file(fname,'wb')
+						outfile = file(fname,mode='wb')
 						outfile.write(u.content)
 						outfile.close()
 						found.append(self.now.strftime("%Y-%m-%d"+os.sep+g.name+"-"+str(index)+"."+ext))
