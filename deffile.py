@@ -401,8 +401,12 @@ class ComicsDef:
 							os.mkdir(folder)
 						fname = folder+g.name+"-"+str(index)+"."+ext
 						outfile = file(fname,mode='wb')
-						outfile.write(u.content)
-						outfile.close()
+						try:
+							outfile.write(u.content)
+							outfile.close()
+						except Exception:
+							os.unlink(fname)
+							raise
 						found.append(self.now.strftime("%Y-%m-%d"+os.sep+g.name+"-"+str(index)+"."+ext))
 				elif tried>0: # if get == []
 					self.store_err(g.name,2,"Failed to get anything for <a href=\""+g.homepage+"\">"+g.homepage+"</a>")
