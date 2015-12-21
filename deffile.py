@@ -115,13 +115,13 @@ class ComicsDef:
 		current = g.firstpage
 
 		for s in get_searches(g, search):
-			(type,data) = s.retr(now, archive=True)
-			print "type",type
-			if type=="generate":
+			(kind,data) = s.retr(now, archive=True)
+			print "kind",kind
+			if kind=="generate":
 				print "Getting (image)",data
 				self.cache.set_varying(data,ref=current)
 				get = [self.get_url(g.name,data,ref=current)]
-			else: # type == "search"
+			else: # kind == "search"
 				if self.debug>=4:
 					print "data",data
 				searchpage = data["searchpage"]
@@ -311,13 +311,13 @@ class ComicsDef:
 				get = []
 				tried = 0
 				for s in get_searches(g,search):
-					(type,data) = s.retr(now)
-					print "type",type
-					if type=="generate":
+					(kind,data) = s.retr(now)
+					print "kind",kind
+					if kind=="generate":
 						print "Getting (image)",data
 						self.cache.set_varying(data,ref=g.homepage)
 						get = [self.get_url(g.name,data,ref=g.homepage)]
-					else: # type == "search"
+					else: # kind == "search"
 						if self.debug>=4:
 							print "data",data
 						searchpage = data["searchpage"]
