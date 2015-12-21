@@ -1,10 +1,7 @@
 strip schlockmercenary
 	desc Schlock Mercenary
 	homepage http://www.schlockmercenary.com
-	subbeg
-		searchpattern <img src="(/strip/[^\"]+)
-		type search
-		searchpage http://x.schlockapp.com/
-		baseurl $searchpage
-	subend
+	searchpattern <div id='comic'>[^<]+<img src="(http://static.schlockmercenary.com/comics/schlock[^\"]+)
+	type search
+	noperl True
 end
