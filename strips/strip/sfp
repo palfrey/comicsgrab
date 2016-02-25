@@ -5,4 +5,5 @@ strip sfp
 	homepage http://strongfemaleprotagonist.com/
 	noperl True
 	days Tues Thu
+	index 1
 end

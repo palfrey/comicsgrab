@@ -1,0 +1,8 @@
+strip awkward-yeti
+	desc Awkward Yeti
+	type search
+	searchpattern <div id=\"comic\">\s+<img src=\"(http://theawkwardyeti.com/wp-content/uploads/\d+/\d+/[^\"]+)
+	searchpage http://theawkwardyeti.com/
+	homepage http://theawkwardyeti.com/
+	noperl True
+end
