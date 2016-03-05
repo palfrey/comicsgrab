@@ -1,7 +1,7 @@
 strip schlockmercenary
 	desc Schlock Mercenary
 	homepage http://www.schlockmercenary.com
-	searchpattern <div id='comic'>[^<]+<img src="(http://static.schlockmercenary.com/comics/schlock[^\"]+)
+	searchpattern <img src="(/strip/[^\"]+)
 	type search
 	noperl True
 end
