@@ -1,6 +1,6 @@
 strip upto4players
 	desc Up to 4 Players
 	type search
-	searchpattern (http://(?:[^/]+/)?www.uptofourplayers.com/wp-content/uploads/s[a-z]+_[^\"]+)
+	searchpattern (http://(?:[^/]+/)?www.uptofourplayers.com/wp-content/uploads/[0-9a-z]+_[^\"]+)
 	homepage http://www.uptofourplayers.com/
 end
