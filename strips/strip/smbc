@@ -1,0 +1,6 @@
+strip smbc
+	desc Saturday Morning Breakfast Cereal
+	type search
+	homepage http://www.smbc-comics.com/
+	searchpattern (http://www.smbc-comics.com/comics/\d+-\d+.png)
+end
