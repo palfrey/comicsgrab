@@ -32,10 +32,10 @@ class Database:
 
 	def list_user_strips(self, user):
 		return list(user.include)
-	
+
 	def clear_strips(self):
 		self._clear_tables(("strips","classes"))
-		
+
 	def clear_users(self):
 		self._clear_tables(("users",))
 
@@ -46,12 +46,17 @@ class Database:
 		elif isinstance(s, Class):
 			ret = self._cur.execute("select 1 from "+self.prefix+"classes where name = '%s'"%s.name)
 			return len(ret.fetchall()) == 1
+		elif isinstance(s, User):
+			ret = self._cur.execute("select 1 from "+self.prefix+"users where name = '%s'"%s.name)
+			return len(ret.fetchall()) == 1
 		else:
 			raise Exception,(s,type(s))
 
 	def delete_section(self, s):
 		if isinstance(s, Strip):
 			self._cur.execute("delete from "+self.prefix+"strips where name = '%s'"%s.name)
+		elif isinstance(s, User):
+			self._cur.execute("delete from "+self.prefix+"users where name = '%s'"%s.name)
 		else:
 			raise Exception,(s,type(s))
 
@@ -63,13 +68,13 @@ class Database:
 			data = (s.name,self.binary(s.SerializeToString()))
 			self._cur.execute("insert into "+self.prefix+"users values ("+self.replace_str+","+self.replace_str+")",data)
 			self._con.commit()
-		
+
 		elif isinstance(s,Class):
 			self._cur.execute("insert into "+self.prefix+"classes values ("+self.replace_str+","+self.replace_str+","+self.replace_str+")",(s.name,s.desc,self.binary(s.SerializeToString())))
 			self._con.commit()
 		else:
 			raise Exception,(s,type(s))
-	
+
 	def _clear_table(self,table):
 		try:
 			self._cur.execute("drop table %s"%(self.prefix+table))
@@ -84,7 +89,7 @@ class Database:
 			self._clear_table(table)
 		self._con.commit()
 		self._setup(tables)
-	
+
 	def _list(self, table):
 		self._cur.execute("select name from %s order by name"%(self.prefix+table))
 		return [x[0] for x in self._cur.fetchall()]
@@ -140,7 +145,7 @@ class MySQL(Database):
 			else:
 				raise Exception, t
 		self._con.commit()
-	
+
 	def binary(self, data):
 		return data
 
@@ -155,7 +160,7 @@ class Sqlite(Database):
 		self._cur.execute("select name from sqlite_master where type='table' and name='%sstrips'"%prefix)
 		if len(self._cur.fetchall())==0:
 			self._setup(("users","strips","classes"))
-	
+
 	def _setup(self, tables):
 		for t in tables:
 			if t == "users":
