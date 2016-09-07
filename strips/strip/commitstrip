@@ -6,5 +6,5 @@ strip commitstrip
 	infopage http://www.commitstrip.com/en/
 	homepage http://www.commitstrip.com/en/
 	baseurl http://www.commitstrip.com/en/
-	infoval <meta property=\"og:url\" content=\"(http://www.commitstrip.com/en/\d{4}[^\"]+)"/>
+	infoval <meta property=\"og:url\" content=\"(https?://www.commitstrip.com/[^\"]+)"/>
 end
