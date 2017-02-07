@@ -1,7 +1,7 @@
 strip xkcd
 	desc xkcd
 	type search
-	searchpattern (http://imgs.xkcd.com/comics/[^\"\n\r\s]+)
+	searchpattern (//imgs.xkcd.com/comics/[^\"\n\r\s]+)
 	index 1
 	homepage http://xkcd.com/
 end
