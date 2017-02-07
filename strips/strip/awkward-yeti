@@ -5,4 +5,5 @@ strip awkward-yeti
 	searchpage http://theawkwardyeti.com/
 	homepage http://theawkwardyeti.com/
 	noperl True
+	zoom 0.5
 end
