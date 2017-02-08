@@ -2,5 +2,8 @@ strip smbc
 	desc Saturday Morning Breakfast Cereal
 	type search
 	homepage http://www.smbc-comics.com/
-	searchpattern (http://www.smbc-comics.com/comics/\d+-\d+.png)
+	searchpattern (http://www.smbc-comics.com/comics/[^\"]+\.png)
+	ext png
+	referer http://www.smbc-comics.com/
+	noperl True
 end
