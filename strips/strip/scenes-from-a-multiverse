@@ -2,7 +2,7 @@ strip scenes-from-a-multiverse
 	desc Scenes From A Multiverse
 	type search
 	homepage http://amultiverse.com/
-	searchpattern <div id=\"comic\">[^<]+<img\s+src=\"(//amultiverse.com/wp-content/uploads/[^\"]+)
+	searchpattern <div id=\"comic\">[^<]+<img\s+src=\"((?:http:)?//amultiverse.com/wp-content/uploads/[^\"]+)
 	namepattern http://amultiverse.com/files/comics/(\d{4}-\d{2}-\d{2}[^\.]*)
 	firstpage http://amultiverse.com/2010/06/14/parenthood/
 	nextpage <a href=\"(http://amultiverse.com/[^\"]+)/\" class=\"navi navi-next\" title=\"\">
