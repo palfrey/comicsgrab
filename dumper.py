@@ -8,8 +8,8 @@ from optparse import OptionParser
 from os.path import join, dirname, exists
 from os import mkdir
 
-def print_pb_indent(fp, pb,indent="\t"):
-	if opts.user:
+def print_pb_indent(fp, pb, indent="\t", user=False):
+	if user:
 		fields = pb.DESCRIPTOR.fields
 	else:
 		fields = [x[0] for x in pb.ListFields()]
@@ -28,7 +28,7 @@ def print_pb_indent(fp, pb,indent="\t"):
 				end = "subend"
 			for v in val:
 				print >> fp, "%s%s"%(indent,use)
-				print_pb_indent(fp, v,indent+"\t")
+				print_pb_indent(fp, v,indent+"\t", user)
 				print >> fp, "%s%s"%(indent,end)
 			continue
 		elif fd.enum_type!=None:
@@ -49,17 +49,17 @@ def print_pb_indent(fp, pb,indent="\t"):
 			name = fd.name
 		print >>fp, "%s%s %s"%(indent,name,str(val))
 
-def print_pb_internal(fp, pb):
+def print_pb_internal(fp, pb, user):
 	print >> fp, "%s %s"%(pb.__class__.__name__.lower(),pb.name)
-	print_pb_indent(fp, pb)
+	print_pb_indent(fp, pb, user=user)
 	print >> fp, "end"
 
-def print_pb(folder, pb):
+def print_pb(folder, pb, user):
 	path = join(folder, pb.name)
 	if not exists(folder):
 		mkdir(folder)
 	with open(path, "wb") as fp:
-		print_pb_internal(fp, pb)
+		print_pb_internal(fp, pb, user=user)
 
 if __name__ == "__main__":
 	parser = OptionParser()
@@ -81,21 +81,21 @@ if __name__ == "__main__":
 
 	if opts.user:
 		for user in db.list_users():
-			print_pb("user",db.get_user(user))
+			print_pb("user",db.get_user(user), opts.user)
 	elif opts.one_file:
 		with open(args[0], "wb") as fp:
 			for cl in db.list_classes():
-				print_pb_internal(fp,db.get_class(cl))
+				print_pb_internal(fp,db.get_class(cl), opts.user)
 				print >>fp, ""
 			for s in db.list_strips():
-				print_pb_internal(fp,db.get_strip(s))
+				print_pb_internal(fp,db.get_strip(s), opts.user)
 				print >>fp, ""
 	else:
 		folder = args[0]
 		if not exists(folder):
 			mkdir(folder)
 		for cl in db.list_classes():
-			print_pb(join(folder, "class"),db.get_class(cl))
+			print_pb(join(folder, "class"),db.get_class(cl), opts.user)
 		for s in db.list_strips():
-			print_pb(join(folder, "strip"),db.get_strip(s))
+			print_pb(join(folder, "strip"),db.get_strip(s), opts.user)
 

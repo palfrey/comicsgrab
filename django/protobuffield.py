@@ -28,7 +28,7 @@ class ProtobufField(models.BinaryField):
     def from_db_value(self, value, expression, connection, context):
         output = StringIO.StringIO()
         pb = self.protoclass.FromString(value)
-        dumper.print_pb_internal(output, pb)
+        dumper.print_pb_internal(output, pb, user=False)
         return output.getvalue()
     
     def to_python(self, value):
