@@ -1,5 +1,5 @@
 strip animetion
-	desc American Animétion
+	desc American Animetion
 	type search
 	searchpattern <img.+?src="(strips/aa\d+\.jpg)"
 	homepage http://home.myuw.net/durandal/aa/
