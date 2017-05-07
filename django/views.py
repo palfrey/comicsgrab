@@ -70,3 +70,10 @@ def update_strip(request, strip):
     df = ComicsDef(None,os.path.join(settings.COMICS_DIR, "cache"),module="Postgres")
     df.update(settings.COMICS_DIR,strips=[strip],now=now)
     return redirect("/comics")
+
+def update_strips_for_user(request, user):
+    user = get_object_or_404(User, pk=user)
+    now = DateManip()
+    df = ComicsDef(None,os.path.join(settings.COMICS_DIR, "cache"),module="Postgres")
+    df.update(settings.COMICS_DIR,user=[user.name],now=now)
+    return redirect("/comics")
