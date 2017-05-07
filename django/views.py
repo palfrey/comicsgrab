@@ -9,6 +9,7 @@ import comicsgrab.loader as loader
 from glob import glob
 from PIL import Image
 from comicsgrab.deffile import ComicsDef
+import collections
 
 def decode(pb):
     infile = StringIO.StringIO(pb)
@@ -34,8 +35,8 @@ def index(request):
         todaypath = os.path.join(settings.COMICS_DIR, folder)
 
         user_decode = decode(user.pb)
-        strips = {}
-        for strip in user_decode.include:
+        strips = collections.OrderedDict()
+        for strip in sorted(user_decode.include):
             try:
                 strip = Strip.objects.get(name=strip)
             except Strip.DoesNotExist:
@@ -45,14 +46,14 @@ def index(request):
             onlyerror = len([x for x in items if not x.endswith("error")]) == 0
             item_info = {}
             for item in items:
+                short_path = os.path.join(folder,os.path.basename(item))
                 if item.endswith("error"):
-                    strips[item] = open(item).read()
+                    item_info[short_path] = open(item).read()
                     continue
                 dimensions = [x*strip_decode.zoom for x in Image.open(item).size]
-                short_path = os.path.join(folder,os.path.basename(item))
                 item_info[short_path] = {"width":dimensions[0], "height":dimensions[1]}
             if len(item_info) > 0:
-                strips[strip] = {"homepage": strip_decode.homepage, "items": item_info, "desc": strip_decode.desc}
+                strips[strip] = {"onlyerror":onlyerror, "homepage": strip_decode.homepage, "items": item_info, "desc": strip_decode.desc}
 
         return render(request, "comics-list.html", {
             "user": user,

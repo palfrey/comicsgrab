@@ -13,7 +13,7 @@ Strips for <b>{{user.name}}<b/>, {{folder}}<br />
         {% endif %}
     </h3>
     {% for key, value in strip.items.items %}
-        {% if key.endswith.error %}
+        {% if "error" in key and strip.onlyerror %}
             {{ value }}
         {% else %}
             <img src="/comics/{{key}}" width="{{value.width}}" height="{{value.height}}"/><br />
