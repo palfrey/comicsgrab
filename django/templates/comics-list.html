@@ -1,0 +1,22 @@
+Strips for <b>{{user.name}}<b/>, {{folder}}<br />
+<a href="?user={{user.name}}&amp;date={{yesterday}}">Previous day</a><br />
+{% if now != today %}
+<a href="?user={{user.name}}&amp;date={{tomorrow}}">Next day</a><br />
+{% endif %}
+
+{% for strip in strips %}
+    <h3>
+        {% if strip.homepage != "" %}
+            <a href="{{strip.homepage}}">{{strip.desc}}</a>
+        {% else %}
+            {{ strip.desc }}
+        {% endif %}
+    </h3>
+    {% for item in strip.items.keys %}
+        {% if item.endswith.error %}
+            {{ strip.items.item }}
+        {% else %}
+            <img src="{{item}}" width="{{strip.items.item.width}}" height="{{strip.items.item.height}}"/><br />
+        {% endif %}
+    {% endfor %}
+{% endfor %}

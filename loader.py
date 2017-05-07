@@ -62,7 +62,9 @@ def loader(infile, deffile):
 						else:
 							pass
 						setattr(storage[-1],data[0],data[1])
-		except:
+		except StopIteration:
+			return
+		except Exception, e:
 			print "error at line number %d in file %s"%(lineno+1,deffile)
 			raise
 	return

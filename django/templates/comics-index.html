@@ -1,0 +1,4 @@
+Users:<br />
+{% for user in users %}
+    <a href="?user={{ user.name }}">{{user.name}}</a><br />
+{% endfor %}
