@@ -48,7 +48,8 @@ def index(request):
             for item in items:
                 short_path = os.path.join(folder,os.path.basename(item))
                 if item.endswith("error"):
-                    item_info[short_path] = open(item).read()
+                    if onlyerror:
+                        item_info[short_path] = open(item).read()
                     continue
                 dimensions = [x*strip_decode.zoom for x in Image.open(item).size]
                 item_info[short_path] = {"width":dimensions[0], "height":dimensions[1]}
