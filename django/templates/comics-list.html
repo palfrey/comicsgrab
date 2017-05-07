@@ -4,7 +4,7 @@ Strips for <b>{{user.name}}<b/>, {{folder}}<br />
 <a href="?user={{user.name}}&amp;date={{tomorrow}}">Next day</a><br />
 {% endif %}
 
-{% for strip in strips %}
+{% for strip in strips.values %}
     <h3>
         {% if strip.homepage != "" %}
             <a href="{{strip.homepage}}">{{strip.desc}}</a>
@@ -12,11 +12,11 @@ Strips for <b>{{user.name}}<b/>, {{folder}}<br />
             {{ strip.desc }}
         {% endif %}
     </h3>
-    {% for item in strip.items.keys %}
-        {% if item.endswith.error %}
-            {{ strip.items.item }}
+    {% for key, value in strip.items.items %}
+        {% if key.endswith.error %}
+            {{ value }}
         {% else %}
-            <img src="{{item}}" width="{{strip.items.item.width}}" height="{{strip.items.item.height}}"/><br />
+            <img src="/comics/{{key}}" width="{{value.width}}" height="{{value.height}}"/><br />
         {% endif %}
     {% endfor %}
 {% endfor %}

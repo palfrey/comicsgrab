@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from comicsgrab.django.models import *
 from comicsgrab.date_manip import DateManip
 from django.conf import settings
@@ -8,6 +8,16 @@ import StringIO
 import comicsgrab.loader as loader
 from glob import glob
 from PIL import Image
+from comicsgrab.deffile import ComicsDef
+
+def decode(pb):
+    infile = StringIO.StringIO(pb)
+    for item in loader.loader(infile, "__django__"):
+        decoded = item
+        break
+    if decoded == None:
+        raise Exception,user.pb
+    return decoded
 
 def index(request):
     user = request.GET.get("user")
@@ -19,27 +29,30 @@ def index(request):
         if 'date' not in request.GET:
             now = DateManip().today()
         else:
-            now = DateManip.strptime("%Y-%m-%d", request.GET['date'][0])
+            now = DateManip.strptime("%Y-%m-%d", request.GET['date'])
         folder = now.strftime("%Y-%m-%d")
         todaypath = os.path.join(settings.COMICS_DIR, folder)
 
-        infile = StringIO.StringIO(user.pb)
-        for item in loader.loader(infile, "__django__"):
-            decode = item
-            break
-        if decode == None:
-            raise Exception,user.pb
-
+        user_decode = decode(user.pb)
         strips = {}
-        for strip in decode.include:
-            items = glob(os.path.join(todaypath,"%s-*"%strip))
+        for strip in user_decode.include:
+            try:
+                strip = Strip.objects.get(name=strip)
+            except Strip.DoesNotExist:
+                continue
+            strip_decode = decode(strip.pb)
+            items = glob(os.path.join(todaypath,"%s-*"%strip.name))
             onlyerror = len([x for x in items if not x.endswith("error")]) == 0
+            item_info = {}
             for item in items:
                 if item.endswith("error"):
                     strips[item] = open(item).read()
                     continue
-                dimensions = [x*strip.zoom for x in Image.open(item).size]
-                strips[item] = {"width":dimensions[0], "height":dimensions[1]}
+                dimensions = [x*strip_decode.zoom for x in Image.open(item).size]
+                short_path = os.path.join(folder,os.path.basename(item))
+                item_info[short_path] = {"width":dimensions[0], "height":dimensions[1]}
+            if len(item_info) > 0:
+                strips[strip] = {"homepage": strip_decode.homepage, "items": item_info, "desc": strip_decode.desc}
 
         return render(request, "comics-list.html", {
             "user": user,
@@ -48,5 +61,11 @@ def index(request):
             "today": today,
             "strips": strips,
             "yesterday":now.mod_days(-1).strftime("%Y-%m-%d"),
-            "tommorrow":now.mod_days(+1).strftime("%Y-%m-%d")
+            "tomorrow":now.mod_days(+1).strftime("%Y-%m-%d")
             })
+
+def update_strip(request, strip):
+    now = DateManip()
+    df = ComicsDef(None,os.path.join(settings.COMICS_DIR, "cache"),module="Postgres")
+    df.update(settings.COMICS_DIR,strips=[strip],now=now)
+    return redirect("/comics")
