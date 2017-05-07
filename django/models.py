@@ -19,6 +19,7 @@ class Strip(models.Model):
 class Class(models.Model):
     class Meta:
         db_table = "comics_classes"
+        verbose_name_plural = "classes"
     name = models.CharField(max_length=100, primary_key=True)
     description = models.CharField(max_length=200)
     pb = ProtobufField(protoclass=pb2.Class)
