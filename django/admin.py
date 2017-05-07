@@ -14,3 +14,4 @@ class Class(admin.ModelAdmin):
 @admin.register(User)
 class User(admin.ModelAdmin):
     list_display = ('name',)
+    change_form_template = 'admin/change_form_user.html'
