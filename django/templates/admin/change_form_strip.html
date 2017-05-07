@@ -18,13 +18,3 @@
   </ul>
 {% endif %}{% endif %}
 {% endblock %}
-
-{% block submit_buttons_bottom %}
-    <div class="submit-row">
-        <form action="{% url 'update_strip' original.pk %}" method="POST">
-            <input type="submit" value="Update strip" name="_anotherbutton" />
-        </form>
-    </div>
-
-    {{ block.super }}
-{% endblock %}
