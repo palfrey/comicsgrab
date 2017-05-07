@@ -1,6 +1,7 @@
 from sys import argv
 import types
 from google.protobuf.internal.containers import *
+from google.protobuf.pyext._message import *
 
 from database import Sqlite as Database
 from optparse import OptionParser
@@ -18,9 +19,9 @@ def print_pb_indent(fp, pb, indent="\t", user=False):
 		if fd.name == "name":
 			continue
 		val = getattr(pb,fd.name)
-		if isinstance(val,RepeatedScalarFieldContainer):
+		if isinstance(val,RepeatedScalarFieldContainer) or isinstance(val,RepeatedScalarContainer):
 			val = " ".join(val)
-		elif isinstance(val,RepeatedCompositeFieldContainer):
+		elif isinstance(val,RepeatedCompositeFieldContainer) or isinstance(val, RepeatedCompositeContainer):
 			use = fd.name
 			end = "end"
 			if use == "subs":
