@@ -1,4 +1,3 @@
-from __future__ import unicode_literals
 from django.db import models
 from protobuffield import ProtobufField
 import comicsgrab.strips_pb2 as pb2
