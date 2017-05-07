@@ -4,7 +4,6 @@
 #
 # Released under the GPL Version 2 (http://www.gnu.org/copyleft/gpl.html)
 
- 
 from deffile import ComicsDef
 from date_manip import DateManip
 from optparse import OptionParser

@@ -23,10 +23,7 @@ from codecs import open
 
 class ComicsDef:
 	def __init__(self,deffile,cachedir,debug=0,proxy=None, db=None, module="Sqlite", archive = False):
-		if module == "Sqlite":
-			self.db = database.Sqlite(db)
-		else:
-			self.db = database.MySQL(user=settings.user, password=settings.password, database=settings.database, prefix=settings.prefix)
+		self.db = database.get_db(module, db)
 		self.debug = debug
 		self.maxdays = 14
 		self.proxy = proxy

@@ -2,3 +2,4 @@ user=""
 password=""
 database=""
 prefix="comics_"
+port=5432

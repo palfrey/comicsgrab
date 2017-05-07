@@ -1,17 +1,10 @@
 from google.protobuf.internal.containers import BaseContainer
 from strips_pb2 import Class,User,Strip,Subsection,_TYPE
 from re import split
+import database
 
-def load_data(db, user, deffile, clear = True):
-	if clear:
-		if user:
-			db.clear_users()
-		else:
-			db.clear_strips()
-
-	infile = open(deffile)
+def loader(infile, deffile):
 	storage = []
-
 	for lineno,line in enumerate(infile):
 		while line.find("#")<>-1:
 			line = line[:line.find("#")-1]
@@ -34,9 +27,7 @@ def load_data(db, user, deffile, clear = True):
 				storage[-1].name = data[1]
 			elif data[0] == 'end':
 				assert len(storage) == 1,storage
-				if db.has_section(storage[0]):
-					db.delete_section(storage[0])
-				db.add_section(storage[0])
+				yield storage[0]
 				storage = []
 			else:
 				if data[0] == "subbeg":
@@ -75,6 +66,20 @@ def load_data(db, user, deffile, clear = True):
 			print "error at line number %d in file %s"%(lineno+1,deffile)
 			raise
 	return
+
+def load_data(db, user, deffile, clear = True):
+	if clear:
+		if user:
+			db.clear_users()
+		else:
+			db.clear_strips()
+
+	infile = open(deffile)
+
+	for item in loader(infile, deffile):
+		if db.has_section(item):
+			db.delete_section(item)
+		db.add_section(item)
 	infile.close()
 
 if __name__ == "__main__":
@@ -90,12 +95,7 @@ if __name__ == "__main__":
 	if len(args) == 0:
 		parser.error("Need definitions file(s)!")
 
-	globals()['Database'] = getattr(__import__('database',globals(),locals(),[opts.db_module]),opts.db_module)
-
-	if opts.db_module == "Sqlite":
-		db = Database(opts.database)
-	else:
-		db = Database()
+	db = database.get_db(opts.db_module,opts.database)
 	
 	clear = opts.clear
 	for a in args:

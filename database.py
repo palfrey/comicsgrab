@@ -6,6 +6,10 @@ try:
 	import MySQLdb
 except ImportError:
 	MySQLdb = None
+try:
+	import psycopg2
+except ImportError:
+	psycopg2 = None
 
 from strips_pb2 import Class,Strip,Subsection,User
 
@@ -41,14 +45,14 @@ class Database:
 
 	def has_section(self, s):
 		if isinstance(s, Strip):
-			ret = self._cur.execute("select 1 from "+self.prefix+"strips where name = '%s'"%s.name)
-			return len(ret.fetchall()) == 1
+			self._cur.execute("select 1 from "+self.prefix+"strips where name = '%s'"%s.name)
+			return len(self._cur.fetchall()) == 1
 		elif isinstance(s, Class):
-			ret = self._cur.execute("select 1 from "+self.prefix+"classes where name = '%s'"%s.name)
-			return len(ret.fetchall()) == 1
+			self._cur.execute("select 1 from "+self.prefix+"classes where name = '%s'"%s.name)
+			return len(self._cur.fetchall()) == 1
 		elif isinstance(s, User):
-			ret = self._cur.execute("select 1 from "+self.prefix+"users where name = '%s'"%s.name)
-			return len(ret.fetchall()) == 1
+			self._cur.execute("select 1 from "+self.prefix+"users where name = '%s'"%s.name)
+			return len(self._cur.fetchall()) == 1
 		else:
 			raise Exception,(s,type(s))
 
@@ -122,16 +126,15 @@ class Database:
 		u.ParseFromString(f[0][0])
 		return u
 
-class MySQL(Database):
+class SQLDB(Database):
 	replace_str = "%s"
 
-	def __init__(self,database="comics", prefix="", user="comics", password="comics", host="127.0.0.1"):
+	def __init__(self, database="comics", prefix="", user="comics", password="comics", host="127.0.0.1", port=5432):
 		self.prefix = prefix
-		self._con = MySQLdb.connect(user=user,passwd=password,db=database, host=host)
+		self._con = self.connect(user, password, database, host, port)
 		self._cur = self._con.cursor()
 		for table in ("users","strips","classes"):
-			self._cur.execute("show tables like '%s'"%(self.prefix+table))
-			if len(self._cur.fetchall())==0:
+			if not self.table_exists(self.prefix+table):
 				self._setup((table,))
 
 	def _setup(self, tables):
@@ -148,6 +151,25 @@ class MySQL(Database):
 
 	def binary(self, data):
 		return data
+
+class MySQL(SQLDB):
+	def connect(self, user, password, database, host):
+		return MySQLdb.connect(user=user,passwd=password,db=database, host=host)
+
+	def table_exists(self, name):
+		self._cur.execute("show tables like '%s'"%name)
+		return len(self._cur.fetchall())!=0
+
+class Postgres(SQLDB):
+	def connect(self, user, password, database, host, port):
+		return psycopg2.connect(user=user,password=password,dbname=database, host=host, port=port)
+
+	def table_exists(self, name):
+		self._cur.execute("SELECT EXISTS (SELECT 1 FROM pg_tables WHERE tablename = '%s');"%name)
+		return len(self._cur.fetchall())!=0
+
+	def binary(self, data):
+		return psycopg2.Binary(data)
 
 class Sqlite(Database):
 	replace_str = "?"
@@ -175,3 +197,14 @@ class Sqlite(Database):
 
 	def binary(self, data):
 		return sqlite.Binary(data)
+
+def get_db(module, db):
+	import settings
+	if module == "Sqlite":
+		return Sqlite(db)
+	elif module == "MySQL":
+		return MySQL(user=settings.user, password=settings.password, database=settings.database, prefix=settings.prefix)
+	elif module == "Postgres":
+		return Postgres(user=settings.user, password=settings.password, database=settings.database, prefix=settings.prefix, port=settings.port)
+	else:
+		raise Exception, "Don't know module %s" % module
