@@ -28,7 +28,7 @@ def index(request):
         user = get_object_or_404(User, pk=user)
         today = DateManip().today()
         if 'date' not in request.GET:
-            now = DateManip().today()
+            now = today
         else:
             now = DateManip.strptime("%Y-%m-%d", request.GET['date'])
         folder = now.strftime("%Y-%m-%d")
