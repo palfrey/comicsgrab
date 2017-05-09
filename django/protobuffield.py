@@ -44,6 +44,6 @@ class ProtobufField(models.BinaryField):
         raise Exception, value
 
     def formfield(self, **kwargs):
-        defaults = {'widget': forms.Textarea}
+        defaults = {'widget': forms.Textarea(attrs={'cols': '60'})}
         defaults.update(kwargs)
         return super(ProtobufField, self).formfield(**defaults)
