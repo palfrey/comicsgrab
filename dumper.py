@@ -1,7 +1,13 @@
 from sys import argv
 import types
 from google.protobuf.internal.containers import *
-from google.protobuf.pyext._message import *
+try:
+	from google.protobuf.pyext._message import *
+except ImportError:
+	class RepeatedScalarContainer:
+		pass
+	class RepeatedCompositeContainer:
+		pass
 
 from database import Sqlite as Database
 from optparse import OptionParser

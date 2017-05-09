@@ -11,6 +11,12 @@ from urlcache import CacheError
 from database import NoSuchStrip
 from strips_pb2 import Strip, _TYPE as Type, Subsection
 from google.protobuf.internal.containers import RepeatedCompositeFieldContainer
+try:
+	from google.protobuf.pyext._message import *
+except ImportError:
+	class RepeatedCompositeContainer:
+		pass
+
 import types
 
 def user_strips(user,db,now,cache):
@@ -41,7 +47,7 @@ def update_entries(strip, cl):
 			if n == "name" and strip.name!="":
 				continue
 			old = getattr(strip,n)
-			if isinstance(old,RepeatedCompositeFieldContainer):
+			if isinstance(old,RepeatedCompositeFieldContainer) or isinstance(old,RepeatedCompositeContainer):
 				old.MergeFrom(getattr(cl,n))
 			else:
 				setattr(strip,n,val)
