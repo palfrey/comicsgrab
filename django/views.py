@@ -26,7 +26,7 @@ def index(request):
         return render(request, "comics-index.html", {"users": User.objects.all()})
     else:
         user = get_object_or_404(User, pk=user)
-        today = DateManip().today()
+        today = DateManip.today()
         if 'date' not in request.GET:
             now = today
         else:

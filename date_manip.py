@@ -16,7 +16,9 @@ class DateManip:
 	def strptime(format, date):
 		return DateManip(init_date=time.mktime(time.strptime(date,format)))
 
-	def __init__(self,init_date=time.time()):
+	def __init__(self,init_date=None):
+		if init_date == None:
+			init_date = time.time()
 		tup = time.localtime(init_date)
 		self.year = tup.tm_year
 		self.month = tup.tm_mon
