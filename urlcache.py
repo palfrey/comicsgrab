@@ -100,7 +100,7 @@ class URLCache:
 			self.store[hash].used = True
 	
 	def get(self,url,ref=None):
-		url = url.replace("&amp;","&")
+		url = url.replace("&amp;","&").replace(" ","%20")
 		hash = self.md5(url,ref)
 		self.__load__(hash)
 		if self.store.has_key(hash):
