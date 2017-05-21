@@ -8,6 +8,9 @@ class User(models.Model):
     name = models.CharField(max_length=100, primary_key=True)
     pb = ProtobufField(protoclass=pb2.User)
 
+    def __str__(self):
+        return self.name
+
 class Strip(models.Model):
     class Meta:
         db_table = "comics_strips"
@@ -16,6 +19,9 @@ class Strip(models.Model):
     homepage = models.CharField(max_length=200)
     pb = ProtobufField(protoclass=pb2.Strip, default_args={"name":""})
 
+    def __str__(self):
+        return self.name
+
 class Class(models.Model):
     class Meta:
         db_table = "comics_classes"
@@ -23,3 +29,6 @@ class Class(models.Model):
     name = models.CharField(max_length=100, primary_key=True)
     description = models.CharField(max_length=200)
     pb = ProtobufField(protoclass=pb2.Class)
+
+    def __str__(self):
+        return self.name
