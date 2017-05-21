@@ -1,12 +1,20 @@
 from django.db import models
 from protobuffield import ProtobufField
 import comicsgrab.strips_pb2 as pb2
+import StringIO
+import comicsgrab.loader as loader
 
 class User(models.Model):
     class Meta:
         db_table = "comics_users"
     name = models.CharField(max_length=100, primary_key=True)
     pb = ProtobufField(protoclass=pb2.User)
+
+    def pb_decode(self):
+        infile = StringIO.StringIO(self.pb)
+        for item in loader.loader(infile, "__django__"):
+            return item
+        raise Exception
 
     def __str__(self):
         return self.name
