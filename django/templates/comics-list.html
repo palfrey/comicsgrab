@@ -12,7 +12,7 @@ Strips for <b>{{user.name}}<b/>, {{folder}}<br />
             {{ strip.desc }}
         {% endif %}
     </h3>
-    {% for key, value in strip.items.items %}
+    {% for key, value in strip.items %}
         {% if "error" in key and strip.onlyerror %}
             {{ value }}
         {% else %}

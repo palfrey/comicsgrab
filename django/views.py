@@ -54,7 +54,7 @@ def index(request):
                 dimensions = [x*strip_decode.zoom for x in Image.open(item).size]
                 item_info[short_path] = {"width":dimensions[0], "height":dimensions[1]}
             if len(item_info) > 0:
-                strips[strip] = {"onlyerror":onlyerror, "homepage": strip_decode.homepage, "items": item_info, "desc": strip_decode.desc}
+                strips[strip] = {"onlyerror":onlyerror, "homepage": strip_decode.homepage, "items": sorted(item_info.items()), "desc": strip_decode.desc}
 
         return render(request, "comics-list.html", {
             "user": user,
