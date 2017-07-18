@@ -20,3 +20,8 @@ Strips for <b>{{user.name}}<b/>, {{folder}}<br />
         {% endif %}
     {% endfor %}
 {% endfor %}
+
+<a href="?user={{user.name}}&amp;date={{yesterday}}">Previous day</a><br />
+{% if now != today %}
+<a href="?user={{user.name}}&amp;date={{tomorrow}}">Next day</a><br />
+{% endif %}
