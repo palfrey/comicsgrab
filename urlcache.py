@@ -25,6 +25,8 @@ except ImportError: # python < 2.5
 	hashlib = None
 
 def hexdigest_md5(data):
+	if type(data) == unicode:
+		data = data.encode('utf-8', errors='ignore')
 	if hashlib:
 		return hashlib.md5(data).hexdigest()
 	else:

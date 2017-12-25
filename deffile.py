@@ -347,9 +347,9 @@ class ComicsDef:
 							for x in range(len(retr)):
 								if not s.look.HasField("index") or s.look.index == x+1:
 									r = retr[x]
-									
-									print "Getting (image from search)",urlparse.urljoin(data["baseurl"],r)
-									get.append(self.get_url(g.name,urlparse.urljoin(data["baseurl"],r),ref=searchpage))
+									joined = urlparse.urljoin(data["baseurl"],r)
+									print "Getting (image from search)", joined.encode('utf-8', errors='ignore')
+									get.append(self.get_url(g.name, joined, ref=searchpage))
 							tried += 1
 						else:
 							print "Got no page at all!"
@@ -379,7 +379,7 @@ class ComicsDef:
 
 					if old != [] and len(old)==len(get):
 						for o in range(len(old)):
-							print "Comparing",old[o],"and",get[o].url
+							print "Comparing",old[o],"and",get[o].url.encode('utf-8', errors='ignore')
 
 							if len(get[o].content) != os.stat(old[o]).st_size:
 								break
