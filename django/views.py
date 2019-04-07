@@ -10,6 +10,7 @@ from glob import glob
 from PIL import Image
 from comicsgrab.deffile import ComicsDef
 import collections
+import hashlib
 
 def decode(pb):
     infile = StringIO.StringIO(pb)
@@ -45,14 +46,20 @@ def index(request):
             items = glob(os.path.join(todaypath,"%s-*"%strip.name))
             onlyerror = len([x for x in items if not x.endswith("error")]) == 0
             item_info = {}
+            hashes = []
             for item in items:
                 short_path = os.path.join(folder,os.path.basename(item))
                 if item.endswith("error"):
                     if onlyerror:
                         item_info[short_path] = open(item).read()
                     continue
-                dimensions = [int(x*strip_decode.zoom) for x in Image.open(item).size]
-                item_info[short_path] = {"width":dimensions[0], "height":dimensions[1]}
+                image = Image.open(item)
+                hash = hashlib.sha1(image.tobytes()).hexdigest()
+                if hash in hashes:
+                    continue
+                hashes.append(hash)
+                dimensions = [int(x*strip_decode.zoom) for x in image.size]
+                item_info[short_path] = {"width":dimensions[0], "height":dimensions[1], "hash": hash}
             if len(item_info) > 0:
                 strips[strip] = {"onlyerror":onlyerror, "homepage": strip_decode.homepage, "items": sorted(item_info.items()), "desc": strip_decode.desc}
 
