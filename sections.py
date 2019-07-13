@@ -70,7 +70,10 @@ def gen_search(strip,db,now,cache, search = None):
 		#print page,val
 		try:
 			print "Getting (infopage)", page
-			data = cache.get_mult(page,None,count=2).content
+			data = cache.get_mult(page,None,count=2)
+			if data == None:
+				raise CacheError, "Can't get page %s" % page
+			data = data.content
 			find = re.search(val, data)
 			if find == None:
 				raise CacheError, "Can't find %s"%val
