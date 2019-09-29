@@ -7,10 +7,13 @@ import comicsgrab.strips_pb2 as pb2
 import StringIO
 import comicsgrab.loader as loader
 from glob import glob
-from PIL import Image
+from PIL import Image, ImageFile
 from comicsgrab.deffile import ComicsDef
 import collections
 import hashlib
+
+# See https://stackoverflow.com/a/23575424/320546
+ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 def decode(pb):
     infile = StringIO.StringIO(pb)
