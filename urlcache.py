@@ -12,9 +12,8 @@ from cPickle import dump,load,UnpicklingError
 try:
 	from urlgrab import URLTimeout, URLTimeoutError
 except ImportError:
-	from sys import exit
-	print "Get urlgrab with 'git submodule init;git submodule update'"
-	exit(1)
+	print("Get urlgrab with 'git submodule init;git submodule update'")
+	raise
 import urllib2
 from os.path import exists
 
