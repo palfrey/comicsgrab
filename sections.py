@@ -81,7 +81,7 @@ def gen_search(strip,db,now,cache, search = None):
 			strip.infoval = check
 		except CacheError,e:
 			print "error while getting infoval '%s'"%page, str(e)
-			#raise
+			raise
 				
 class search:
 	def __init__(self,parent):
