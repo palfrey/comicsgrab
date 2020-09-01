@@ -397,7 +397,7 @@ class ComicsDef:
 						if not os.path.exists(folder):
 							os.mkdir(folder)
 						fname = folder+g.name+"-"+str(index)+"."+ext
-						outfile = file(fname,mode='wb')
+						outfile = open(fname, mode='wb')
 						try:
 							outfile.write(u.content)
 							outfile.close()
