@@ -4,7 +4,7 @@ from comicsgrab.date_manip import DateManip
 from django.conf import settings
 import os.path
 import comicsgrab.strips_pb2 as pb2
-import StringIO
+import io
 import comicsgrab.loader as loader
 from glob import glob
 from PIL import Image, ImageFile
@@ -16,12 +16,12 @@ import hashlib
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 def decode(pb):
-    infile = StringIO.StringIO(pb)
+    infile = io.StringIO(pb)
     for item in loader.loader(infile, "__django__"):
         decoded = item
         break
     if decoded == None:
-        raise Exception,user.pb
+        raise Exception(user.pb)
     return decoded
 
 def index(request):

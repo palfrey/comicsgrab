@@ -1,12 +1,12 @@
 from google.protobuf.internal.containers import BaseContainer
-from strips_pb2 import Class,User,Strip,Subsection,_TYPE
+from .strips_pb2 import Class,User,Strip,_TYPE
 from re import split
-import database
+from . import database
 
 def loader(infile, deffile):
 	storage = []
 	for lineno,line in enumerate(infile):
-		while line.find("#")<>-1:
+		while line.find("#")!=-1:
 			line = line[:line.find("#")-1]
 		line = line.strip()
 		if line == "":
@@ -23,7 +23,7 @@ def loader(infile, deffile):
 				elif data[0] == "strip":
 					storage.append(Strip())
 				else:
-					raise Exception,"Unknown block type '%s'"%data[0]
+					raise Exception("Unknown block type '%s'"%data[0])
 				storage[-1].name = data[1]
 			elif data[0] == 'end':
 				assert len(storage) == 1,storage
@@ -64,8 +64,8 @@ def loader(infile, deffile):
 						setattr(storage[-1],data[0],data[1])
 		except StopIteration:
 			return
-		except Exception, e:
-			print "error at line number %d in file %s"%(lineno+1,deffile)
+		except Exception as e:
+			print("error at line number %d in file %s"%(lineno+1,deffile))
 			raise
 	return
 

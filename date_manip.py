@@ -134,7 +134,7 @@ class CalcWeek:
 					last = i
 					break
 			else:
-				raise Exception, "Can't find DoW "+b
+				raise Exception("Can't find DoW "+b)
 		if seq != 0:
-			raise Exception, "No end of sequence!!"
+			raise Exception("No end of sequence!!")
 		return ret

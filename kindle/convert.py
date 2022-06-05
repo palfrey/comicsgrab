@@ -30,7 +30,7 @@ for folder in os.listdir(root):
 	targetFolder = os.path.join(target, folder)
 	if not os.path.exists(targetFolder):
 		os.mkdir(targetFolder)
-	print targetFolder
+	print(targetFolder)
 	for (idx,f) in enumerate(sorted(os.listdir(sourceFolder))):
 		sf = os.path.join(sourceFolder, f)
 		tfName = "%02d-%s.png"%(idx,os.path.splitext(f)[0])
@@ -42,10 +42,10 @@ for folder in os.listdir(root):
 
 			mangaSaveName = os.path.join(targetFolder, folder+'.manga_save')
 			mangaSave = open(mangaSaveName, 'w')
-			saveData = u'LAST=/mnt/us/pictures/%s/%s' % (folder, tfName)
+			saveData = 'LAST=/mnt/us/pictures/%s/%s' % (folder, tfName)
 			mangaSave.write(saveData.encode('utf-8'))
 			mangaSave.close()
 		tf = os.path.join(targetFolder, tfName)
-		print tf
+		print(tf)
 		if not os.path.isfile(tf):
 			image.convertImage(sf, tf, "Kindle 3", image.ImageFlags.Orient | image.ImageFlags.Resize | image.ImageFlags.Frame | image.ImageFlags.Quantize)

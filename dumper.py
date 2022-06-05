@@ -9,7 +9,7 @@ except ImportError:
 	class RepeatedCompositeContainer:
 		pass
 
-from database import Sqlite as Database
+from .database import Sqlite as Database
 from optparse import OptionParser
 
 from os.path import join, dirname, exists
@@ -34,32 +34,32 @@ def print_pb_indent(fp, pb, indent="\t", user=False):
 				use = "subbeg"
 				end = "subend"
 			for v in val:
-				print >> fp, "%s%s"%(indent,use)
+				print("%s%s"%(indent,use), file=fp)
 				print_pb_indent(fp, v,indent+"\t", user)
-				print >> fp, "%s%s"%(indent,end)
+				print("%s%s"%(indent,end), file=fp)
 			continue
 		elif fd.enum_type!=None:
 			val = fd.enum_type.values_by_number[val].name
-		elif isinstance(val,unicode) or isinstance(val,long) or isinstance(val,str) or isinstance(val,float):
+		elif isinstance(val,str) or isinstance(val,int) or isinstance(val,str) or isinstance(val,float):
 			pass
 		elif isinstance(val,bool):
 			pass
 		elif isinstance(val,int):
 			val = int(val)
 		else:
-			print dir(fd)
-			print dir(fd.enum_type)
-			raise Exception,(fd.name,type(val),fd,getattr(pb,fd.name))
+			print(dir(fd))
+			print(dir(fd.enum_type))
+			raise Exception(fd.name,type(val),fd,getattr(pb,fd.name))
 		if fd.name.find("_var_")==0:
 			name = "$%s"%fd.name[len("_var_"):]
 		else:
 			name = fd.name
-		print >>fp, "%s%s %s"%(indent,name,str(val))
+		print("%s%s %s"%(indent,name,str(val)), file=fp)
 
 def print_pb_internal(fp, pb, user):
-	print >> fp, "%s %s"%(pb.__class__.__name__.lower(),pb.name)
+	print("%s %s"%(pb.__class__.__name__.lower(),pb.name), file=fp)
 	print_pb_indent(fp, pb, user=user)
-	print >> fp, "end"
+	print("end", file=fp)
 
 def print_pb(folder, pb, user):
 	path = join(folder, pb.name)
@@ -93,10 +93,10 @@ if __name__ == "__main__":
 		with open(args[0], "wb") as fp:
 			for cl in db.list_classes():
 				print_pb_internal(fp,db.get_class(cl), opts.user)
-				print >>fp, ""
+				print("", file=fp)
 			for s in db.list_strips():
 				print_pb_internal(fp,db.get_strip(s), opts.user)
-				print >>fp, ""
+				print("", file=fp)
 	else:
 		folder = args[0]
 		if not exists(folder):

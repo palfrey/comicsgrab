@@ -5,11 +5,11 @@
 # Released under the GPL Version 2 (http://www.gnu.org/copyleft/gpl.html)
 
 import re
-from PerlREEval import PerlREEval
+from .PerlREEval import PerlREEval
 import copy
-from urlcache import CacheError
-from database import NoSuchStrip
-from strips_pb2 import Strip, _TYPE as Type, Subsection
+from .urlcache import CacheError
+from .database import NoSuchStrip
+from .strips_pb2 import Strip, _TYPE as Type, Subsection
 from google.protobuf.internal.containers import RepeatedCompositeFieldContainer
 try:
 	from google.protobuf.pyext._message import *
@@ -69,18 +69,18 @@ def gen_search(strip,db,now,cache, search = None):
 		val = strip.infoval
 		#print page,val
 		try:
-			print "Getting (infopage)", page
+			print("Getting (infopage)", page)
 			data = cache.get_mult(page,None,count=2)
 			if data == None:
-				raise CacheError, "Can't get page %s" % page
+				raise CacheError("Can't get page %s" % page)
 			data = data.content
 			find = re.search(val, data)
 			if find == None:
-				raise CacheError, "Can't find %s"%val
+				raise CacheError("Can't find %s"%val)
 			check = find.groups()[0]
 			strip.infoval = check
-		except CacheError,e:
-			print "error while getting infoval '%s'"%page, str(e)
+		except CacheError as e:
+			print("error while getting infoval '%s'"%page, str(e))
 			raise
 				
 class search:
@@ -89,7 +89,7 @@ class search:
 		self.look = Strip()
 		self.eval = None
 
-		if type(self.parent) in (types.ListType,types.TupleType):
+		if type(self.parent) in (list,tuple):
 			for p in self.parent:
 				update_entries(self.look,p)
 		else:
@@ -130,15 +130,15 @@ class search:
 				for d in data.keys():
 					data[d] = self.eval_perl(data[d])
 					if data[d].find("$")!=-1:
-						print self.look
-						print data
+						print(self.look)
+						print(data)
 						raise Exception("Unevaluated variable! - "+str(data[d]))
 		elif method == "generate":
 			if archive:
-				raise Exception, self.look
+				raise Exception(self.look)
 			data = self.eval_perl(self.look.imageurl)
 		else:
-			print method
-			print self.look
+			print(method)
+			print(self.look)
 			raise Exception("dunno what to do!")
 		return (method,data)

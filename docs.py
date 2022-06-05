@@ -14,9 +14,9 @@ except:
 try:
 	from docutils.core import publish_file
 except:
-	print "You need docutils (http://docutils.sourceforge.net/)\n"
+	print("You need docutils (http://docutils.sourceforge.net/)\n")
 	raise
-from html import Writer
+from .html import Writer
 
 def rebuild(rst,php):
 	read_txt = open(rst,'r')

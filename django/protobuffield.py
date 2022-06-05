@@ -1,6 +1,6 @@
 from django.db import models
 from django import forms
-import StringIO
+import io
 
 import comicsgrab.dumper as dumper
 import comicsgrab.loader as loader
@@ -26,7 +26,7 @@ class ProtobufField(models.BinaryField):
         return name, protoclass, args, kwargs 
     
     def from_db_value(self, value, expression, connection, context):
-        output = StringIO.StringIO()
+        output = io.StringIO()
         pb = self.protoclass.FromString(value)
         dumper.print_pb_internal(output, pb, user=False)
         return output.getvalue()
@@ -35,13 +35,13 @@ class ProtobufField(models.BinaryField):
         if value is None:
             return value
 
-        infile = StringIO.StringIO(value)
+        infile = io.StringIO(value)
         for item in loader.loader(infile, "__django__"):
             if item.__class__ != self.protoclass:
-                raise Exception, "Bad class: %s != %s"%(item.__class__, self.protoclass)
+                raise Exception("Bad class: %s != %s"%(item.__class__, self.protoclass))
             return self.protoclass.SerializeToString(item)
 
-        raise Exception, value
+        raise Exception(value)
 
     def formfield(self, **kwargs):
         defaults = {'widget': forms.Textarea(attrs={'cols': '60'})}

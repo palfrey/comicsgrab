@@ -47,8 +47,8 @@ class AsyncAlarmMixin:
 
     def handle_alarm(self, data):
         """respond to an alarm - generally overridden in a subclass"""
-        print "alarm @ %.5f with data %s handled @ %.5f" % \
-              (self.alarms[0][0], self.alarms[0][1], time.time())
+        print("alarm @ %.5f with data %s handled @ %.5f" % \
+              (self.alarms[0][0], self.alarms[0][1], time.time()))
 
     def loop (self, timeout=30.0, use_poll=0, map=None):
         """alternate event loop for asyncore apps that handles alarms"""
@@ -95,7 +95,7 @@ if __name__ == "__main__":
         def handle_read(self):
             data = self.recv(8192)
             if data:
-                print len(data)
+                print(len(data))
 
         def writable(self):
             return self.buffer

@@ -11,7 +11,7 @@ try:
 except ImportError:
 	psycopg2 = None
 
-from strips_pb2 import Class,Strip,Subsection,User
+from .strips_pb2 import Class,Strip,User
 
 class NoSuchStrip(Exception):
 	pass
@@ -54,7 +54,7 @@ class Database:
 			self._cur.execute("select 1 from "+self.prefix+"users where name = '%s'"%s.name)
 			return len(self._cur.fetchall()) == 1
 		else:
-			raise Exception,(s,type(s))
+			raise Exception(s,type(s))
 
 	def delete_section(self, s):
 		if isinstance(s, Strip):
@@ -62,7 +62,7 @@ class Database:
 		elif isinstance(s, User):
 			self._cur.execute("delete from "+self.prefix+"users where name = '%s'"%s.name)
 		else:
-			raise Exception,(s,type(s))
+			raise Exception(s,type(s))
 
 	def add_section(self, s):
 		if isinstance(s,Strip):
@@ -77,12 +77,12 @@ class Database:
 			self._cur.execute("insert into "+self.prefix+"classes values ("+self.replace_str+","+self.replace_str+","+self.replace_str+")",(s.name,s.desc,self.binary(s.SerializeToString())))
 			self._con.commit()
 		else:
-			raise Exception,(s,type(s))
+			raise Exception(s,type(s))
 
 	def _clear_table(self,table):
 		try:
 			self._cur.execute("drop table %s"%(self.prefix+table))
-		except sqlite.OperationalError,e:
+		except sqlite.OperationalError as e:
 			if e.message == "no such table: %s"%table:
 				pass
 			else:
@@ -120,7 +120,7 @@ class Database:
 		self._cur.execute("select pb from "+self.prefix+"users where name="+self.replace_str+"",(user,))
 		f = self._cur.fetchall()
 		if len(f)!=1:
-			print f
+			print(f)
 			raise NoSuchUser
 		u = User()
 		u.ParseFromString(f[0][0])
@@ -146,7 +146,7 @@ class SQLDB(Database):
 			elif t == "classes":
 				self._cur.execute("create table %sclasses (name varchar(100) primary key, description varchar(200), pb blob)"%self.prefix)
 			else:
-				raise Exception, t
+				raise Exception(t)
 		self._con.commit()
 
 	def binary(self, data):
@@ -192,7 +192,7 @@ class Sqlite(Database):
 			elif t == "classes":
 				self._cur.execute("create table %sclasses (name text primary key, desc text,pb blob)"%self.prefix)
 			else:
-				raise Exception, t
+				raise Exception(t)
 		self._con.commit()
 
 	def binary(self, data):
@@ -207,4 +207,4 @@ def get_db(module, db):
 	elif module == "Postgres":
 		return Postgres(user=settings.user, password=settings.password, database=settings.database, prefix=settings.prefix, port=settings.port)
 	else:
-		raise Exception, "Don't know module %s" % module
+		raise Exception("Don't know module %s" % module)

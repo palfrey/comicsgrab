@@ -5,20 +5,19 @@
 # Released under the GPL Version 2 (http://www.gnu.org/copyleft/gpl.html)
 
 import re,os,sys
-from sections import *
-from date_manip import CalcWeek,DateManip
-import urlcache
-import urlparse
+from .sections import *
+from .date_manip import CalcWeek,DateManip
+from . import urlcache
+import urllib.parse
 try:
 	from PIL import Image
 except ImportError: # no PIL!
 	Image = None
 
-import database
-import settings
+from . import database
 from time import sleep
 from glob import glob
-import urlgrab
+from . import urlgrab
 from codecs import open
 
 class ComicsDef:
@@ -42,7 +41,7 @@ class ComicsDef:
 		if all_users:
 			user = []
 			for u in self.db.list_users():
-				print "u",u
+				print("u",u)
 				u = self.db.get_user(u)
 				if u.enabled:
 					user.append(u.name)
@@ -54,11 +53,11 @@ class ComicsDef:
 					raise Exception("No user found "+d)
 			
 		if strips==None and user==None:
-			raise Exception, "No strips or users!"
+			raise Exception("No strips or users!")
 		return ret
 
 	def store_err(self,strip,level,msg):
-		print msg
+		print(msg)
 		if level > 1:
 			if not os.path.exists(self.directory):
 				os.makedirs(self.directory)
@@ -71,10 +70,10 @@ class ComicsDef:
 	def get_url(self,strip,url,ref=None):
 		try:
 			return self.cache.get_mult(url,ref,count=2)
-		except urlcache.CacheError,err:
+		except urlcache.CacheError as err:
 			self.store_err(strip,3,err)
 			return None
-		except urlgrab.URLTimeoutError, err:
+		except urlgrab.URLTimeoutError as err:
 			self.store_err(strip,3,err)
 			return None
 
@@ -84,7 +83,7 @@ class ComicsDef:
 		else:
 			if u.mime[0]!="image" and u.mime[0] !="application":
 				self.store_err(g.name,2,"Getting for <a href=\""+g.homepage+"\">"+g.homepage+"</a> found us a %s/%s (non-image) while retrieving %s"%(u.mime[0],u.mime[1],u.url))
-				raise Exception, (u.mime, u.url)
+				raise Exception((u.mime, u.url))
 			if u.mime[1] in ('jpeg', 'jpg'):
 				ext = 'jpg'
 			elif u.mime[1]=='gif':
@@ -97,7 +96,7 @@ class ComicsDef:
 				# FIXME: somewhat lame
 				ext = 'gif'
 			else:
-				raise Exception, "Don't know extension " + str(u.mime)
+				raise Exception("Don't know extension " + str(u.mime))
 		return ext
 
 	def archive(self, directory, strips, now=DateManip()):
@@ -113,36 +112,36 @@ class ComicsDef:
 
 		for s in get_searches(g, search):
 			(kind,data) = s.retr(now, archive=True)
-			print "kind",kind
+			print("kind",kind)
 			if kind=="generate":
-				print "Getting (image)",data
+				print("Getting (image)",data)
 				self.cache.set_varying(data,ref=current)
 				get = [self.get_url(g.name,data,ref=current)]
 			else: # kind == "search"
 				if self.debug>=4:
-					print "data",data
+					print("data",data)
 				searchpage = data["searchpage"]
 				assert len(searchpage)>0
 				while True:
-					print "Getting (searchpage) '%s'"% searchpage
+					print("Getting (searchpage) '%s'"% searchpage)
 					page = self.get_url(g.name,searchpage,ref=searchpage)
 					if page==None:# and page.status != urlcache.URLCache.STAT_UNCHANGED:
-						print "Got no page at all!"
+						print("Got no page at all!")
 						self.cache.remove(searchpage, searchpage)
 						sleep(5)
 					else:
 						content = page.content
 						if data["initialpattern"] != "":
-							print "Initially searching for",data["initialpattern"]
+							print("Initially searching for",data["initialpattern"])
 							iretr = re.findall("(?i)"+data["initialpattern"],content)
 							assert len(iretr) == 1 # other patterns not supported yet
 							content = iretr[0]
 							
-						print "Searching for", data["searchpattern"]
+						print("Searching for", data["searchpattern"])
 						assert data["searchpattern"]!=""
 						retr = re.findall("(?i)"+data["searchpattern"],content)
 						if self.debug>=4:
-							print page.content
+							print(page.content)
 
 		  # remove duplicate images/paths
 						dups = set([])
@@ -158,7 +157,7 @@ class ComicsDef:
 						elif data["namepattern"] != "":
 							np = list(set(re.findall(data["namepattern"], content, re.IGNORECASE | re.DOTALL | re.MULTILINE)))
 						else:
-							raise Exception, ("No namepage or namepattern", data)
+							raise Exception("No namepage or namepattern", data)
 						open("dump","wb", "utf-8").write(content)
 					
 						assert len(np) >=1, (data["namepattern"], np)
@@ -171,7 +170,7 @@ class ComicsDef:
 							except ValueError: # not a number
 								pass
 
-						print "names", names
+						print("names", names)
 
 						shortpaths = [os.path.join(directory, x) for x in names]
 						missing = False
@@ -186,9 +185,9 @@ class ComicsDef:
 								for x in range(len(retr)):
 									if not s.look.HasField("index") or s.look.index == x+1:
 										r = retr[x]
-										img = urlparse.urljoin(data["baseurl"],r)
+										img = urllib.parse.urljoin(data["baseurl"],r)
 										self.cache.remove(img, searchpage)
-										print "Getting (image from search)", img
+										print("Getting (image from search)", img)
 										get.append(self.get_url(g.name,img,ref=searchpage))
 
 								get = [u for u in get if u != None]
@@ -200,14 +199,14 @@ class ComicsDef:
 							exts = [self.makeext(u,g) for u in get]
 							comicpaths = ["%s.%s"%(x,y) for (x,y) in zip(shortpaths, exts)]
 							for (comicpath, u) in zip(comicpaths, get):
-								print comicpath
+								print(comicpath)
 								if not os.path.exists(comicpath):
-									file(comicpath, "wb").write(u.content)
+									open(comicpath, "wb").write(u.content)
 
 						assert len(data["nextpattern"]) >0
 						nextpage = list(set(re.findall(data["nextpattern"], content, re.IGNORECASE | re.DOTALL | re.MULTILINE)))
 						assert len(nextpage) == 1, (nextpage, data["nextpattern"])
-						searchpage = urlparse.urljoin(data["baseurl"], nextpage[0])
+						searchpage = urllib.parse.urljoin(data["baseurl"], nextpage[0])
 
 						#tried += 1
 
@@ -216,11 +215,11 @@ class ComicsDef:
 		self.directory = os.path.join(directory,self.now.strftime("%Y-%m-%d"+os.sep))
 		self.errors = []
 		c = CalcWeek(self.now)
-		print self.now.strftime("%Y/%m/%d")
+		print(self.now.strftime("%Y/%m/%d"))
 
 		if not os.path.exists(directory):
 			os.makedirs(directory)
-		htmlout = file(os.path.join(directory,"index.html"),'w')
+		htmlout = open(os.path.join(directory,"index.html"),'w')
 		newindex = self.now.strftime("%Y-%m-%d.html")
 		files = os.listdir(directory)
 		files.sort()
@@ -233,12 +232,12 @@ class ComicsDef:
 			p = os.path.join(directory,l)
 			if os.path.isfile(p):
 				prev = l
-				addfwd = file(p,'r')
+				addfwd = open(p,'r')
 				content = addfwd.read()
 				content = content.replace("<!-- FWD LINK --><br />","<a href=\""+newindex+"\">Next day</a><br />")
 				content = content.replace("<!-- FWD LINK -->","<a href=\""+newindex+"\">Next day</a><br />")
 				addfwd.close()
-				addfwd = file(p,'w+')
+				addfwd = open(p,'w+')
 				addfwd.write(content)
 				addfwd.close()
 				break
@@ -265,10 +264,10 @@ class ComicsDef:
 				break
 			
 		dirs.reverse()
-		print "dirs",dirs,lastdir
+		print("dirs",dirs,lastdir)
 
 		for (g,search) in self.get_strips(strips,user, all_users=all_users):
-			print "Running",g.name, "("+g.days+")"
+			print("Running",g.name, "("+g.days+")")
 			last = DateManip(c.get_last_day(g.days))
 			curr = self.now.copy()
 			found = []
@@ -277,7 +276,7 @@ class ComicsDef:
 				folder = os.path.join(directory,curr.strftime("%Y-%m-%d"))
 				if os.path.exists(folder):
 					files = os.listdir(folder)
-					print "Checking",folder
+					print("Checking",folder)
 					for f in files:
 						if f[:len(g.name)] == g.name:
 							found.append(os.path.join(curr.strftime("%Y-%m-%d"),f))
@@ -290,7 +289,7 @@ class ComicsDef:
 			if lastdir!=None:
 				removes = []
 				found_last = False
-				print "cleanup",dirs
+				print("cleanup",dirs)
 				for d in dirs:
 					folder = os.path.join(directory,d)
 					files = os.listdir(folder)
@@ -298,10 +297,10 @@ class ComicsDef:
 					for f in files:
 						if f[:len(g.name)] == g.name:
 							if found_last and d<lastdir:
-								print "removing",os.path.join(folder,f)
+								print("removing",os.path.join(folder,f))
 								os.unlink(os.path.join(folder,f))
 							if not found_last:
-								print "found",folder
+								print("found",folder)
 							found_last = True
 							
 			if len([x for x in found if not x.endswith("-error")]) == 0:
@@ -309,31 +308,31 @@ class ComicsDef:
 				tried = 0
 				for s in get_searches(g,search):
 					(kind,data) = s.retr(now)
-					print "kind",kind
+					print("kind",kind)
 					if kind=="generate":
-						print "Getting (image)",data
+						print("Getting (image)",data)
 						self.cache.set_varying(data,ref=g.homepage)
 						get = [self.get_url(g.name,data,ref=g.homepage)]
 					else: # kind == "search"
 						if self.debug>=4:
-							print "data",data
+							print("data",data)
 						searchpage = data["searchpage"]
 						assert searchpage != ""
-						print "Getting (searchpage)",searchpage
+						print("Getting (searchpage)",searchpage)
 						page = self.get_url(g.name,searchpage,ref=searchpage)
 						if page!=None:# and page.status != urlcache.URLCache.STAT_UNCHANGED:
 							content = page.content
 							if data["initialpattern"] != "":
-								print "Initially searching for",data["initialpattern"]
+								print("Initially searching for",data["initialpattern"])
 								iretr = re.findall("(?i)"+data["initialpattern"],content)
 								assert len(iretr) == 1 # other patterns not supported yet
 								content = iretr[0]
 								
-							print "Searching for",data["searchpattern"]
+							print("Searching for",data["searchpattern"])
 							assert data["searchpattern"]!=""
 							retr = re.findall("(?i)"+data["searchpattern"],content)
 							if self.debug>=4:
-								print page.content
+								print(page.content)
 
               # remove duplicate images/paths
 							dups = set([])
@@ -347,14 +346,14 @@ class ComicsDef:
 							for x in range(len(retr)):
 								if not s.look.HasField("index") or s.look.index == x+1:
 									r = retr[x]
-									joined = urlparse.urljoin(data["baseurl"],r)
-									print "Getting (image from search)", joined#.encode('utf-8', errors='ignore')
+									joined = urllib.parse.urljoin(data["baseurl"],r)
+									print("Getting (image from search)", joined)#.encode('utf-8', errors='ignore')
 									get.append(self.get_url(g.name, joined, ref=searchpage))
 							tried += 1
 						else:
-							print "Got no page at all!"
+							print("Got no page at all!")
 
-					get = filter(lambda x:x!=None,get)
+					get = [x for x in get if x!=None]
 					if get!=[]:
 						break
 				
@@ -370,7 +369,7 @@ class ComicsDef:
 						folder = os.path.join(directory,l)
 						if os.path.isdir(folder):
 							files = os.listdir(folder)
-							print "Looking for old in",folder
+							print("Looking for old in",folder)
 							for f in files:
 								if f[:len(g.name)] == g.name:
 									old.append(os.path.join(folder,f))
@@ -379,13 +378,13 @@ class ComicsDef:
 
 					if old != [] and len(old)==len(get):
 						for o in range(len(old)):
-							print "Comparing",old[o],"and",get[o].url # encode('utf-8', errors='ignore')
+							print("Comparing",old[o],"and",get[o].url) # encode('utf-8', errors='ignore')
 
 							if len(get[o].content) != os.stat(old[o]).st_size:
 								break
 						else:
 							self.store_err(g.name,1,"Got the old stuff in "+ folder)
-							print ""
+							print("")
 							continue
 				
 					index = 0
@@ -409,7 +408,7 @@ class ComicsDef:
 					self.store_err(g.name,2,"Failed to get anything for <a href=\""+g.homepage+"\">"+g.homepage+"</a>")
 
 			if len(found)>0:
-				print "We found",found
+				print("We found",found)
 				if not oldstuff:
 					htmlout.write("<h3><a href=\""+g.homepage+"\">"+g.desc+"</a></h3>\n")
 					onlyerror = len([x for x in found if not x.endswith("error")]) == 0
@@ -429,7 +428,7 @@ class ComicsDef:
 					htmlout.write("<br />\n")
 				else:
 					self.store_err(g.name,1,"Got the old stuff in "+ folder)
-			print ""
+			print("")
 		self.errors.sort()
 		for (l,e) in self.errors:
 			if l>=self.debug:
@@ -442,8 +441,8 @@ class ComicsDef:
 				os.removedirs(di)
 				if os.path.exists(os.path.join(directory,d+".html")):
 					os.unlink(os.path.join(directory,d+".html"))
-		htmlout = file(os.path.join(directory,"index.html"),'r')
-		dated = file(os.path.join(directory,newindex),'w')
+		htmlout = open(os.path.join(directory,"index.html"),'r')
+		dated = open(os.path.join(directory,newindex),'w')
 		dated.write(htmlout.read())
 		dated.close()
 		htmlout.close()

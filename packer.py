@@ -11,11 +11,11 @@ for f in sorted(listdir(folder)):
 	if year not in years:
 		years.append(year)
 
-print years
+print(years)
 
 for year in years:
 	fname = "%s-%s.cbz"%(folder, year)
 	if not exists(fname):
 		cmd = "zip %s %s/%s*"%(fname,folder, year)
-		print cmd
+		print(cmd)
 		system(cmd)

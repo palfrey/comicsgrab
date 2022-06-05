@@ -109,7 +109,7 @@ class PerlREEval:
 					break
 				self.expr_perl(l,local_vars,funcs)
 			else:
-				raise Exception, "didn't break!"
+				raise Exception("didn't break!")
 			#print sec.groups()
 			#print ret
 			ret = sec.group(1)+ret+sec.group(3)
@@ -174,13 +174,13 @@ class PerlREEval:
 			ret = self.now.strftime(str(eval(exp)))
 		except SyntaxError:
 			if exp.find("strftime")!=-1:
-				print "(syntax) eval failed for",exp
+				print("(syntax) eval failed for",exp)
 				raise		
 			ret = self.now.strftime(exp)
 
 		except TypeError:
 			if exp.find("strftime")!=-1:
-				print "(type) eval failed for",exp
+				print("(type) eval failed for",exp)
 				raise
 			ret = exp
 		except:

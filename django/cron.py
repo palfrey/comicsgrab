@@ -2,7 +2,7 @@ from comicsgrab.deffile import ComicsDef
 from comicsgrab.date_manip import DateManip
 from django.conf import settings
 import os.path
-from models import User
+from .models import User
 
 def updateComics():
     for user in User.objects.all():

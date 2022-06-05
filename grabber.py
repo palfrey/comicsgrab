@@ -4,8 +4,8 @@
 #
 # Released under the GPL Version 2 (http://www.gnu.org/copyleft/gpl.html)
 
-from deffile import ComicsDef
-from date_manip import DateManip
+from .deffile import ComicsDef
+from .date_manip import DateManip
 from optparse import OptionParser
 
 proxy = None
@@ -31,10 +31,10 @@ if not opts.listme and len(args)!=1:
 now = DateManip()
 df = ComicsDef(opts.strips,opts.cache,debug=opts.debug,proxy=opts.proxy, db=opts.db, module=opts.db_module, archive = opts.archive)
 if opts.listme:
-	print "<ul>"
+	print("<ul>")
 	for (x, search) in df.get_strips(opts.comics,opts.users,now=now):
-		print "<li><a href=\""+x.homepage+"\">"+x.name+"</a></li>"
-	print "</ul>"
+		print("<li><a href=\""+x.homepage+"\">"+x.name+"</a></li>")
+	print("</ul>")
 elif opts.archive:
 	df.archive(args[0],opts.comics)
 else:
