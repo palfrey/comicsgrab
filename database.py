@@ -199,7 +199,7 @@ class Sqlite(Database):
 		return sqlite.Binary(data)
 
 def get_db(module, db):
-	import settings
+	from . import settings
 	if module == "Sqlite":
 		return Sqlite(db)
 	elif module == "MySQL":

@@ -19,6 +19,7 @@ from time import sleep
 from glob import glob
 from . import urlgrab
 from codecs import open
+import six
 
 class ComicsDef:
 	def __init__(self,deffile,cachedir,debug=0,proxy=None, db=None, module="Sqlite", archive = False):
@@ -321,7 +322,7 @@ class ComicsDef:
 						print("Getting (searchpage)",searchpage)
 						page = self.get_url(g.name,searchpage,ref=searchpage)
 						if page!=None:# and page.status != urlcache.URLCache.STAT_UNCHANGED:
-							content = page.content
+							content = six.ensure_text(page.content)
 							if data["initialpattern"] != "":
 								print("Initially searching for",data["initialpattern"])
 								iretr = re.findall("(?i)"+data["initialpattern"],content)

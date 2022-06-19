@@ -17,7 +17,7 @@ except ImportError:
 	class RepeatedCompositeContainer:
 		pass
 
-import types
+import six
 
 def user_strips(user,db,now,cache):
 	strips = db.list_user_strips(user)
@@ -73,7 +73,7 @@ def gen_search(strip,db,now,cache, search = None):
 			data = cache.get_mult(page,None,count=2)
 			if data == None:
 				raise CacheError("Can't get page %s" % page)
-			data = data.content
+			data = six.ensure_text(data.content)
 			find = re.search(val, data)
 			if find == None:
 				raise CacheError("Can't find %s"%val)

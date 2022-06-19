@@ -49,7 +49,7 @@ class URLCache:
 		if f in os.listdir(self.cache):
 			try:
 				print("loading",os.path.join(self.cache,f))
-				old = load(open(os.path.join(self.cache,f)))
+				old = load(open(os.path.join(self.cache,f), 'rb'))
 				if old.mime[0] == "image" or self.archive:
 					old.status = self.STAT_UNCHANGED
 				else:
@@ -152,10 +152,12 @@ class URLCache:
 
 	def get_mult(self,url,ref=None,count=1):
 		retry = 0
+		last_err = None
 		while retry<count:
 			try:
 				return self.get(url,ref)
 			except CacheError as err:
+				last_err = err
 				if str(err).find("Timed out")==-1:
 					break
 				retry += 1
@@ -165,7 +167,7 @@ class URLCache:
 		hash = self.md5(url,ref)
 		self.store[hash] = URLData(url,ref)
 		self.gen_failed(self.store[hash])
-		raise
+		raise last_err
 
 class URLData:
 	def __init__(self,url,ref):
