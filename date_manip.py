@@ -10,7 +10,7 @@
 import time,calendar,re
 
 class DateManip:
-	hour_mod = ( (time.altzone/60) + (time.daylight*60) ) / 60 # allow for gmt offsets and daylight
+	hour_mod = int(((time.altzone/60) + (time.daylight*60) ) / 60) # allow for gmt offsets and daylight
 
 	@staticmethod
 	def strptime(format, date):
