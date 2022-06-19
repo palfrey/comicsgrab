@@ -25,7 +25,7 @@ class ProtobufField(models.BinaryField):
             del kwargs['default_args']
         return name, protoclass, args, kwargs 
     
-    def from_db_value(self, value, expression, connection, context):
+    def from_db_value(self, value, expression, connection, context=None):
         output = io.StringIO()
         pb = self.protoclass.FromString(value)
         dumper.print_pb_internal(output, pb, user=False)
