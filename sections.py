@@ -27,8 +27,11 @@ def user_strips(user,db,now,cache):
 			new_s = db.get_strip(s)
 		except NoSuchStrip:
 			raise Exception("No strip found '%s'"%s)
-		search = gen_search(new_s,db,now,cache)
-		ret.append((new_s, search))
+		try:
+			search = gen_search(new_s,db,now,cache)
+			ret.append((new_s, search))
+		except CacheError as e:
+			print("CacheError on %s" % s, e)
 	return ret
 
 def get_searches(strip,other_searches):
