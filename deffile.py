@@ -322,7 +322,7 @@ class ComicsDef:
 						print("Getting (searchpage)",searchpage)
 						page = self.get_url(g.name,searchpage,ref=searchpage)
 						if page!=None:# and page.status != urlcache.URLCache.STAT_UNCHANGED:
-							content = six.ensure_text(page.content)
+							content = six.ensure_text(page.content, errors='ignore')
 							if data["initialpattern"] != "":
 								print("Initially searching for",data["initialpattern"])
 								iretr = re.findall("(?i)"+data["initialpattern"],content)
