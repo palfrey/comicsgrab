@@ -378,6 +378,7 @@ class ComicsDef:
 								break
 
 					if old != [] and len(old)==len(get):
+						old.sort()
 						for o in range(len(old)):
 							print("Comparing",old[o],"and",get[o].url) # encode('utf-8', errors='ignore')
 
